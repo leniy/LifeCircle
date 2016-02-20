@@ -9,68 +9,93 @@
 <link href="css/swiper.css" rel="stylesheet" />
 <link href="css/life.css" rel="stylesheet" />
 </head>
+
+<!-- 首页模板1 （包含：顶部图片、轮训推荐、矩阵式分类按钮、推荐列表） -->
 <body style="position: relative;">
-<div class="province"> <img src="image/province_logo.png" alt="" /> </div>
+
+<!-- 顶部横幅图片 -->
+<script type="text/html">
+<div class="province"><img src="<%=page_advert_img%>" alt="" /></div>
+</script>
+
+<!-- 滑动轮训图片 -->
 <div class="swiper-container">
 	<div class="swiper-wrapper">
 	<script type="text/html">
 	<% for (i=0, l=recommends.length; i<l; i++) { %>
 		<div class="swiper-slide">
-			<!--<div class="common_play"><img src="image/icon/common_play.png" alt=""></div>-->
-			<a href="<%=recommends[i].recommend_src%>">
-				<img src="<%=recommends[i].recommend_img%>" style="width: 100%;" />
+			<% if (1==recommends[i].recommend_type) { %>
+			<a class="common_play" href="<%=recommends[i].recommend_src%>">
+				<img src="image/icon/common_play.png" alt="" />
 			</a>
-			<div class="carousel-caption"><%=recommends[i].recommend_name%></div>
+			<% } %>
+			<a href="<%=recommends[i].recommend_src%>">
+				<img src="<%=recommends[i].recommend_img%>" alt="" style="width: 100%;">
+				<div class="carousel-caption"><%=recommends[i].recommend_name%></div>
+			</a>
 		</div>
 	<% } %>
 	</script>
 	</div>
-	<!-- Add Pagination -->
 	<div class="swiper-pagination"></div>
 </div>
+
+<!-- 矩阵式分类导航 -->
 <div class="category">
+	<script type="text/html">
 	<ul class="clearfix">
-		<script type="text/html">
-	<% for (i=0, l=categorys.length; i<l; i++) { %>
-		<li>
-		<a href="<%=categorys[i].category_src%>">
-		<img src="<%=categorys[i].category_img%>" alt=""/>
-		<p><%=categorys[i].category_name%></p>
-		</a>
+		<% for (i=0, l=categorys.length; i<l; i++) { %>
+		<li id="<%=categorys[i].category_id%>">
+			<a href="<%=categorys[i].category_src%>">
+				<img src="<%=categorys[i].category_img%>" alt="" />
+				<p><%=categorys[i].category_name%></p>
+			</a>
+			<% if (1==categorys[i].category_hasnew) { %>
+			<div class="an-number"><span><%=categorys[i].category_hasnew%></span></div>
+			<% } %>
+		</li>
+		<% } %>
+	</ul>
+	</script>
+</div>
+
+<!-- 首页推荐文章 -->
+<div class="common-title-bar clearfix">
+	<span class="left common-title">热门推荐</span>
+	<a href="#" class="more">
+		<img src="image/icon/common_right_arrow.png" />
+	</a>
+	<div style="background: #fff; position: absolute; width: 35px; height: 40px; top: 0; right: 0;"></div>
+</div>
+<div class="news-item">
+	<ul>
+	<script type="text/html">
+	<% for (i=0, l=1; i<l; i++) { %>
+		<li class="clearfix">
+			<a href="<%=infoObjs[i].infoObj_src%>">
+				<div class="news-img left">
+					<img src="<%=infoObjs[i].infoObj_img%>" />
+				</div>
+				<div class="news-brief-bar left">
+					<p class="news-title" id="<%=infoObjs[i].infoObj_id%>"><%=infoObjs[i].infoObj_title%></p>
+					<p><%=infoObjs[i].infoObj_summary%></p>
+				</div>
+			</a>
 		</li>
 	<% } %>
 	</script>
 	</ul>
 </div>
 
-<div class="news-item">
-	<ul>
-		<script type="text/html">
-		<% for (i=0, l=1; i<l; i++) { %>
-			<li class="clearfix">
-				<a href="<%=infoObjs[i].infoObj_src%>">
-					<div class="news-img left">
-						<img src="<%=infoObjs[i].infoObj_img%>" />
-					</div>
-					<div class="news-brief-bar left">
-						<p class="news-title" id="<%=infoObjs[i].infoObj_id%>"><%=infoObjs[i].infoObj_title%></p>
-						<p><%=infoObjs[i].infoObj_summary%></p>
-					</div>
-				</a>
-			</li>
-		<% } %>
-		</script>
 
-	</ul>
-</div>
-<script src="js/jquery.min.js"></script> 
-<script src="js/bootstrap.js"></script> 
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
 <script src="js/swiper.min.js"></script>
 <script>
-	$("#eject1").click(function() {
-		$(".eject-banner").slideToggle(300);
-		$(this).toggleClass("common_up");
-	});
+$("#eject1").click(function () {
+	$(".eject-banner").slideToggle(300);
+	$(this).toggleClass("common_up");
+});
 	var swiper = new Swiper('.swiper-container', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true
