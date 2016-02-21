@@ -8,8 +8,9 @@
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/life.css" rel="stylesheet" />
 </head>
-<body>
 
+<!-- 列表模板1（包含：省市等新闻图文列表、社区帮帮图文、社区风采图文） -->
+<body>
 
 <!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
 <div class="news-title-bar">
@@ -17,7 +18,7 @@
 	<div class="container">
 		<a class="return" href="<%=page_back_src%>">返回</a>
 		<h4><%=page_title%></h4>
-		<% if (1==page_canipublish) { %>
+		<% if (""!=publishurl) { %>
 		<a href="<%=page_publishurl%>" class="publish btn btn-warning">发布</a>
 		<% } %>
 	</div>
@@ -34,11 +35,11 @@
 		<a href="<%=infoObjs[i].infoObj_src%>">
 			<div class="news-img left">
 				<img src="<%=infoObjs[i].infoObj_img%>" alt="" />
-				<% if (1==infoObjs[i].hasvideo) { %><p class="icon-play-sm"></p><% } %>
+				<% if (""!=infoObjs[i].video) { %><p class="icon-play-sm"></p><% } %>
 			</div>
 			<div class="news-brief-bar left clearfix">
 				<p class="news-title left" id="<%=infoObjs[i].infoObj_id%>" style="width: initial;"><%=infoObjs[i].infoObj_title%></p>
-				<% if (1==infoObjs[i].hasvideo) { %><span class="icon-vedio left"></span><% } %>
+				<% if (""!=infoObjs[i].video) { %><span class="icon-vedio left"></span><% } %>
 				<p class="left"><%=infoObjs[i].infoObj_summary%></p>
 			</div>
 		</a>

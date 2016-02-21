@@ -10,7 +10,7 @@
 <link href="css/life.css" rel="stylesheet" />
 </head>
 
-<!-- 首页模板1 （包含：顶部图片、轮训推荐、矩阵式分类按钮、推荐列表） -->
+<!-- 首页模板1（包含：顶部图片、轮训推荐、矩阵式分类按钮、推荐列表） -->
 <body style="position: relative;">
 
 <!-- 顶部横幅图片 -->
@@ -30,7 +30,7 @@
 			</a>
 			<% } %>
 			<a href="<%=recommends[i].recommend_src%>">
-				<img src="<%=recommends[i].recommend_img%>" alt="" style="width: 100%;">
+				<img src="<%=recommends[i].recommend_img%>" alt="" style="width: 100%;" />
 				<div class="carousel-caption"><%=recommends[i].recommend_name%></div>
 			</a>
 		</div>
@@ -50,8 +50,8 @@
 				<img src="<%=categorys[i].category_img%>" alt="" />
 				<p><%=categorys[i].category_name%></p>
 			</a>
-			<% if (1==categorys[i].category_hasnew) { %>
-			<div class="an-number"><span><%=categorys[i].category_hasnew%></span></div>
+			<% if (categorys[i].category_newnum > 0) { %>
+			<div class="an-number"><span><%=categorys[i].category_newnum%></span></div>
 			<% } %>
 		</li>
 		<% } %>
@@ -92,10 +92,10 @@
 <script src="js/bootstrap.js"></script>
 <script src="js/swiper.min.js"></script>
 <script>
-$("#eject1").click(function () {
-	$(".eject-banner").slideToggle(300);
-	$(this).toggleClass("common_up");
-});
+	$("#eject1").click(function () {
+		$(".eject-banner").slideToggle(300);
+		$(this).toggleClass("common_up");
+	});
 	var swiper = new Swiper('.swiper-container', {
 		pagination: '.swiper-pagination',
 		paginationClickable: true
