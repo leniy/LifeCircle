@@ -11,15 +11,14 @@
 
 <!-- 发布模板1（包含：手机图片与文字） -->
 <body>
+<script id="template" type="text/html">
 
 <!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
 <div class="news-title-bar">
-	<script type="text/html">
 	<div class="container">
 		<a class="return" href="<%=page_back_src%>">返回</a>
 		<h4><%=page_title%></h4>
 	</div>
-	</script>
 </div>
 
 <!-- 评论与上传文件 -->
@@ -38,5 +37,6 @@
 	<button type="submit" class="btn btn-warning">提交</button>
 </div>
 
+</script>
 </body>
 </html>

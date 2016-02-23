@@ -11,32 +11,28 @@
 
 <!-- 列表模板2（包含：社区视频监控列表） -->
 <body>
+<script id="template" type="text/html">
 
 <!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
 <div class="news-title-bar">
-	<script type="text/html">
 	<div class="container">
 		<a class="return" href="<%=page_back_src%>">返回</a>
 		<h4><%=page_title%></h4>
 	</div>
-	</script>
 </div>
 
 <div class="news-con-bar" style="margin-top: 0;">
 	<!-- 顶部的推荐视频 -->
 	<div class="big-monitor-bar">
-		<script type="text/html">
 		<div class="big-monitor">
 			<img class="monitor-grabgraf" src="<%=liveObjs[0].liveObj_img%>" alt="" />
 			<a class="icon-enlarge" href="<%=liveObjs[0].liveObj_src%>"><img src="image/icon/common_screen.png"/></a>
 		</div>
-		</script>
 	</div>
 	<!-- 接下来是视频列表 -->
 	<div class="sm-monitor-list  container">
 		<div class="row" style="margin-right: -5px;margin-left: -5px;">
 			<ul class="clearfix">
-			<script type="text/html">
 			<% for (i=1, l=liveObjs.length; i<l; i++) { /* 循环从1开始，0是顶部推荐元素 */ %>
 				<li class="col-xs-6">
 					<a href="<%=liveObjs[i].liveObj_src%>">
@@ -47,10 +43,11 @@
 					</a>
 				</li>
 			<% } %>
-			</script>
 			</ul>
 		</div>
 	</div>
 </div>
+
+</script>
 </body>
 </html>

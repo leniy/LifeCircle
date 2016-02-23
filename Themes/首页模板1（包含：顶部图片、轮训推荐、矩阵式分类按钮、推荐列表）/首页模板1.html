@@ -12,16 +12,14 @@
 
 <!-- 首页模板1（包含：顶部图片、轮训推荐、矩阵式分类按钮、推荐列表） -->
 <body style="position: relative;">
+<script id="template" type="text/html">
 
 <!-- 顶部横幅图片 -->
-<script type="text/html">
 <div class="province"><img src="<%=page_advert_img%>" alt="" /></div>
-</script>
 
 <!-- 滑动轮训图片 -->
 <div class="swiper-container">
 	<div class="swiper-wrapper">
-	<script type="text/html">
 	<% for (i=0, l=recommends.length; i<l; i++) { %>
 		<div class="swiper-slide">
 			<% if (1==recommends[i].recommend_type) { %>
@@ -35,14 +33,12 @@
 			</a>
 		</div>
 	<% } %>
-	</script>
 	</div>
 	<div class="swiper-pagination"></div>
 </div>
 
 <!-- 矩阵式分类导航 -->
 <div class="category">
-	<script type="text/html">
 	<ul class="clearfix">
 		<% for (i=0, l=categorys.length; i<l; i++) { %>
 		<li id="<%=categorys[i].category_id%>">
@@ -56,7 +52,6 @@
 		</li>
 		<% } %>
 	</ul>
-	</script>
 </div>
 
 <!-- 首页推荐文章 -->
@@ -69,7 +64,6 @@
 </div>
 <div class="news-item">
 	<ul>
-	<script type="text/html">
 	<% for (i=0, l=1; i<l; i++) { %>
 		<li class="clearfix">
 			<a href="<%=infoObjs[i].infoObj_src%>">
@@ -83,11 +77,10 @@
 			</a>
 		</li>
 	<% } %>
-	</script>
 	</ul>
 </div>
 
-
+</script>
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/swiper.min.js"></script>
