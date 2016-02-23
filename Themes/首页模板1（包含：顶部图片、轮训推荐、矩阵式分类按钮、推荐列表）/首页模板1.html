@@ -5,13 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
 <script src="js/template-native.js"></script>
+<script src="js/common.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/swiper.css" rel="stylesheet" />
 <link href="css/life.css" rel="stylesheet" />
 </head>
 
 <!-- 首页模板1（包含：顶部图片、轮训推荐、矩阵式分类按钮、推荐列表） -->
-<body style="position: relative;">
+<body id="lifecirclebody" style="position: relative;">
 <script id="template" type="text/html">
 
 <!-- 顶部横幅图片 -->
@@ -64,7 +65,7 @@
 </div>
 <div class="news-item">
 	<ul>
-	<% for (i=0, l=1; i<l; i++) { %>
+	<% for (i=0, l=2; i<l; i++) { %>
 		<li class="clearfix">
 			<a href="<%=infoObjs[i].infoObj_src%>">
 				<div class="news-img left">
@@ -81,6 +82,8 @@
 </div>
 
 </script>
+</body>
+
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/swiper.min.js"></script>
@@ -94,5 +97,4 @@
 		paginationClickable: true
 	});
 </script>
-</body>
 </html>

@@ -5,12 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
 <script src="js/template-native.js"></script>
+<script src="js/common.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/life.css" rel="stylesheet" />
 </head>
 
 <!-- 列表模板1（包含：省市等新闻图文列表、社区帮帮图文、社区风采图文） -->
-<body>
+<body id="lifecirclebody">
 <script id="template" type="text/html">
 
 <!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
@@ -47,6 +48,8 @@
 </div>
 
 </script>
+</body>
+
 <!-- js脚本，防止标题文字过长 -->
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
@@ -61,5 +64,4 @@
 		});
 	});
 </script>
-</body>
 </html>

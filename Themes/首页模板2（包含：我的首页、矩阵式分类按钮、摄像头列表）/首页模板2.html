@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="js/template-native.js"></script>
+<script src="js/common.js"></script>
+<script src="js/jquery.min.js"></script> 
+<link href="css/wodeindex.css" rel="stylesheet" type="text/css" />
+</head>
+
+<!-- 首页模板2（包含：我的首页） -->
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+
+<!-- 矩阵式分类导航 -->
+<div class="bar">
+	<ul>
+	<% for (i=0, l=categorys.length; i<l; i++) { %>
+		<li id="<%=categorys[i].category_id%>"><a href="<%=categorys[i].category_src%>" target="_self"><img src="<%=categorys[i].category_img%>" /></a></li>
+	<% } %>
+	</ul>
+</div>
+
+<!-- 第一行大图 -->
+<div class="content">
+	<div class="ktjk">
+	<a href="<%=liveObjs[0].liveObj_src%>" target="_self"><img src="<%=liveObjs[0].liveObj_img%>"/></a>
+	<div class="ktjk-title title"><%=liveObjs[0].liveObj_title%></div>
+	</div>
+</div>
+
+<!-- 接下来是每行两个的小图 -->
+<div class="content">
+<% for (i=1, l=liveObjs.length; i<l; i++) { /* 循环从1开始，0是客厅监控 */ %>
+	<div class="xqjks">
+		<div class="xqjk">
+		<a href="<%=liveObjs[i].liveObj_src%>" target="_self"><img src="<%=liveObjs[i].liveObj_img%>"/></a>
+		<div class="xqjk-title title"><%=liveObjs[i].liveObj_title%></div>
+		</div>
+	</div>
+<% } %>
+</div>
+</script>
+</body>
+</html>
