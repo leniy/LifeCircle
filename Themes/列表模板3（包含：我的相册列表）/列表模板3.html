@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="js/template-native.js"></script>
+<script src="js/jquery.min.js"></script> 
+<script src="js/common.js"></script>
+
+<link href="css/wodexiangce.css" rel="stylesheet" type="text/css" />
+</head>
+
+<!-- 列表模板3（包含：我的相册列表） -->
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+
+
+<!-- 顶部返回导航条，包含上传按钮 -->
+<div class="top">
+	<a href="<%=page_back_src%>">返回</a>
+	<span style=" margin:0px auto;"><%=page_title%></span>
+	<a id="publishurl" href="<%=page_publishurl%>">上传</a>
+</div>
+
+<div class="head">
+	<div class="top_left">
+		<a><span>#风景</span></a>
+		<a><span>#风景</span></a>
+		<a><span>#风景</span></a>
+		<a><span>#风景</span></a>
+	</div>
+	<div class="top_right">
+		<span class="num">6</span>
+		<span>张照片</span>
+	</div>
+</div>
+<div class="content">
+	<div class="pic">
+		<img src="image/ktjk.png"/>
+		<div class="pic_title">
+			2016年2月16日
+		</div>
+	</div>
+	<div class="pic">
+		<img src="image/ktjk.png"/>
+		<div class="pic_title">
+			2016年2月16日
+		</div>
+	</div>
+</div>
+</body>
+
+<script>
+$(document).ready(function(){
+	var hdw = $('.top_left span');
+	hdw.click(function(){
+		hdw.removeClass('hover');
+		$(this).addClass('hover');
+	});
+});
+</script>
+</html>

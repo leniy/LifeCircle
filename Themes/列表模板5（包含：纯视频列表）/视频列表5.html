@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="js/template-native.js"></script>
+<script src="js/jquery.min.js"></script> 
+<script src="js/common.js"></script>
+
+<link href="css/shipinliebiao.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="lifecirclebody" style="padding-top:45px;">
+<script id="template" type="text/html">
+
+<div class="top">
+	<a href="<%=page_back_src%>">返回</a><span style=" margin:0px auto;"><%=page_title%></span>
+</div>
+
+<% for (i=0, l=videoObjs.length; i<l; i++) { %>
+<div class="pt">
+	<a href="<%=videoObjs[i].videoObj_src%>">
+	<div class="pt_pic" style="background-image: url(<%=videoObjs[i].videoObj_img%>);"></div>
+	<div class="title"><%=videoObjs[i].videoObj_title%></div>
+	<div class="link"></div>
+	</a>
+</div>
+<% } %>
+
+</script>
+</body>
+</html>

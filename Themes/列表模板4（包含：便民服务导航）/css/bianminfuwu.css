@@ -1,0 +1,91 @@
+@CHARSET "UTF-8";
+ html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+        fieldset, img { border:none; }
+        img{display: block;}
+        address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; }
+        ul, ol { list-style:none; }
+        input { padding-top:0; padding-bottom:0; font-family: "SimSun","宋体";}
+        input::-moz-focus-inner { border:none; padding:0; }
+        select, input { vertical-align:middle; }
+        select, input, textarea { font-size:12px; margin:0; }
+        input[type="text"], input[type="password"], textarea { outline-style:none; -webkit-appearance:none; }
+        textarea { resize:none; }
+        table { border-collapse:collapse; }
+        body { color:#333; font:12px/20px "SimSun","宋体","Arial Narrow",HELVETICA;/* overflow-y:scroll;*/ }
+        .clearfix:after { content:"."; display:block; height:0; visibility:hidden; clear:both; }
+        .clearfix { zoom:1; }
+        .clearit { clear:both; height:0; font-size:0; overflow:hidden; }
+        a { color:#666; text-decoration:none; }
+        a:visited { color:; text-decoration:none;}
+        a:hover{ color:; text-decoration:none; }
+		a:active{ color:; text-decoration:none; }
+*{
+	font-family:"Microsoft YaHei";
+}
+.top{
+	top:0px;
+	height:45px;
+	max-width:640px;
+	width:100%;
+	line-height:45px;
+	text-align:center;
+	border-bottom:#FDAB01 solid 3px;
+	position:fixed;
+	background-color:#fff;
+	z-index:9999;
+}
+.top span{
+	display:block;
+	font-size:16px;
+	margin:0px auto;
+	width:64px;
+	height:45px;
+	line-height:45px;
+}
+.top a{
+	position:absolute;
+	width:55px;
+	height:45px;
+	left:10px;
+	top:0px;
+	display:block;
+	text-align:right;
+	font-size:18px;
+	background-image:url(../image/left.png);
+	background-repeat: no-repeat;
+	background-position: 0px 10px;
+	background-size:24%;
+}
+
+
+
+
+
+
+*{
+	margin:0px;
+	padding:0px;
+}
+.dv2{width:93px;height:93px;float:left;margin-top:14px;margin-left:5px; margin-bottom:10px;}
+.sp{
+	display:block; 
+	color:black;
+	font-family:Microsoft YaHe; 
+	font-size:14px; 
+	text-align:center; 	
+}
+.logo{
+	width:100%;
+	height:100%;
+	border:0px solid white;
+}
+
+body {
+	margin-top:45px;
+}
+
+#list{
+	margin:5px auto 0px;
+	text-align:center;
+	width:320px;
+}

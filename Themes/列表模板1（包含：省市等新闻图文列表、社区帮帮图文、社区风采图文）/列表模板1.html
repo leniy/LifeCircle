@@ -5,7 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
 <script src="js/template-native.js"></script>
+<script src="js/jquery.min.js"></script> 
 <script src="js/common.js"></script>
+
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/life.css" rel="stylesheet" />
 </head>
@@ -51,17 +53,16 @@
 </body>
 
 <!-- js脚本，防止标题文字过长 -->
-<script src="js/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		//限制字符个数
-		$(".news-title").each(function () {
-			var maxwidth=10;
-			if($(this).text().length>maxwidth){
-				$(this).text($(this).text().substring(0,maxwidth));
-				$(this).html($(this).html()+"…");
-			}
-		});
+$(document).ready(function(){
+	//限制字符个数
+	$(".news-title").each(function () {
+		var maxwidth=10;
+		if($(this).text().length>maxwidth){
+			$(this).text($(this).text().substring(0,maxwidth));
+			$(this).html($(this).html()+"…");
+		}
 	});
+});
 </script>
 </html>

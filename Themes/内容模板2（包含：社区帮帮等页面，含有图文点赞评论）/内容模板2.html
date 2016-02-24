@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="js/template-native.js"></script>
+<script src="js/jquery.min.js"></script> 
+<script src="js/common.js"></script>
+
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/life.css" rel="stylesheet" />
+</head>
+
+<!-- 内容模板2（包含：社区帮帮等页面，含有图文点赞评论） -->
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+
+<!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
+<div class="news-title-bar">
+	<div class="container">
+		<a class="return" href="<%=page_back_src%>">返回</a>
+		<h4><%=page_title%></h4>
+		<% if (""!=page_reporturl) { %>
+		<a href="<%=page_reporturl%>" class="publish btn btn-warning">举报</a>
+		<% } %>
+	</div>
+</div>
+
+<div class="container news-con-bar">
+	<!-- 特色图片 -->
+	<% if ( ""!=infoObjs[0].img ) { %>
+	<div class="news-con-img"> <img src="<%=infoObjs[0].infoObj_img%>"  alt=""/> </div>
+	<% } %>
+
+	<!-- 用户头像、发布时间等 -->
+	<div class="shequ-user-bar clearfix">
+		<div class="user-logo">
+			<img src="<%=infoObjs[0].infoObj_issuerimg%>" alt=""/>
+		</div>
+		<div class="user-info">
+			<p class="user-name"><%=infoObjs[0].infoObj_issuer%></p>
+			<p style="line-height: 15px;"><span><%=infoObjs[0].infoObj_time%></span></p>
+		</div>
+	</div>
+
+	<!-- 标题和内容 -->
+	<div class="news-con-title"><p style="text-align: left;"><%=infoObjs[0].infoObj_title%></p></div>
+	<div class="news-con"><%=infoObjs[0].infoObj_content%></div>
+
+	<div class="comment-bar">
+		<div class="comment-nav">
+			<ul class="clearfix">
+				<li><a href="#"><img src="image/icon/icon-message.png" alt=""/>评论</a></li>
+				<li><a href="#"><img src="image/icon/icon-zan.png" alt="" />点赞(<span><%=infoObjs[0].infoObj_supportCount%></span>)</a></li>
+				<li><a href="#"><img src="image/icon/icon-share.png" alt="" />分享</a></li>
+			</ul>
+		</div>
+		<h4 style="font-size: 16px; margin: 10px 0;">最新评论</h4>
+		
+		<div class="message-list">
+			<ul>
+				<li>
+					<div class="shequ-user-bar clearfix">
+						<div class="user-logo">
+							<img src="image/user-logo.jpg" alt="" />
+						</div>
+						<div class="user-info">
+							<p class="user-name">白雪公主</p>
+							<p style="line-height: 15px; color: #666;"><span>01-13</span>&nbsp;&nbsp;<span>18:18</span></p>
+						</div>
+						<a href="#" class="reply-message"><img src="image/icon/reply-message.png" /></a>
+					</div>
+					<div class="message-con">
+						<p>好可怜的狗狗，希望它能尽快找到自己的主人，健康快乐！</p>
+					</div>
+				</li>
+				<li>
+					<div class="shequ-user-bar clearfix">
+						<div class="user-logo">
+							<img src="image/user-logo.jpg" alt="" />
+						</div>
+						<div class="user-info">
+							<p class="user-name">老巫婆</p>
+							<p style="line-height: 15px; color: #666;"><span>01-13</span>&nbsp;&nbsp;<span>18:18</span></p>
+						</div>
+						<a href="#" class="reply-message"><img src="image/icon/reply-message.png" /></a>
+					</div>
+					<div class="message-con">
+						<p>就是就是，快点回家吧！</p>
+					</div>
+					<div class="reply-someone">
+						//<a href="#">@<span>白雪公主</span></a><span>好可怜的狗狗，希望它能尽快找到自己的主人，健康快乐!</span>
+					</div>
+				   
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+</script>
+</body>
+</html>
