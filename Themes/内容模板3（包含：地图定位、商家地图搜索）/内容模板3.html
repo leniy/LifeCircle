@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="js/template-native.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/common.js"></script>
+<link rel="stylesheet" type="text/css" href="css/ditusousuo.css">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=MKE0Oz6D9SPltDZKtYIMKCmK"></script>
+</head>
+
+<!-- 内容模板3（包含：地图定位、商家地图搜索） -->
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+
+<!-- 顶部返回导航条 -->
+<div class="top">
+	<a href="<%=page_back_src%>">返回</a>
+	<span style=" margin:0px auto;"><%=page_title%></span>
+</div>
+<div id="allmap"></div>
+<div id="page_latitude"><%=page_latitude%></div>
+<div id="page_longitude"><%=page_longitude%></div>
+<div id="page_searchKey"><%=page_searchKey%></div>
+</script>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+	hei = $(document).height()-48-48;
+	latitude = Number($("#page_latitude").text());
+	longitude = Number($("#page_longitude").text());
+	searchwords = $("#page_searchKey").text();
+	$("#allmap").height(hei);
+
+	var map = new BMap.Map("allmap");
+	var mPoint = new BMap.Point(latitude, longitude); 
+	map.centerAndZoom(mPoint, 14);
+	var local = new BMap.LocalSearch(map, {
+	renderOptions:{map: map, autoViewport:true}
+	});
+	local.searchNearby(searchwords,mPoint,1000);
+});
+</script>
+</html>
