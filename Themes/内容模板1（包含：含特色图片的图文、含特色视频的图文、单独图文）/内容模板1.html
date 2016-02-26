@@ -26,7 +26,7 @@
 
 <!-- 内容页，如果文章包含视频，则顶部显示视频，否则显示特色图片。 -->
 <div class="container news-con-bar">
-	<% if ( ""!=infoObjs[0].video && ""!=infoObjs[0].img ) { %>
+	<% if ( ""!=infoObjs[0].video && ""!=infoObjs[0].infoObj_img ) { %>
 	<video controls="controls" style="width: 100%; height: auto; background: #000;"><source src="<%=infoObjs[0].video%>" type="video/mp4" poster="<%=infoObjs[0].img%>" /></video>
 	<% } %>
 	<% else if ( ""!=infoObjs[0].video ) { %>
