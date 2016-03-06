@@ -62,14 +62,14 @@
 <!-- 首页推荐文章 -->
 <div class="common-title-bar clearfix">
 	<span class="left common-title">热门推荐</span>
-	<a href="#" class="more">
+	<div class="more">
 		<img src="image/icon/common_right_arrow.png" />
-	</a>
+	</div>
 	<div style="background: #fff; position: absolute; width: 35px; height: 40px; top: 0; right: 0;"></div>
 </div>
 <div class="news-item">
 	<ul>
-	<% for (i=0, l=2; i<l; i++) { %>
+	<% for (i=0, l=infoObjs.length; i<l; i++) { %>
 		<li class="clearfix">
 			<a href="<%=infoObjs[i].infoObj_src%>">
 				<div class="news-img left">
