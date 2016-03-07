@@ -19,7 +19,7 @@
 <!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
 <div class="news-title-bar">
 	<div class="container">
-		<a class="return" href="<%=page_back_src%>">返回</a>
+		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
 		<h4><%=page_title%></h4>
 	</div>
 </div>
@@ -27,10 +27,9 @@
 <!-- 内容页，如果摄像头包含略缩图，显示略缩图。 -->
 <div class="container news-con-bar">
 	<% if ( ""!=liveObjs[0].liveObj_img ) { %>
-	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=liveObjs[0].address%>" poster="<%=liveObjs[0].img%>" /></video>
-	<% } %>
-	<% else { %>
-	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=liveObjs[0].address%>" /></video>
+	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=liveObjs[0].liveObj_address%>" poster="<%=liveObjs[0].liveObj_img%>" /></video>
+	<% } else {%>
+	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=liveObjs[0].liveObj_address%>" /></video>
 	<% } %>
 	<div class="news-con-title"><p><%=liveObjs[0].liveObj_title%></p></div>
 	<div class="news-con"><%=liveObjs[0].liveObj_content%></div>

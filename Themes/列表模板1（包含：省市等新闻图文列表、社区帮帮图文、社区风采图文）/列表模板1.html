@@ -19,7 +19,7 @@
 <!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
 <div class="news-title-bar">
 	<div class="container">
-		<a class="return" href="<%=page_back_src%>">返回</a>
+		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
 		<h4><%=page_title%></h4>
 		<% if (""!=page_publishurl) { %>
 		<a href="<%=page_publishurl%>" class="publish btn btn-warning">发布</a>
