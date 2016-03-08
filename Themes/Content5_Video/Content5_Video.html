@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="js/template-native.js"></script>
+<script src="js/jquery.min.js"></script> 
+<script src="js/common.js"></script>
+
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link href="css/life.css" rel="stylesheet" />
+</head>
+
+<!-- 内容模板5（包含：点播视频） -->
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+
+<!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
+<div class="news-title-bar">
+	<div class="container">
+		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
+		<h4><%=page_title%></h4>
+	</div>
+</div>
+
+<!-- 内容页，如果摄像头包含略缩图，显示略缩图。 -->
+<div class="container news-con-bar">
+	<% if ( ""!=videoObjs[0].videoObj_img ) { %>
+	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=videoObjs[0].videoObj_address%>" poster="<%=videoObjs[0].videoObj_img%>" /></video>
+	<% } else {%>
+	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=videoObjs[0].videoObj_address%>" /></video>
+	<% } %>
+	<div class="news-con-title"><p><%=videoObjs[0].videoObj_title%></p></div>
+	<div class="news-con"><%=videoObjs[0].videoObj_content%></div>
+</div>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="js/template-native.js"></script>
+<script src="js/jquery.min.js"></script> 
+<script src="js/common.js"></script>
+
+<link href="css/tupianyulan.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="lifecirclebody" style="padding-top:45px;">
+<script id="template" type="text/html">
+
+<div class="top">
+	<a href="<%=page_back_src%>">返回</a><span style=" margin:0px auto;"><%=page_title%></span>
+</div>
+
+<div id="pic"></div>
+
+
+<div class="bar">
+	<div class="barw" id="region" style="width:800px;position:absolute;left:0px;top:10px;height:120px;">
+		<div class="bars hover"><img id="sub0" src="picData/01.jpg" /></div>
+		<div class="bars"><img id="sub1" src="picData/02.jpg" /></div>
+		<div class="bars"><img id="sub2" src="picData/03.jpg" /></div>
+		<div class="bars"><img id="sub3" src="picData/04.jpg" /></div>
+		<div class="bars"><img id="sub3" src="picData/05.jpg" /></div>
+		<div class="bars"><img id="sub3" src="picData/06.jpg" /></div>
+		<div class="bars"><img id="sub3" src="picData/07.jpg" /></div>
+	</div>
+</div>
+
+</script>
+</body>
+
+<script>
+   tagId = 'region';
+    pressX = 0, pressY = 0;
+    obj = document.getElementById(tagId);
+    obj.addEventListener('touchmove', function(event){
+        // 如果这个元素的位置内只有一个手指的话
+        if (event.targetTouches.length == 1) {
+            var touch = event.targetTouches[0];
+            var spanX = touch.pageX - pressX;
+           // var spanY = touch.pageY - pressY;
+            var direct = "none";
+			theleft1 = parseInt(theleft)+parseInt(spanX);
+			if(theleft1 >0 ){
+				theleft1 = 0;
+			}
+			document.getElementById(tagId).style.left = theleft1+"px";		
+        }
+    }, false);
+    obj.addEventListener('touchstart', function(event){
+        // 如果这个元素的位置内只有一个手指的话
+        if (event.targetTouches.length == 1) {
+            var touch = event.targetTouches[0];
+            // 把元素放在手指所在的位置
+            pressX = touch.pageX;
+           // pressY = touch.pageY;
+			theleft = obj.style.left;
+			//alert(theleft);
+        }
+    }, false);
+$(document).ready(function(){
+	hweight = document.body.offsetWidth;
+	$("bar").css("width",hweight);
+	imgClick();
+	addImg();
+	setTimeout(function(){addTextBox();},2000); 
+});
+function addImg(){
+	twidth = picData.length*115;
+	document.getElementById("region").style.width = twidth+"px";	
+}
+function addTextBox() {
+	var imgNum = 7;
+	var Number = picData.length;
+	for(i=imgNum;i<Number;i++){
+			  label = document.createElement("div");
+			  label.setAttribute("class","bars");
+			  var Field = document.createElement("img");
+			  Field.setAttribute("src",picData[i].smallPic);
+			  label.appendChild(Field);
+			  document.getElementById("region").appendChild(label);
+	}
+	imgClick();
+}
+function imgClick(){
+	$("img").click(function(){
+		img = $(this).attr('src');
+		$(".bars").removeClass('hover');
+		$(this).parent().addClass('hover');
+		//	alert(img);
+		img= "url"+"("+img+")";
+		$("#pic").css("background-image",img);
+		
+	});
+}
+var picData = [//小图片  大图片  大图片的原始宽  大图片的原始高
+	{"smallPic":"picData/01.jpg","bigPic":"picData/01.jpg","width":"683","height":"650"}
+	,{"smallPic":"picData/02.jpg","bigPic":"picData/02.jpg","width":"978","height":"650"}
+	,{"smallPic":"picData/03.jpg","bigPic":"picData/03.jpg","width":"1170","height":"544"}
+	,{"smallPic":"picData/04.jpg","bigPic":"picData/04.jpg","width":"983","height":"650"}
+	,{"smallPic":"picData/05.jpg","bigPic":"picData/05.jpg","width":"901","height":"650"}
+	,{"smallPic":"picData/06.jpg","bigPic":"picData/06.jpg","width":"1156","height":"650"}
+	,{"smallPic":"picData/07.jpg","bigPic":"picData/07.jpg","width":"982","height":"650"}
+	,{"smallPic":"picData/08.jpg","bigPic":"picData/08.jpg","width":"1066","height":"650"}
+	,{"smallPic":"picData/09.jpg","bigPic":"picData/09.jpg","width":"1118","height":"650"}
+	,{"smallPic":"picData/10.jpg","bigPic":"picData/10.jpg","width":"986","height":"650"}
+	,{"smallPic":"picData/11.jpg","bigPic":"picData/11.jpg","width":"1083","height":"650"}
+	,{"smallPic":"picData/12.jpg","bigPic":"picData/12.jpg","width":"1051","height":"650"}
+	,{"smallPic":"picData/13.jpg","bigPic":"picData/13.jpg","width":"446","height":"650"}
+	,{"smallPic":"picData/14.jpg","bigPic":"picData/14.jpg","width":"677","height":"650"}
+	,{"smallPic":"picData/15.jpg","bigPic":"picData/15.jpg","width":"1170","height":"615"}
+	,{"smallPic":"picData/16.jpg","bigPic":"picData/16.jpg","width":"968","height":"650"}	
+	,{"smallPic":"picData/17.jpg","bigPic":"picData/17.jpg","width":"1157","height":"650"}
+	,{"smallPic":"picData/18.jpg","bigPic":"picData/18.jpg","width":"1170","height":"639"}
+	,{"smallPic":"picData/19.jpg","bigPic":"picData/19.jpg","width":"977","height":"650"}
+	,{"smallPic":"picData/20.jpg","bigPic":"picData/20.jpg","width":"975","height":"650"}
+	,{"smallPic":"picData/21.jpg","bigPic":"picData/21.jpg","width":"975","height":"650"}
+	,{"smallPic":"picData/22.jpg","bigPic":"picData/22.jpg","width":"904","height":"650"}
+	,{"smallPic":"picData/23.jpg","bigPic":"picData/23.jpg","width":"1170","height":"421"}
+	,{"smallPic":"picData/24.jpg","bigPic":"picData/24.jpg","width":"1170","height":"283"}
+	,{"smallPic":"picData/25.jpg","bigPic":"picData/25.jpg","width":"993","height":"650"}
+	,{"smallPic":"picData/26.jpg","bigPic":"picData/26.jpg","width":"1170","height":"632"}
+	,{"smallPic":"picData/27.jpg","bigPic":"picData/27.jpg","width":"523","height":"650"}
+	,{"smallPic":"picData/28.jpg","bigPic":"picData/28.jpg","width":"649","height":"650"}
+	,{"smallPic":"picData/29.jpg","bigPic":"picData/29.jpg","width":"1170","height":"452"}
+	,{"smallPic":"picData/30.jpg","bigPic":"picData/30.jpg","width":"997","height":"650"}
+	,{"smallPic":"picData/31.jpg","bigPic":"picData/31.jpg","width":"981","height":"650"}
+	,{"smallPic":"picData/32.jpg","bigPic":"picData/32.jpg","width":"987","height":"650"}
+	,{"smallPic":"picData/33.jpg","bigPic":"picData/33.jpg","width":"1170","height":"619"}
+	,{"smallPic":"picData/34.jpg","bigPic":"picData/34.jpg","width":"1170","height":"282"}
+	,{"smallPic":"picData/35.jpg","bigPic":"picData/35.jpg","width":"1170","height":"631"}
+	,{"smallPic":"picData/36.jpg","bigPic":"picData/36.jpg","width":"883","height":"650"}
+	,{"smallPic":"picData/37.jpg","bigPic":"picData/37.jpg","width":"1114","height":"650"}
+	,{"smallPic":"picData/38.jpg","bigPic":"picData/38.jpg","width":"449","height":"650"}
+];
+</script>
+
+</html>
