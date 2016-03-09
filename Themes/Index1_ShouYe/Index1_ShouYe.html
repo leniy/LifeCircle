@@ -69,15 +69,18 @@
 </div>
 <div class="news-item">
 	<ul>
-	<% for (i=0, l=infoObjs.length; i<l; i++) { %>
+	<% if( infoObjs.length < 2 ) { l = infoObjs.length } else { l = 2 } %><!-- 最多显示两条，为嘛标签内部不能用min函数？？！！！ -->
+	<% for (i=0; i<l; i++) { %>
 		<li class="clearfix">
 			<a href="<%=infoObjs[i].infoObj_src%>">
 				<% if( "" != infoObjs[i].infoObj_img ) { %>
 				<div class="news-img left">
 					<img src="<%=infoObjs[i].infoObj_img%>" />
 				</div>
-				<% } %>
 				<div class="news-brief-bar left">
+				<% } else { %>
+				<div class="news-brief-bar left" style="width: 100%;">
+				<% } %>
 					<p class="news-title" id="<%=infoObjs[i].infoObj_id%>"><%=infoObjs[i].infoObj_title%></p>
 					<p><%=infoObjs[i].infoObj_summary%></p>
 				</div>
@@ -98,6 +101,7 @@ $(document).ready(function(){
 	});
 	var swiper = new Swiper('.swiper-container', {
 		pagination: '.swiper-pagination',
+		loop: true,
 		paginationClickable: true
 	});
 });

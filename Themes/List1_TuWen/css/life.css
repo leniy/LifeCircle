@@ -1,5 +1,4 @@
-﻿
-body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, div {
+﻿body, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, div {
     margin: 0;
     padding: 0;
     font-family: Microsoft YaHei;
@@ -134,7 +133,7 @@ ul li,ol li {
         overflow: hidden;
     }
     .news-item ul li:last-child{ border: none;}
-    .news-item .news-img{ width: 70px;height: 54px;overflow: hidden;background: #ff6600;}
+    .news-item .news-img{ width: 70px;height: 54px;overflow: hidden;}
      .news-item .news-img img {
          width: 100%;
          height: 68px;

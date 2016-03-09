@@ -135,7 +135,7 @@ ul li,ol li {
         overflow: hidden;
     }
     .news-item ul li:last-child{ border: none;}
-    .news-item .news-img{ width: 70px;height: 54px;overflow: hidden;background: #ff6600;position: relative;}
+    .news-item .news-img{ width: 70px;height: 54px;overflow: hidden;position: relative;}
      .news-item .news-img img {
          width: 100%;
          height: 54px;

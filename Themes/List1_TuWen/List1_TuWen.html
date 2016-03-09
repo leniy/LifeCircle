@@ -21,7 +21,7 @@
 	<div class="container">
 		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
 		<h4><%=page_title%></h4>
-		<% if (""!=page_publishurl) { %>
+		<% if (""!=page_publishurl && "undefined"!=typeof(page_publishurl) ) { %>
 		<a href="<%=page_publishurl%>" class="publish btn btn-warning">发布</a>
 		<% } %>
 	</div>
@@ -37,12 +37,14 @@
 			<% if (""!=infoObjs[i].infoObj_img) { %>
 			<div class="news-img left">
 				<img src="<%=infoObjs[i].infoObj_img%>" alt="" />
-				<% if (""!=infoObjs[i].video) { %><p class="icon-play-sm"></p><% } %>
+				<% if (""!=infoObjs[i].video && "undefined"!=typeof(infoObjs[i].video) ) { %><p class="icon-play-sm"></p><% } %>
 			</div>
-			<% } %>
 			<div class="news-brief-bar left clearfix">
+			<% } else { %>
+			<div class="news-brief-bar left clearfix" style="width: 100%;">
+			<% } %>
 				<p class="news-title left" id="<%=infoObjs[i].infoObj_id%>" style="width: initial;"><%=infoObjs[i].infoObj_title%></p>
-				<% if (""!=infoObjs[i].video) { %><span class="icon-vedio left"></span><% } %>
+				<% if (""!=infoObjs[i].video && "undefined"!=typeof(infoObjs[i].video)) { %><span class="icon-vedio left"></span><% } %>
 				<p class="left"><%=infoObjs[i].infoObj_summary%></p>
 			</div>
 		</a>
@@ -53,18 +55,4 @@
 
 </script>
 </body>
-
-<!-- js脚本，防止标题文字过长 -->
-<script type="text/javascript">
-$(document).ready(function(){
-	//限制字符个数
-	$(".news-title").each(function () {
-		var maxwidth=10;
-		if($(this).text().length>maxwidth){
-			$(this).text($(this).text().substring(0,maxwidth));
-			$(this).html($(this).html()+"…");
-		}
-	});
-});
-</script>
 </html>
