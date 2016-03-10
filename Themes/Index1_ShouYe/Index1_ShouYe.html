@@ -28,11 +28,11 @@
 	<% for (i=0, l=recommends.length; i<l; i++) { %>
 		<div class="swiper-slide">
 			<% if (1==recommends[i].recommend_type) { %>
-			<a class="common_play" href="<%=recommends[i].recommend_src%>">
+			<a target="_parent" class="common_play" href="<%=recommends[i].recommend_src%>">
 				<img src="image/icon/common_play.png" alt="" />
 			</a>
 			<% } %>
-			<a href="<%=recommends[i].recommend_src%>">
+			<a target="_parent" href="<%=recommends[i].recommend_src%>">
 				<img src="<%=recommends[i].recommend_img%>" alt="" style="width: 100%;" />
 				<div class="carousel-caption"><%=recommends[i].recommend_name%></div>
 			</a>
@@ -47,7 +47,7 @@
 	<ul class="clearfix">
 		<% for (i=0, l=categorys.length; i<l; i++) { %>
 		<li id="<%=categorys[i].category_id%>">
-			<a href="<%=categorys[i].category_src%>">
+			<a target="_parent" href="<%=categorys[i].category_src%>">
 				<img src="<%=categorys[i].category_img%>" alt="" />
 				<p><%=categorys[i].category_name%></p>
 			</a>
@@ -72,10 +72,10 @@
 	<% if( infoObjs.length < 2 ) { l = infoObjs.length } else { l = 2 } %><!-- 最多显示两条，为嘛标签内部不能用min函数？？！！！ -->
 	<% for (i=0; i<l; i++) { %>
 		<li class="clearfix">
-			<a href="<%=infoObjs[i].infoObj_src%>">
+			<a target="_parent" href="<%=infoObjs[i].infoObj_src%>">
 				<% if( "" != infoObjs[i].infoObj_img ) { %>
 				<div class="news-img left">
-					<img src="<%=infoObjs[i].infoObj_img%>" />
+					<img src="<%=infoObjs[i].infoObj_img%>" alt="" />
 				</div>
 				<div class="news-brief-bar left">
 				<% } else { %>

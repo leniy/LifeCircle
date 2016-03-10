@@ -21,7 +21,7 @@
 	<div class="container">
 		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
 		<h4><%=page_title%></h4>
-		<% if (""!=page_reporturl) { %>
+		<% if (""!=page_reporturl && "undefined"!=typeof(page_reporturl) ) { %>
 		<a href="<%=page_reporturl%>" class="publish btn btn-warning">举报</a>
 		<% } %>
 	</div>
