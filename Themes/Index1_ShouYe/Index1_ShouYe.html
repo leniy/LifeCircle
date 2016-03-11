@@ -20,12 +20,15 @@
 <script id="template" type="text/html">
 
 <!-- 顶部横幅图片 -->
-<div class="province"><img src="<%=page_advert_img%>" alt="" /></div>
+<% if (""!=page_advert_img[0].VALUE && "undefined"!=typeof(page_advert_img[0].VALUE) ) { %>
+<div class="province"><img src="<%=page_advert_img[0].VALUE%>" alt="" /></div>
+<% } %>
 
 <!-- 滑动轮训图片 -->
 <div class="swiper-container">
 	<div class="swiper-wrapper">
 	<% for (i=0, l=recommends.length; i<l; i++) { %>
+		<% if ( "" == recommends[i].recommend_img || "undefined" == typeof(recommends[i].recommend_img) ) continue; %>
 		<div class="swiper-slide">
 			<% if (1==recommends[i].recommend_type) { %>
 			<a target="_parent" class="common_play" href="<%=recommends[i].recommend_src%>">

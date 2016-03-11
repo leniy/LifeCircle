@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="js/template-native.js"></script>
+<script src="js/jquery.min.js"></script> 
+<script src="js/common.js"></script>
+
+<link href="css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+
+<!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
+<div class="news-title-bar">
+	<div class="container">
+		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
+		<h4><%=page_title%></h4>
+		<% if (""!=page_publishurl && "undefined"!=typeof(page_publishurl) ) { %>
+		<a href="<%=page_publishurl%>" class="publish btn btn-warning">发布</a>
+		<% } %>
+	</div>
+</div>
+
+<article class="container">
+	<ul class="metro">
+	<% for (i=0, l=infoObjs.length; i<l; i++) { %>
+	<% if (""!=infoObjs[i].infoObj_img) { %>
+		<li><img src="<%=infoObjs[i].infoObj_img%>" alt="" /><span><%=infoObjs[i].infoObj_title%></span></li>
+	<% } %>
+	<% } %>
+	</ul>
+	<div class="box" style="background-color: black;">
+		<span class="close"></span>
+		<p><img src="https://www.baidu.com/img/bd_logo1.png" /><span>Games</span></p>
+	</div>
+
+</article>
+</script>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	var $box = $('.box');
+	$('.metro li').each(function () {
+		//var color = $(this).css('backgroundColor');
+		var color = 'black';
+		var content = $(this).html();
+		$(this).click(function () {
+			$box.css('backgroundColor', color);
+			$box.addClass('open');
+			$box.find('p').html(content);
+		});
+		$('.close').click(function () {
+			$box.removeClass('open');
+			$box.css('backgroundColor', 'transparent');
+		});
+	});
+});
+</script>
+</html>
