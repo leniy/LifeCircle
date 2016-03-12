@@ -20,7 +20,7 @@
 <script id="template" type="text/html">
 
 <!-- 顶部横幅图片 -->
-<% if (""!=page_advert_img[0].VALUE && "undefined"!=typeof(page_advert_img[0].VALUE) ) { %>
+<% if ( "undefined"!=typeof(page_advert_img) && "undefined"!=typeof(page_advert_img[0].VALUE) && ""!=page_advert_img[0].VALUE ) { %>
 <div class="province"><img src="<%=page_advert_img[0].VALUE%>" alt="" /></div>
 <% } %>
 
@@ -63,6 +63,7 @@
 </div>
 
 <!-- 首页推荐文章 -->
+<% if( infoObjs.length > 0 ) { %>
 <div class="common-title-bar clearfix">
 	<span class="left common-title">热门推荐</span>
 	<div class="more">
@@ -70,6 +71,7 @@
 	</div>
 	<div style="background: #fff; position: absolute; width: 35px; height: 40px; top: 0; right: 0;"></div>
 </div>
+<% } %>
 <div class="news-item">
 	<ul>
 	<% if( infoObjs.length < 2 ) { l = infoObjs.length } else { l = 2 } %><!-- 最多显示两条，为嘛标签内部不能用min函数？？！！！ -->
