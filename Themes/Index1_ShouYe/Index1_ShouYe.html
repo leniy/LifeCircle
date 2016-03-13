@@ -4,15 +4,39 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
-<script src="js/template-native.js"></script>
-<script src="js/jquery.min.js"></script>
-<script src="js/common.js"></script>
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<link href="../../common_res/bootstrap/bootstrap.css" rel="stylesheet" />
 
-<script src="js/bootstrap.js"></script>
-<script src="js/swiper.min.js"></script>
-<link href="css/bootstrap.css" rel="stylesheet" />
-<link href="css/swiper.css" rel="stylesheet" />
+<script src="../../common_res/bootstrap/bootstrap.js"></script>
+<script src="../../common_res/swiper/swiper.min.js"></script>
+<link href="../../common_res/swiper/swiper.css" rel="stylesheet" />
 <link href="css/life.css" rel="stylesheet" />
+<style>
+.carousel-caption {
+	bottom: 0;
+    left: 0;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    color: #fff;
+    width: 100%;
+    background: rgba(51, 51, 51, 0.81);
+    text-align: left;
+}
+.swiper-pagination-bullet {
+	background: #FFF;
+	opacity: .5;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #007aff;
+}
+.swiper-pagination {
+    text-align: right;
+}
+</style>
 </head>
 
 <!-- 首页模板1（包含：顶部图片、轮训推荐、矩阵式分类按钮、推荐列表） -->
@@ -100,10 +124,6 @@
 
 <script>
 $(document).ready(function(){
-	$("#eject1").click(function () {
-		$(".eject-banner").slideToggle(300);
-		$(this).toggleClass("common_up");
-	});
 	var swiper = new Swiper('.swiper-container', {
 		pagination: '.swiper-pagination',
 		loop: true,
