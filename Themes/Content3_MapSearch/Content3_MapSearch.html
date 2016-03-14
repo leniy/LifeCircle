@@ -20,12 +20,12 @@
 <!-- 顶部返回导航条 -->
 <div class="top">
 	<a href="javascript:;" onclick="history.go(-1)">返回</a>
-	<span style=" margin:0px auto;"><%=page_title%></span>
+	<span style=" margin:0px auto;"><%=page[0].page_title%></span>
 </div>
 <div id="allmap"></div>
-<div id="page_latitude"><%=page_latitude%></div>
-<div id="page_longitude"><%=page_longitude%></div>
-<div id="page_searchKey"><%=page_searchKey%></div>
+<div id="page_latitude"><%=page[0].page_latitude%></div>
+<div id="page_longitude"><%=page[0].page_longitude%></div>
+<div id="page_searchKey"><%=page[0].page_searchKey%></div>
 </script>
 </body>
 <script type="text/javascript">

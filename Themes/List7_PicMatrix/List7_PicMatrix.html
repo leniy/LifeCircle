@@ -18,9 +18,9 @@
 <div class="news-title-bar">
 	<div class="container">
 		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
-		<h4><%=page_title%></h4>
-		<% if (""!=page_publishurl && "undefined"!=typeof(page_publishurl) ) { %>
-		<a href="<%=page_publishurl%>" class="publish btn btn-warning">发布</a>
+		<h4><%=page[0].page_title%></h4>
+		<% if (""!=page[0].page_publishurl && "undefined"!=typeof(page[0].page_publishurl) ) { %>
+		<a href="<%=page[0].page_publishurl%>" class="publish btn btn-warning">发布</a>
 		<% } %>
 	</div>
 </div>

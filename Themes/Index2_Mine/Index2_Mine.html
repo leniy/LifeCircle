@@ -20,7 +20,7 @@
 <div class="bar">
 	<ul>
 	<% for (i=0, l=categorys.length; i<l; i++) { %>
-		<li id="<%=categorys[i].category_id%>"><a href="<%=categorys[i].category_src%>" target="_self"><img src="<%=categorys[i].category_img%>" /></a></li>
+		<li id="<%=categorys[i].category_id%>"><a target="_parent" href="<%=categorys[i].category_src%>"><img src="<%=categorys[i].category_img%>" /></a></li>
 	<% } %>
 	</ul>
 </div>
@@ -29,7 +29,7 @@
 <!-- 第一行大图 -->
 <div class="content">
 	<div class="ktjk">
-	<a href="<%=liveObjs[0].liveObj_src%>" target="_self"><img src="<%=liveObjs[0].liveObj_img%>"/></a>
+	<a target="_parent" href="<%=liveObjs[0].liveObj_src%>"><img src="<%=liveObjs[0].liveObj_img%>"/></a>
 	<div class="ktjk-title title"><%=liveObjs[0].liveObj_title%></div>
 	</div>
 </div>
@@ -40,7 +40,7 @@
 <% for (i=1, l=liveObjs.length; i<l; i++) { /* 循环从1开始，0是客厅监控 */ %>
 	<div class="xqjks">
 		<div class="xqjk">
-		<a href="<%=liveObjs[i].liveObj_src%>" target="_self"><img src="<%=liveObjs[i].liveObj_img%>"/></a>
+		<a target="_parent" href="<%=liveObjs[i].liveObj_src%>"><img src="<%=liveObjs[i].liveObj_img%>"/></a>
 		<div class="xqjk-title title"><%=liveObjs[i].liveObj_title%></div>
 		</div>
 	</div>

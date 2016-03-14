@@ -20,6 +20,7 @@ margin:0px auto;
 .bar ul li{
 	width:31%;
 	margin-left:2%;
+	margin-bottom: 2%;
 	float:left;
 }
 .bar img{

@@ -44,8 +44,8 @@
 <script id="template" type="text/html">
 
 <!-- 顶部横幅图片 -->
-<% if ( "undefined"!=typeof(page_advert_img) && "undefined"!=typeof(page_advert_img[0].VALUE) && ""!=page_advert_img[0].VALUE ) { %>
-<div class="province"><img src="<%=page_advert_img[0].VALUE%>" alt="" /></div>
+<% if ( "undefined"!=typeof(page[0].page_advert_img) && ""!=page[0].page_advert_img ) { %>
+<div class="province"><img src="<%=page[0].page_advert_img%>" alt="" /></div>
 <% } %>
 
 <!-- 滑动轮训图片 -->
