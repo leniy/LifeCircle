@@ -27,9 +27,9 @@
 
 <article class="container">
 	<ul class="metro">
-	<% for (i=0, l=infoObjs.length; i<l; i++) { %>
-	<% if (""!=infoObjs[i].infoObj_img) { %>
-		<li><img src="<%=infoObjs[i].infoObj_img%>" alt="" /><span><%=infoObjs[i].infoObj_title%></span></li>
+	<% for (i=0, l=sources.length; i<l; i++) { %>
+	<% if (""!=sources[i].source_img) { %>
+		<li><img src="<%=sources[i].source_img%>" alt="" /><span><%=sources[i].source_title%></span></li>
 	<% } %>
 	<% } %>
 	</ul>

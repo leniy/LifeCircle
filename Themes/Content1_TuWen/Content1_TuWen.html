@@ -12,7 +12,7 @@
 <link href="css/life.css" rel="stylesheet" />
 </head>
 
-<!-- 内容模板1（包含：含特色图片的图文、含特色视频的图文、单独图文） -->
+<!-- 内容模板1（包含：含特色图片的图文、含特色视频的图文、单独图文、直播摄像头、点播视频） -->
 <body id="lifecirclebody">
 <script id="template" type="text/html">
 
@@ -24,17 +24,17 @@
 	</div>
 </div>
 
-<!-- 内容页，如果文章包含视频，则顶部显示视频，否则显示特色图片。 -->
+<!-- 内容页，如果文章包含视频和图像，则顶部显示视频并用图像作为海报；如果只有摄像头点播等视频，则显示特色视频；如果有图像，则显示特色图像；否则只显示富文本内容页。 -->
 <div class="container news-con-bar">
-	<% if ( ""!=infoObjs[0].video && ""!=infoObjs[0].infoObj_img && "undefined"!=typeof(infoObjs[0].video) && "undefined"!=typeof(infoObjs[0].infoObj_img) ) { %>
-	<video controls="controls" style="width: 100%; height: auto; background: #000;"><source src="<%=infoObjs[0].video%>" type="video/mp4" poster="<%=infoObjs[0].infoObj_img%>" /></video>
-	<% } else if ( ""!=infoObjs[0].video && "undefined"!=typeof(infoObjs[0].video) ) { %>
-	<video controls="controls" style="width: 100%; height: auto; background: #000;"><source src="<%=infoObjs[0].video%>" type="video/mp4" /></video>
-	<% } else if ( ""!=infoObjs[0].infoObj_img && "undefined"!=typeof(infoObjs[0].infoObj_img) ) {%>
-	<div class="news-con-img"> <img src="<%=infoObjs[0].infoObj_img%>"  alt=""/> </div>
+	<% if ( ""!=sources[0].source_video && ""!=sources[0].source_img && "undefined"!=typeof(sources[0].source_video) && "undefined"!=typeof(sources[0].source_img) ) { %>
+	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=sources[0].source_video%>" poster="<%=sources[0].source_img%>" /></video>
+	<% } else if ( ""!=sources[0].source_video && "undefined"!=typeof(sources[0].source_video) ) { %>
+	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=sources[0].source_video%>" /></video>
+	<% } else if ( ""!=sources[0].source_img && "undefined"!=typeof(sources[0].source_img) ) {%>
+	<div class="news-con-img"> <img src="<%=sources[0].source_img%>"  alt=""/> </div>
 	<% } %>
-	<div class="news-con-title"><p><%=infoObjs[0].infoObj_title%></p></div>
-	<div class="news-con"><%=infoObjs[0].infoObj_content%></div>
+	<div class="news-con-title"><p><%=sources[0].source_title%></p></div>
+	<div class="news-con"><%=sources[0].source_content%></div>
 </div>
 
 </script>

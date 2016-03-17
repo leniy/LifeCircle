@@ -29,30 +29,30 @@
 
 <div class="container news-con-bar">
 	<!-- 特色图片 -->
-	<% if ( ""!=infoObjs[0].img ) { %>
-	<div class="news-con-img"> <img src="<%=infoObjs[0].infoObj_img%>"  alt=""/> </div>
+	<% if ( ""!=sources[0].img ) { %>
+	<div class="news-con-img"> <img src="<%=sources[0].source_img%>"  alt=""/> </div>
 	<% } %>
 
 	<!-- 用户头像、发布时间等 -->
 	<div class="shequ-user-bar clearfix">
 		<div class="user-logo">
-			<img src="<%=infoObjs[0].infoObj_issuerimg%>" alt=""/>
+			<img src="<%=sources[0].source_issuerimg%>" alt=""/>
 		</div>
 		<div class="user-info">
-			<p class="user-name"><%=infoObjs[0].infoObj_issuer%></p>
-			<p style="line-height: 15px;"><span><%=infoObjs[0].infoObj_time%></span></p>
+			<p class="user-name"><%=sources[0].source_issuer%></p>
+			<p style="line-height: 15px;"><span><%=sources[0].source_time%></span></p>
 		</div>
 	</div>
 
 	<!-- 标题和内容 -->
-	<div class="news-con-title"><p style="text-align: left;"><%=infoObjs[0].infoObj_title%></p></div>
-	<div class="news-con"><%=infoObjs[0].infoObj_content%></div>
+	<div class="news-con-title"><p style="text-align: left;"><%=sources[0].source_title%></p></div>
+	<div class="news-con"><%=sources[0].source_content%></div>
 
 	<div class="comment-bar">
 		<div class="comment-nav">
 			<ul class="clearfix">
 				<li><a href="#"><img src="image/icon/icon-message.png" alt=""/>评论</a></li>
-				<li><a href="#"><img src="image/icon/icon-zan.png" alt="" />点赞(<span><%=infoObjs[0].infoObj_supportCount%></span>)</a></li>
+				<li><a href="#"><img src="image/icon/icon-zan.png" alt="" />点赞(<span><%=sources[0].source_supportCount%></span>)</a></li>
 				<li><a href="#"><img src="image/icon/icon-share.png" alt="" />分享</a></li>
 			</ul>
 		</div>

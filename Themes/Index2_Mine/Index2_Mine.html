@@ -25,23 +25,23 @@
 	</ul>
 </div>
 
-<% if ( liveObjs.length > 0 ) { %>
+<% if ( sources.length > 0 ) { %>
 <!-- 第一行大图 -->
 <div class="content">
 	<div class="ktjk">
-	<a target="_parent" href="<%=liveObjs[0].liveObj_src%>"><img src="<%=liveObjs[0].liveObj_img%>"/></a>
-	<div class="ktjk-title title"><%=liveObjs[0].liveObj_title%></div>
+	<a target="_parent" href="<%=sources[0].source_src%>"><img src="<%=sources[0].source_img%>"/></a>
+	<div class="ktjk-title title"><%=sources[0].source_title%></div>
 	</div>
 </div>
 <% } %>
 
 <!-- 接下来是每行两个的小图 -->
 <div class="content">
-<% for (i=1, l=liveObjs.length; i<l; i++) { /* 循环从1开始，0是客厅监控 */ %>
+<% for (i=1, l=sources.length; i<l; i++) { /* 循环从1开始，0是客厅监控 */ %>
 	<div class="xqjks">
 		<div class="xqjk">
-		<a target="_parent" href="<%=liveObjs[i].liveObj_src%>"><img src="<%=liveObjs[i].liveObj_img%>"/></a>
-		<div class="xqjk-title title"><%=liveObjs[i].liveObj_title%></div>
+		<a target="_parent" href="<%=sources[i].source_src%>"><img src="<%=sources[i].source_img%>"/></a>
+		<div class="xqjk-title title"><%=sources[i].source_title%></div>
 		</div>
 	</div>
 <% } %>

@@ -24,13 +24,13 @@
 	</div>
 </div>
 
-<% if (liveObjs.length > 0 ) { %>
+<% if (sources.length > 0 ) { %>
 <div class="news-con-bar" style="margin-top: 0;">
 	<!-- 顶部的推荐视频 -->
 	<div class="big-monitor-bar">
-		<a href="<%=liveObjs[0].liveObj_src%>">
+		<a href="<%=sources[0].source_src%>">
 		<div class="big-monitor">
-			<img class="monitor-grabgraf" src="<%=liveObjs[0].liveObj_img%>" alt="" />
+			<img class="monitor-grabgraf" src="<%=sources[0].source_img%>" alt="" />
 			<div class="icon-enlarge"><img src="image/icon/common_screen.png"/></div>
 		</div>
 		</a>
@@ -39,12 +39,12 @@
 	<div class="sm-monitor-list  container">
 		<div class="row" style="margin-right: -5px;margin-left: -5px;">
 			<ul class="clearfix">
-			<% for (i=1, l=liveObjs.length; i<l; i++) { /* 循环从1开始，0是顶部推荐元素 */ %>
+			<% for (i=1, l=sources.length; i<l; i++) { /* 循环从1开始，0是顶部推荐元素 */ %>
 				<li class="col-xs-6">
-					<a href="<%=liveObjs[i].liveObj_src%>">
+					<a href="<%=sources[i].source_src%>">
 						<div class="sm-monitor">
-							<img class="monitor-grabgraf" src="<%=liveObjs[i].liveObj_img%>" alt="" />
-							<p class="monitor-info"><%=liveObjs[i].liveObj_title%></p>
+							<img class="monitor-grabgraf" src="<%=sources[i].source_img%>" alt="" />
+							<p class="monitor-info"><%=sources[i].source_title%></p>
 						</div>
 					</a>
 				</li>
