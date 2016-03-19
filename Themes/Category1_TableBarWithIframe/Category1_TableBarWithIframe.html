@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<style>
+a { color:#666; text-decoration:none; }
+a:visited { color:; text-decoration:none;}
+a:hover{ color:; text-decoration:none; }
+a:active{ color:; text-decoration:none; }
+*{
+	font-family:"Microsoft YaHei";
+	margin:0px;
+	padding:0px;
+}
+.top{
+	top:0px;
+	height:45px;
+	width:100%;
+	line-height:45px;
+	text-align:center;
+	border-bottom:#FDAB01 solid 3px;
+	position:fixed;
+	background-color:#fff;
+	z-index:9999;
+}
+.top span{
+	display:block;
+	font-size:16px;
+	margin:0px auto;
+	width:64px;
+	height:45px;
+	line-height:45px;
+}
+.top a{
+	position:absolute;
+	width:55px;
+	height:45px;
+	left:10px;
+	top:0px;
+	display:block;
+	text-align:right;
+	font-size:18px;
+	background-image:url(image/left.png);
+	background-repeat: no-repeat;
+	background-position: 0px 10px;
+	background-size:24%;
+}
+.head{
+	margin-top:50px;
+	background-color:#FFFFFF;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCCCCC;
+	padding-bottom:0px;
+	float:left;
+	width:100%;
+	position:fixed;
+}
+.head table{
+	margin:0px auto;
+	list-style-type:none;
+	padding:0px;
+	width:100%;
+	height:35px;
+	line-height:35px;
+}
+.head table tr td {
+	text-align:center;
+}
+.head table tr td a{
+	text-align:center;
+	border-radius:5px;
+	padding:4px 8px;
+	text-decoration:none;
+	font-size:14px;
+}
+.current{
+	background-color:#FFAC31;
+	border-radius:5px;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+iframe{
+	width:100%;
+	height:200px;
+	border-width:0px;
+	overflow:hidden;
+	margin-top:95px;
+}
+</style>
+<script>
+var num = -1;
+var currentid='a0';
+$(document).ready(function(){
+	if(window.innerHeight) 
+	winHeight = window.innerHeight; 
+	else if ((document.body) && (document.body.clientHeight)) 
+	winHeight = document.body.clientHeight; 
+	winHeight = winHeight-105;
+	winHeight = winHeight+"px";
+	ifmh();
+	$('.head td a:first').addClass('current');
+	var hdw = $('.head td a');
+	hdw.click(function(){
+			hdw.removeClass('current');
+			$(this).addClass('current');
+	});
+	
+	var td = $('table tr td a');
+	td.click(function(){
+		var new1 = $(this).attr("id");
+		if(new1!=currentid){
+			num--;
+		}
+	});
+
+});
+function ifmh(){
+	$("iframe").css("height",winHeight);
+}
+function scroll(){
+	$("body").scrollTop(0);
+	$("#iframe").scrollTop(0);
+}
+
+function goBack(){
+	history.go(num);
+}
+
+</script>
+</head>
+<!-- 二级页面包含分类） -->
+<body id="lifecirclebody">
+<!-- 顶部返回导航条 -->
+<script id="template" type="text/html">
+<div class="top">
+	<a href="javascript:;" onClick="goBack()">返回</a>
+	<span style=" margin:0px auto;"></span>
+</div>
+<div class="head">
+	<table>
+		<tr>
+			<% for (i=0, l=categorys.length; i<l; i++) { 
+					if (i==0) {%>
+						<td><a id='a<%=i%>' class="" target="ifrm" href="<%=categorys[i].category_src%>"><%=categorys[i].category_name%></a></td>
+					<% } else{ %>
+						<td><a target="ifrm" href="<%=categorys[i].category_src%>"><%=categorys[i].category_name%></a></td>
+					<% }%>
+			<% } %>
+		</tr>
+	</table>
+</div>
+<iframe name="ifrm" id="iframe" src="<%=categorys[0].category_src%>">
+</iframe>
+</body>
+</html>

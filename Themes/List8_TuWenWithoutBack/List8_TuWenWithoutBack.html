@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<style>
+a { color:#666; text-decoration:none; }
+a:visited { color:; text-decoration:none;}
+a:hover{ color:; text-decoration:none; }
+a:active{ color:; text-decoration:none; }
+*{
+	margin:0px;
+	padding:0px;
+	border-width:0px;
+	font-family:"Microsoft YaHei";
+}
+.pt{
+	height:90px;
+	border-bottom:#CCCCCC solid 1px;
+	padding:3px 5px;
+	overflow:hidden;
+}
+.pt:last-child{
+	border-bottom-width:0px;
+}
+.pt_pic{
+	width:27%;
+	float:left;
+	height:80px;
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+.content_title{
+	height:40px;
+	line-height:40px;
+	color:#333333;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	display:block;
+	overflow: hidden;
+}
+.content{
+	height:50px;
+	color:#999999;
+	line-height:25px;
+	display:block;
+	overflow: hidden;
+	
+}
+.pt .content_pic{
+	width:30%;
+	float:left;
+	height:70px;
+	margin-top:15px;
+	margin-right:8px;
+	overflow:hidden;
+}
+.pt .content_pic img{
+	width:100%;
+	height:auto;
+}
+.content_con p{
+	text-indent: -1em;
+}
+</style>
+</head>
+<body id="lifecirclebody">
+	<script id="template" type="text/html">
+	<% for (i=0, l=sources.length; i<l; i++) { %>
+	<div class="pt">
+		<a href="<%=sources[i].source_src%>">
+		<% if (""!=sources[i].source_img) { %>
+			<div class="content_pic"><img src="<%=sources[i].source_img%>"/></div>
+			<div class="content_title"><%=sources[i].source_title%></div>
+			<div class="content"><%=sources[i].source_summary%></div>
+		<% } else { %>
+			<div class="content_title"><%=sources[i].source_title%></div>
+			<div class="content"><%=sources[i].source_summary%></div>
+		<% } %>
+		</a>
+	</div>
+	<% } %>
+</script>
+<script>
+$(document).ready(function(){
+	fullwidth = document.documentElement.clientWidth;
+	$("body").width(fullwidth);
+});
+</script>
+</body>
+</html>
