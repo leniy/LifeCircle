@@ -41,6 +41,14 @@
 
 <!-- 首页模板1（包含：顶部图片、轮训推荐、矩阵式分类按钮、推荐列表） -->
 <body id="lifecirclebody" style="position: relative;">
+<script>
+	if (window.innerWidth)
+		winWidth = window.innerWidth;
+	else if ((document.body) && (document.body.clientWidth))
+		winWidth = document.body.clientWidth;
+	winWidth = winWidth +"px";
+	$("#lifecirclebody").css("width",winWidth);
+</script>
 <script id="template" type="text/html">
 
 <!-- 顶部横幅图片 -->
