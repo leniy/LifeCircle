@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="dist/css/swiper.min.css">
+<title>生活圈</title>
+<style>
+body {
+	background: #FFFFFF;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	color: #FFFFFF;
+	margin: 0;
+	padding: 0;
+}
+.swiper-container {
+	width: 100%;
+	height: auto;
+	min-height: 28px;
+	max-height: 60px;
+	margin: 3px auto;
+}
+.swiper-slide {
+	text-align: center;
+	font-size: initial;
+	width: 10%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+.current {
+	background-color: #FFAC31;
+	border-radius: 5px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.swiper-slide a {
+	margin-top: 5px;
+	display: block;
+	width: 65px;
+	text-align: center;
+	border-radius: 5px;
+	text-decoration: none;
+	color: #666;
+}
+iframe {
+	border-width: 0px;
+	width: 100%;
+}
+#region0, #region1, #region2 {
+	width: 17.6%!important;
+	height: auto;
+	min-height: 28px;
+	max-height: 60px;
+}
+#region3 {
+	width: 23.6%!important;
+	height: auto;
+	min-height: 28px;
+	max-height: 50px;
+}
+#region4, #region5 {
+	width: 11.8%!important;
+	height: auto;
+	min-height: 28px;
+	max-height: 50px;
+}
+</style>
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/template-native.js"></script>
+<script src="dist/js/swiper.min.js"></script>
+<script>
+var user = '';
+	var caCard = '';
+	var gps = '';
+	var deviceid='';
+	var token = '';
+	var province = '';
+	var city = '';
+	var county='';
+	var latitude='';
+	var longitude='';
+	var appType ='';
+	var test = '';
+	function getQueryStringArgs(q) {
+		var qs = q.split('?')[1]
+				|| (location.search.length > 0 ? location.search.substring(1)
+						: ''), args = {}, items = qs.length ? qs.split('&')
+				: [], item = null, name = null, value = null, i = 0, len = items.length;
+
+		for (i = 0; i < len; i++) {
+			item = items[i].split('=');
+			name = decodeURIComponent(item[0]);
+			value = decodeURIComponent(item[1]);
+			if (name.length) {
+				args[name] = value;
+			}
+		}
+		return args;
+	}
+
+	var r = getQueryStringArgs(window.location.search);
+	user = r.user;
+	caCard = r.caNumber;
+	gps = r.gps;
+	deviceid=r.deviceid;
+	token = r.token;
+	province = r.province;
+	city = r.city;
+	county=r.county;
+	latitude=r.latitude;
+	longitude=r.longitude;
+	appType =r.appType;
+	test = r.test;
+	$(document).ready(function() {
+		$.ajax({
+			url : 'portal/template/getRegion',
+			type: 'POST',
+            data: {
+            	user:user,
+            	caCard:caCard,
+            	gps:gps,
+            	deviceid:deviceid,
+            	token:token,
+            	province:province,
+            	city:city,
+            	county:county,
+            	latitude:latitude,
+            	longitude:longitude,
+            	appType:appType,
+            	test:test
+            },
+			async : false,
+			success : function(data) {
+				data =eval(data)[0];
+				var html = template('template', data);
+				document.getElementById('main').innerHTML = html;
+				$('#iframe_content').attr("src",data.page_url);
+				var swiper = new Swiper('.swiper-container', {
+			        pagination: '.swiper-pagination',
+			        slidesPerView: 5,
+			        centeredSlides: false,
+			        paginationClickable: true,
+			        spaceBetween: 10
+			    });
+				
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+
+		var hdw = $('.swiper-wrapper div');
+		hdw.click(function() {
+			//$(this).addClass('current').siblings().removeClass('current');	
+			hdw.removeClass('current');
+			$(this).addClass('current');
+		});
+	});
+	function iFrameHeight() {
+		var ifm = document.getElementById("iframe_content");
+		ifm.height = (document.documentElement.clientHeight) - 51;
+	}
+</script>
+</head>
+<body>
+<div  id="main">
+<script id="template" type="text/html">
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+			<% for (i=0, l=regions.length; i<l; i++) { %>
+				<div  class="swiper-slide <%=regions[i].current_class%>">
+						<a target='iframe_content' href='<%=regions[i].src%>'><%=regions[i].name%></a>
+				</div>
+			<% } %>
+				
+			</div>
+	   </div>
+	</script>
+</div>
+<iframe onload="iFrameHeight()" id="iframe_content" name="iframe_content" src="" height="928"></iframe>
+</body>
+</html>

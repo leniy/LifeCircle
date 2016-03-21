@@ -69,6 +69,14 @@ a:active{ color:; text-decoration:none; }
 </style>
 </head>
 <body id="lifecirclebody">
+<script>
+	if (window.innerWidth)
+		winWidth = window.innerWidth;
+	else if ((document.body) && (document.body.clientWidth))
+		winWidth = document.body.clientWidth;
+	winWidth = winWidth +"px";
+	$("#lifecirclebody").css("width",winWidth);
+</script>
 	<script id="template" type="text/html">
 	<% for (i=0, l=sources.length; i<l; i++) { %>
 	<div class="pt">
@@ -84,12 +92,6 @@ a:active{ color:; text-decoration:none; }
 		</a>
 	</div>
 	<% } %>
-</script>
-<script>
-$(document).ready(function(){
-	fullwidth = document.documentElement.clientWidth;
-	$("body").width(fullwidth);
-});
 </script>
 </body>
 </html>
