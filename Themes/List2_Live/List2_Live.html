@@ -15,15 +15,6 @@
 <!-- 列表模板2（包含：社区视频监控列表） -->
 <body id="lifecirclebody">
 <script id="template" type="text/html">
-
-<!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
-<div class="news-title-bar">
-	<div class="container">
-		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
-		<h4><%=page[0].page_title%></h4>
-	</div>
-</div>
-
 <% if (sources.length > 0 ) { %>
 <div class="news-con-bar" style="margin-top: 0;">
 	<!-- 顶部的推荐视频 -->
@@ -36,7 +27,7 @@
 		</a>
 	</div>
 	<!-- 接下来是视频列表 -->
-	<div class="sm-monitor-list  container">
+	<div class="sm-monitor-list">
 		<div class="row" style="margin-right: -5px;margin-left: -5px;">
 			<ul class="clearfix">
 			<% for (i=1, l=sources.length; i<l; i++) { /* 循环从1开始，0是顶部推荐元素 */ %>

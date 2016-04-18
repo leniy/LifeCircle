@@ -17,41 +17,7 @@ a:active{ color:; text-decoration:none; }
 	margin:0px;
 	padding:0px;
 }
-.top{
-	top:0px;
-	height:45px;
-	width:100%;
-	line-height:45px;
-	text-align:center;
-	border-bottom:#FDAB01 solid 3px;
-	position:fixed;
-	background-color:#fff;
-	z-index:9999;
-}
-.top span{
-	display:block;
-	font-size:16px;
-	margin:0px auto;
-	width:64px;
-	height:45px;
-	line-height:45px;
-}
-.top a{
-	position:absolute;
-	width:55px;
-	height:45px;
-	left:10px;
-	top:0px;
-	display:block;
-	text-align:right;
-	font-size:18px;
-	background-image:url(image/left.png);
-	background-repeat: no-repeat;
-	background-position: 0px 10px;
-	background-size:24%;
-}
 .head{
-	margin-top:50px;
 	background-color:#FFFFFF;
 	border-bottom-width: 1px;
 	border-bottom-style: solid;
@@ -90,7 +56,7 @@ iframe{
 	height:200px;
 	border-width:0px;
 	overflow:hidden;
-	margin-top:95px;
+	margin-top:41px;
 }
 </style>
 <script>
@@ -101,7 +67,7 @@ $(document).ready(function(){
 	winHeight = window.innerHeight; 
 	else if ((document.body) && (document.body.clientHeight)) 
 	winHeight = document.body.clientHeight; 
-	winHeight = winHeight-105;
+	winHeight = winHeight-41;
 	winHeight = winHeight+"px";
 	ifmh();
 	$('.head td a:first').addClass('current');
@@ -138,10 +104,6 @@ function goBack(){
 <body id="lifecirclebody">
 <!-- 顶部返回导航条 -->
 <script id="template" type="text/html">
-<div class="top">
-	<a href="javascript:;" onClick="goBack()">返回</a>
-	<span style=" margin:0px auto;"></span>
-</div>
 <div class="head">
 	<table>
 		<tr>

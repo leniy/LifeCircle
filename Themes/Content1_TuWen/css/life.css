@@ -166,9 +166,15 @@ ul li,ol li {
    /*新闻内容样式*/
    .news-con-bar { margin-top: 10px;}
    .news-con-bar img{ width: 100%;height: auto;}
-   .news-con-title{ margin: 15px 0;text-align: center;font-size: 18px;}
-    .news-con-bar .news-con { margin-bottom: 10px;color: #666;
-    }
+.news-con-title{ margin: 15px 0;text-align: center;font-size: 16px; color:#445560px;
+}
+.news-con-bar .news-con { 
+	margin-bottom: 10px;
+	color: #445560;
+	font-size:14px;
+	text-indent:2em;
+	line-height:1.5em;
+}
 
      /*社区样式*/
      .an-number{ position: absolute;right: 10px;top: 8px;width: 20px;height: 20px;background: #ff0b0b;color: #fff;border-radius: 50%;}
