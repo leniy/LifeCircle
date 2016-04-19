@@ -83,7 +83,7 @@ ul li,ol li {
 .common_play img{ width: 100%;height: 100%;} 
   .swiper-container {
         width: 100%;
-        height: 100%;
+        height:200px;
     }
     .swiper-slide {
         text-align: center;
@@ -116,37 +116,46 @@ ul li,ol li {
      
  
     .category  ul li a  img {
-        width: 80%;
+        width:70%;
     }
     .category  ul li a  p{
-        color: #666;
-        margin-top: 5px;
-        
+        color: #445560;
+        margin-top: 5px;       
     }
     .common-title-bar{position: relative;height: 40px;border-left: 2px solid #fdab01;line-height: 40px;margin-top: 10px;background: url(../image/icon/hr.png) repeat-x;}
-    .common-title{ padding:0 10px;font-size: 18px;color: #666;background: #fff;} 
+    .common-title{ padding:0 10px;font-size: 16px;color: #445560;background: #fff;} 
     .common-title-bar .more{position: absolute;top: 0;right: 10px;z-index: 9;display: block;width: 20px;height: 20px;}
     .common-title-bar .more img{ width: 100%;}
     .news-item ul li{
      width: 100%;
-    height: 74px;
-    padding: 10px 15px;
+    height: 80px;
+    padding: 8px 15px;
     border-bottom: 1px solid #ccc;
         overflow: hidden;
     }
     .news-item ul li:last-child{ border: none;}
-    .news-item .news-img{ width: 70px;height: 54px;overflow: hidden;position: relative;}
-     .news-item .news-img img {
+.news-item .news-img{ 
+	width:28%;
+	height:54px;
+	overflow: hidden;
+	position: relative;
+	margin-top:6px;
+}
+.news-item .news-img img {
          width: 100%;
          height: 54px;
      }
-     .news-item .news-brief-bar{ width: 75%;padding-left: 2%;height: 54px; overflow: hidden;}
+     .news-item .news-brief-bar{ width: 72%;padding-left: 2%;height:72px; overflow: hidden;box-sizing:border-box;}
    
-     .news-item .news-brief-bar p:last-child{color: #999; font-size: 12px;height: 32px; overflow: hidden;}
-     .news-item .news-brief-bar .news-title{ font-size: 16px;width: 100%;
+.news-item .news-brief-bar p:last-child{color: #888; font-size: 14px;height:45px; overflow: hidden; line-height:22px;}
+.news-item .news-brief-bar .news-title{ 
+	font-size: 15px;
+	width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;}
+    white-space: nowrap;
+	color:#445560;
+}
 
 
   /*新闻列表样式*/

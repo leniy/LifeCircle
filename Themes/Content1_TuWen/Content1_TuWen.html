@@ -11,29 +11,81 @@
 
 <link href="css/life.css" rel="stylesheet" />
 </head>
+<script>
+	var num = 1;
+	var type;
+	var address;
+	function test(){
+	
+		var Media = document.getElementById("videoid"); 
+		if(num>1){
+			if(type=='1'){
+					window.SumaWebView.showInfoFromJs($('#source_title').html(),address);
+			}else{
+				Media.play();
+			}
+			return;
+		}
+		
+
+		var url = Media.currentSrc;
+		url =url.split('?')[1]
+		$.ajax({
+			url : '/Portal/AAAServiceStub?'+url,
+			type: 'POST',
+			async : false,
+			success : function(data) {
+				var args = getQueryStringArgs(data);
+				alert("正在准备资源，请等待"+args.startTimeOffset+"秒");
+				type=args.platform;
+				address = data.toString();
+				Media.src = address;
+				Media.load();
+				if(type=='1'){
+					window.SumaWebView.showInfoFromJs($('#source_title').html(),data.toString());
+				}else{
+					Media.play();
+				}
+				num++;
+
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+
+	}
+
+	function getQueryStringArgs(q) {
+		var qs = q.split('?')[1]
+				|| (location.search.length > 0 ? location.search.substring(1)
+						: ''), args = {}, items = qs.length ? qs.split('&')
+				: [], item = null, name = null, value = null, i = 0, len = items.length;
+
+		for (i = 0; i < len; i++) {
+			item = items[i].split('=');
+			name = decodeURIComponent(item[0]);
+			value = decodeURIComponent(item[1]);
+			if (name.length) {
+				args[name] = value;
+			}
+		}
+		return args;
+	}
+	
+</script>
 
 <!-- 内容模板1（包含：含特色图片的图文、含特色视频的图文、单独图文、直播摄像头、点播视频） -->
 <body id="lifecirclebody">
 <script id="template" type="text/html">
-
-<!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
-<div class="news-title-bar">
-	<div class="container">
-		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
-		<h4><%=page[0].page_title%></h4>
-	</div>
-</div>
-
 <!-- 内容页，如果文章包含视频和图像，则顶部显示视频并用图像作为海报；如果只有摄像头点播等视频，则显示特色视频；如果有图像，则显示特色图像；否则只显示富文本内容页。 -->
 <div class="container news-con-bar">
 	<% if ( ""!=sources[0].source_video && ""!=sources[0].source_img && "undefined"!=typeof(sources[0].source_video) && "undefined"!=typeof(sources[0].source_img) ) { %>
-	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=sources[0].source_video%>" poster="<%=sources[0].source_img%>" /></video>
+	<video id="videoid" onplay="test();" controls="controls" style="width: 100%; height: auto; background: #000;" poster="<%=sources[0].source_img%>"><source src="<%=sources[0].source_video%>" /></video>
 	<% } else if ( ""!=sources[0].source_video && "undefined"!=typeof(sources[0].source_video) ) { %>
-	<video controls="controls" preload="preload" autoplay="autoplay" style="width: 100%; height: auto; background: #000;"><source src="<%=sources[0].source_video%>" /></video>
-	<% } else if ( ""!=sources[0].source_img && "undefined"!=typeof(sources[0].source_img) ) {%>
-	<div class="news-con-img"> <img src="<%=sources[0].source_img%>"  alt=""/> </div>
+	<video id="videoid" onplay="test();" controls="controls" style="width: 100%; height: auto; background: #000;"><source src="<%=sources[0].source_video%>" /></video>
 	<% } %>
-	<div class="news-con-title"><p><%=sources[0].source_title%></p></div>
+	<div class="news-con-title"><p style="color:#445560;" id='source_title'><%=sources[0].source_title%></p></div>
 	<div class="news-con"><%=sources[0].source_content%></div>
 </div>
 

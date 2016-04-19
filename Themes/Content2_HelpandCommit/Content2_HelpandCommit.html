@@ -8,25 +8,11 @@
 <script src="../../common_res/jquery/jquery.min.js"></script> 
 <script src="../../common_res/lifecircleapi/common.js"></script>
 <link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
 <link href="css/life.css" rel="stylesheet" />
 </head>
-
 <!-- 内容模板2（包含：社区帮帮等页面，含有图文点赞评论） -->
 <body id="lifecirclebody">
 <script id="template" type="text/html">
-
-<!-- 顶部返回导航条，包含自动判断添加的发布按钮 -->
-<div class="news-title-bar">
-	<div class="container">
-		<a class="return" href="javascript:;" onclick="history.go(-1)">返回</a>
-		<h4><%=page[0].page_title%></h4>
-		<% if (""!=page[0].page_reporturl && "undefined"!=typeof(page[0].page_reporturl) ) { %>
-		<a href="<%=page[0].page_reporturl%>" class="publish btn btn-warning">举报</a>
-		<% } %>
-	</div>
-</div>
-
 <div class="container news-con-bar">
 	<!-- 特色图片 -->
 	<% if ( ""!=sources[0].img ) { %>
@@ -39,67 +25,80 @@
 			<img src="<%=sources[0].source_issuerimg%>" alt=""/>
 		</div>
 		<div class="user-info">
-			<p class="user-name"><%=sources[0].source_issuer%></p>
+			<p class="user-name"><%=sources[0].source_issuer_nickName%></p>
 			<p style="line-height: 15px;"><span><%=sources[0].source_time%></span></p>
 		</div>
+		<div id="report">举报</div>
 	</div>
 
 	<!-- 标题和内容 -->
-	<div class="news-con-title"><p style="text-align: left;"><%=sources[0].source_title%></p></div>
-	<div class="news-con"><%=sources[0].source_content%></div>
+	<div class="news-con-title"><p style="text-align: left; color:#445560;"><%=sources[0].source_title%></p></div>
+	<div class="news-con"><%=sources[0].source_summary%></div>
 
 	<div class="comment-bar">
 		<div class="comment-nav">
 			<ul class="clearfix">
-				<li><a href="#"><img src="image/icon/icon-message.png" alt=""/>评论</a></li>
-				<li><a href="#"><img src="image/icon/icon-zan.png" alt="" />点赞(<span><%=sources[0].source_supportCount%></span>)</a></li>
-				<li><a href="#"><img src="image/icon/icon-share.png" alt="" />分享</a></li>
+				<li><a onClick="goPL();" style="font-size:14px;color:#445560;"><img src="image/icon/icon-message.png" alt=""/>评论</a></li>
+				<% if(sources[0].isLike==0) { %>
+				<li><a onClick="doLike();" style="font-size:14px;color:#445560;"><img src="image/icon/icon-zan.png" alt="" />点赞(<span class="likenmb"><%=sources[0].likeNumber%></span>)</a></li>
+				<% }else{ %>
+				<li><a style="font-size:14px;color:#445560;" ><img src="image/icon/icon-zan.png" alt="" />已赞(<span class="likenmb"><%=sources[0].likeNumber%></span>)</a></li>
+				<% } %>
 			</ul>
 		</div>
-		<h4 style="font-size: 16px; margin: 10px 0;">最新评论</h4>
-		
+		<% if (commentSources.length>0) { %>
+		<h4 style="font-size: 15px; margin: 10px 0;color:#445560">最新评论</h4>		
 		<div class="message-list">
 			<ul>
-				<li>
-					<div class="shequ-user-bar clearfix">
-						<div class="user-logo">
-							<img src="image/user-logo.jpg" alt="" />
+				<% for (i=0, l=commentSources.length; i<l; i++) { %>
+					<li>
+						<div class="shequ-user-bar clearfix">
+							<div class="user-logo">
+								<img src="<%=commentSources[i].user_issuerimg%>" alt="" />
+							</div>
+							<div class="user-info">
+								<p class="user-name"><%=commentSources[i].user_nickname%></p>
+								<p style="line-height: 15px; color: #888;"><span><%=commentSources[i].common_date%></span></p>
+							</div>
 						</div>
-						<div class="user-info">
-							<p class="user-name">白雪公主</p>
-							<p style="line-height: 15px; color: #666;"><span>01-13</span>&nbsp;&nbsp;<span>18:18</span></p>
+						<div class="message-con">
+							<p style="word-break:break-all;color: #445560;font-size:14px;"><%=commentSources[i].common_content%></p>
 						</div>
-						<a href="#" class="reply-message"><img src="image/icon/reply-message.png" /></a>
-					</div>
-					<div class="message-con">
-						<p>好可怜的狗狗，希望它能尽快找到自己的主人，健康快乐！</p>
-					</div>
-				</li>
-				<li>
-					<div class="shequ-user-bar clearfix">
-						<div class="user-logo">
-							<img src="image/user-logo.jpg" alt="" />
-						</div>
-						<div class="user-info">
-							<p class="user-name">老巫婆</p>
-							<p style="line-height: 15px; color: #666;"><span>01-13</span>&nbsp;&nbsp;<span>18:18</span></p>
-						</div>
-						<a href="#" class="reply-message"><img src="image/icon/reply-message.png" /></a>
-					</div>
-					<div class="message-con">
-						<p>就是就是，快点回家吧！</p>
-					</div>
-					<div class="reply-someone">
-						//<a href="#">@<span>白雪公主</span></a><span>好可怜的狗狗，希望它能尽快找到自己的主人，健康快乐!</span>
-					</div>
-				   
-				</li>
+					</li>
+				<% }%>
 			</ul>
 		</div>
+		<%}else{%>
+		<%}%>
 	</div>
 </div>
-
-
+</script>
+<script>
+	function goPL(){
+		window.location.href = "/templatefile/baseTemplat/Publish1_TextandPhotos_pl/Publish1_TextandPhotos_pl.html"+window.location.search;
+	}
+	function doLike(){
+	$.ajax({
+		url : '/Portal/portal/4help/like'+window.location.search,
+		type : 'POST',
+		dataType : 'json',
+		data: null,
+		contentType : "application/json",
+		async : false,
+		success : function(data){
+			if(data[0].status == 1){
+				alert(data[0].message)
+			}else if(data[0].status == 0){
+				$(".likenmb").html(data[0].likeNum);
+			}else{
+				alert("点赞失败");
+			}			
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+}		
 </script>
 </body>
 </html>

@@ -6,43 +6,56 @@
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 <script src="../../common_res/arttemplate/template-native.js"></script>
 <script src="../../common_res/jquery/jquery.min.js"></script> 
-<script src="../../common_res/lifecircleapi/common.js"></script>
 <link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
 <link rel="stylesheet" type="text/css" href="css/ditusousuo.css">
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=MKE0Oz6D9SPltDZKtYIMKCmK"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=U5D8WNdb1BQGf7ziuHf96uvY"></script>
 </head>
 
 <!-- 内容模板3（包含：地图定位、商家地图搜索） -->
 <body id="lifecirclebody">
-<script id="template" type="text/html">
-
-<!-- 顶部返回导航条 -->
-<div class="top">
-	<a href="javascript:;" onclick="history.go(-1)">返回</a>
-	<span style=" margin:0px auto;"><%=page[0].page_title%></span>
-</div>
 <div id="allmap"></div>
-<div id="page_latitude"><%=page[0].page_latitude%></div>
-<div id="page_longitude"><%=page[0].page_longitude%></div>
-<div id="page_searchKey"><%=page[0].page_searchKey%></div>
-</script>
 </body>
 <script type="text/javascript">
+function getQueryStringArgs(q) {
+		var qs = q.split('?')[1]
+				|| (location.search.length > 0 ? location.search.substring(1)
+						: ''), args = {}, items = qs.length ? qs.split('&')
+				: [], item = null, name = null, value = null, i = 0, len = items.length;
+
+		for (i = 0; i < len; i++) {
+			item = items[i].split('=');
+			name = decodeURIComponent(item[0]);
+			value = decodeURIComponent(item[1]);
+			if (name.length) {
+				args[name] = value;
+			}
+		}
+		return args;
+	}
+var r = getQueryStringArgs(window.location.search);
 $(document).ready(function(){
 	hei = $(document).height()-48-48;
-	latitude = Number($("#page_latitude").text());
-	longitude = Number($("#page_longitude").text());
-	searchwords = $("#page_searchKey").text();
+	var merchantLocation = r.merchant_location.split(",");
+	latitude = r.latitude;
+	longitude = r.longitude;
 	$("#allmap").height(hei);
 
 	var map = new BMap.Map("allmap");
-	var mPoint = new BMap.Point(latitude, longitude); 
+	var mPoint = new BMap.Point(merchantLocation[0],merchantLocation[1]); 
 	map.centerAndZoom(mPoint, 14);
-	var local = new BMap.LocalSearch(map, {
-	renderOptions:{map: map, autoViewport:true}
-	});
-	local.searchNearby(searchwords,mPoint,1000);
+	var marker = new BMap.Marker(mPoint);
+	var merchantName=r.merchantName;
+	var numLabel = new BMap.Label(merchantName,{offset:new BMap.Size(-20,-20)});
+	numLabel.setStyle({ 
+	color : "#786C69", 
+	fontSize : "16px", 
+	backgroundColor :"0.05",
+	border :"0", 
+	fontWeight :"bold" 
+	});	
+	marker.setLabel(numLabel); //添加百度label 
+	map.addOverlay(marker);
 });
 </script>
 </html>

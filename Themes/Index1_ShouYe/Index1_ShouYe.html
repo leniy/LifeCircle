@@ -24,6 +24,9 @@
     width: 100%;
     background: rgba(51, 51, 51, 0.81);
     text-align: left;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
 }
 .swiper-pagination-bullet {
 	background: #FFF;
@@ -31,7 +34,7 @@
 }
 .swiper-pagination-bullet-active {
     opacity: 1;
-    background: #007aff;
+    background: #fdab01 ;
 }
 .swiper-pagination {
     text-align: right;
@@ -57,6 +60,7 @@
 <% } %>
 
 <!-- 滑动轮训图片 -->
+<% if ( recommends_slide.length > 0 ) { %>
 <div class="swiper-container">
 	<div class="swiper-wrapper">
 	<% for (i=0, l=recommends_slide.length; i<l; i++) { %>
@@ -67,7 +71,7 @@
 				<img src="image/icon/common_play.png" alt="" />
 			</a>
 			<% } %>
-			<a target="_parent" href="<%=recommends_slide[i].recommend_src%>">
+			<a style="width:100%" target="_parent" href="<%=recommends_slide[i].recommend_src%>">
 				<img src="<%=recommends_slide[i].recommend_img%>" alt="" style="width: 100%;" />
 				<div class="carousel-caption"><%=recommends_slide[i].recommend_title%></div>
 			</a>
@@ -76,6 +80,7 @@
 	</div>
 	<div class="swiper-pagination"></div>
 </div>
+<% } %>
 
 <!-- 矩阵式分类导航 -->
 <div class="category">
@@ -99,7 +104,9 @@
 <div class="common-title-bar clearfix">
 	<span class="left common-title">热门推荐</span>
 	<div class="more">
+		<a target="_parent" href="<%=recommend_list_src%>">
 		<img src="image/icon/common_right_arrow.png" />
+		</a>
 	</div>
 	<div style="background: #fff; position: absolute; width: 35px; height: 40px; top: 0; right: 0;"></div>
 </div>

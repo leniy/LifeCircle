@@ -26,11 +26,10 @@
 .top{
 	top:0px;
 	height:45px;
-	max-width:640px;
 	width:100%;
 	line-height:45px;
 	text-align:center;
-	border-bottom:#FDAB01 solid 3px;
+	border-bottom:#ccc solid 1px;
 	position:fixed;
 	background-color:#fff;
 	z-index:9999;
@@ -124,10 +123,10 @@
 }
 .normal-goods .good-content .info-wrapper {
 	position:relative;
-	margin-left:30%;
+	margin-left:32%;
 }
 .normal-goods .good-content .info-wrapper .title-line {
-	margin: 5px;
+	margin: 0px 0px 5px 5px;
 	line-height:16px;
 	height:16px;
 	overflow:hidden
@@ -150,10 +149,11 @@
 }
 .normal-goods .good-content .info-wrapper .star-gray {
 	height: 16px;
-	width: 100px;
+	width:87px;
 	display: inline-block;
 	background: url("../img/fujin-0star.png") no-repeat;
 	background-size: auto 100%;
+	margin:5px 0px 0px 5px;
 }
 .normal-goods .good-content .info-wrapper .star-real {
 	width: 0;
@@ -248,6 +248,9 @@
 }
 .content_con p{
 	text-indent: -2em;
+}
+.good{
+	border-bottom:1px solid #ccc;
 }
 
 

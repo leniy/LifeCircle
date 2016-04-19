@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="css/life.css" rel="stylesheet" />
+</head>
+<!-- 发布模板1（包含：手机图片与文字） -->
+<body>
+<!-- 评论与上传文件 -->
+<div class="container"> 
+	<div class="guestbook">
+		<textarea id="summary" name="summary" placeholder="留下您的评论吧（100字以内）"></textarea>
+	</div>
+	<button id="upload" class="btn btn-warning" onClick="updata();">提交</button>
+</div>
+<script>
+function updata(){
+	var sy = $("#summary").val();
+	if(sy==""){
+		alert("请填写评论内容");
+		return false; 
+	}
+	$.ajax({
+		url : '/Portal/portal/4helpComment/appendComment'+window.location.search,
+		type : 'POST',
+		dataType : 'json',
+		data: {comment: sy},
+		contentType : "application/json",
+		async : false,
+		success : function(){
+			alert("评论成功");
+			history.go(-1);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+}
+</script>
+</body>
+</html>

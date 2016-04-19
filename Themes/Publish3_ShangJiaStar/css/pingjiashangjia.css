@@ -26,11 +26,10 @@
 .top{
 	top:0px;
 	height:45px;
-	max-width:640px;
 	width:100%;
 	line-height:45px;
 	text-align:center;
-	border-bottom:#FDAB01 solid 3px;
+	border-bottom:#ccc solid 1px;
 	position:fixed;
 	background-color:#fff;
 	z-index:9999;
@@ -59,7 +58,6 @@
 }
 
 body {
-	margin-top:50px;
 }
 
 .container-fluid {

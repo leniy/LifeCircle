@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<!-- 以上为统一引用代码，个性化代码放在下面 -->
+<script src="../../common_res/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+<form class="form-search form-inline" action="xxxxxxxxxxxxxx.do" style="padding-top: 10px;background:#fff;position:fixed;padding-left:10px;padding-bottom:5px;width:100%;box-sizing:border-box;box-shadow:0px 2px 3px #ccc;">
+	<input class="input-medium search-query" id="searchId" type="text" value="搜索地点 商户等" onFocus="if (value =='搜索地点 商户等'){value =''}" onBlur="if (value ==''){value='搜索地点 商户等'}" style="position:relative;line-height:30px;border-radius:4px;font-size:14px; color:#999999;width:82%;height: 30px;border:1px #CCCCCC solid;font-family:'Microsoft YaHei'; text-indent:5px; ">
+	<button type="button" class="" id="submitButton" style=" position: relative; width: 16%; float: right;height: 32px;line-height: 32px;font-size: 16px;border:0px;background-color:#fff;color:#445560;">搜索</button>
+</form>
+<div class="container-fluid" style="padding-top:45px;"><div class="row-fluid"><div class="span12">
+<div class="index-cat">
+	<% if (categorys.length<=8) { %>
+		<ul>
+		<% for (i=0, l=categorys.length; i<l; i++) { %>
+			<li>
+				<a target="_parent" href="<%=categorys[i].category_src%>">
+					<img src="<%=categorys[i].category_img%>"/>
+					<div class="titles"><%=categorys[i].category_title%></div>
+				</a>
+			</li>
+		<%}%>
+		</ul>
+	<%}else{%>
+		<ul>
+		<% for (i=0, l=8; i<l; i++) { %>
+			<li>
+				<a target="_parent" href="<%=categorys[i].category_src%>">
+					<img src="<%=categorys[i].category_img%>"/>
+					<div class="titles"><%=categorys[i].category_title%></div>
+				</a>
+			</li>
+		<%}%>
+		<% for (i=8, l=categorys.length; i<l; i++) { %>
+			<li class="moreseven">
+				<a  target="_parent" href="<%=categorys[i].category_src%>">
+					<img src="<%=categorys[i].category_img%>"/>
+					<div class="titles"><%=categorys[i].category_title%></div>
+				</a>
+			</li>
+		<%}%>
+		</ul>
+		<div id="more"></div>
+		<div id="more1"></div>
+	<%}%>
+</div>
+<div style="line-height:30px; font-size:16px;color:#445560; width:100%;float:left; margin:10px 0px">为您推荐</div>
+<section id="goods-container">
+	<div class="normal-goods">
+		<% for (i=0, l=merchants.length; i<l; i++) { %>
+			<section class="good">
+				<a  target="_parent" class="good-content" href="<%=merchants[i].merchant_src%>">
+					<div class="img-wrapper">
+						<div class="img-placeholder">
+							<img src="<%=merchants[i].merchant_img%>" width="120" height="72" style="visibility: visible;">
+						</div>
+					</div>
+					<div class="info-wrapper">
+						<div class="title-line"><div class="title"><p class="item-name"><%=merchants[i].merchant_name%></p></div></div>
+						<div class="star-gray"><div class="star-real" style="width:<%=merchants[i].merchant_score%>;"></div></div>
+						<span class="score"><%=merchants[i].merchant_comment_number%>个评价</span>
+						<p class="desc"><%=merchants[i].merchant_address%></p>
+					</div>
+				</a>
+			</section>
+			<hr />
+		<% } %>
+	</div>
+</section>
+</div>
+</div>
+</div>
+</script>
+<script>
+	$(document).ready(function(){
+		var moredown = $("#more");
+		var moreup = $("#more1");
+		var lis = $(".moreseven");
+		var submitButton = $("#submitButton");
+		moredown.click(function(){
+			lis.show();
+			moredown.hide();
+			moreup.show();
+		});
+		moreup.click(function(){
+			lis.hide();
+			moreup.hide();
+			moredown.show();
+		});
+		submitButton.click(function(){
+			var keywords = $("#searchId").val();
+			keywords = encodeURI(keywords);
+			top.location.href='/templatefile/baseTemplat/List10_Goods/goodslist.html'+window.location.search+"&mapkeywords="+keywords;
+		});
+	});
+</script>
+</body>
+</html>
