@@ -35,7 +35,7 @@ function getQueryStringArgs(q) {
 	}
 var r = getQueryStringArgs(window.location.search);
 $(document).ready(function(){
-	hei = $(document).height()-48-48;
+	hei = $(document).height();
 	var merchantLocation = r.merchant_location.split(",");
 	latitude = r.latitude;
 	longitude = r.longitude;

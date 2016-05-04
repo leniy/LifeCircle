@@ -8,15 +8,12 @@
 <script src="../../common_res/jquery/jquery.min.js"></script> 
 <script src="../../common_res/lifecircleapi/common.js"></script>
 <link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
 <link href="css/waibudiaoyong.css" rel="stylesheet" type="text/css" />
 </head>
 
 <!-- 外部地址调用模板1（包含天气预报、健康养生、休闲娱乐） -->
 <body id="lifecirclebody">
 <script id="template" type="text/html">
-
-<div class="top"><a href="javascript:;" onclick="history.go(-1)">返回</a><span style=" margin:0px auto;"><%=page[0].page_title%></span></div>
 <iframe id="ifm" src="<%=page[0].page_extiframeurl%>"></iframe>
 </script>
 </body>

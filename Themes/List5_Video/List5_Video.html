@@ -8,17 +8,14 @@
 <script src="../../common_res/jquery/jquery.min.js"></script> 
 <script src="../../common_res/lifecircleapi/common.js"></script>
 <link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
 <link href="css/shipinliebiao.css" rel="stylesheet" type="text/css" />
 </head>
-
-
-<body id="lifecirclebody" style="padding-top:45px;">
+<body id="lifecirclebody">
 <script id="template" type="text/html">
 
 <% for (i=0, l=sources.length; i<l; i++) { %>
 <div class="pt">
-	<a href="<%=sources[i].source_src%>">
+	<a style="box-sizing:border-box;position:relative;display:block;" href="<%=sources[i].source_src%>">
 	<div class="pt_pic" style="background-image: url(<%=sources[i].source_img%>);"></div>
 	<div class="title"><%=sources[i].source_title%></div>
 	<div class="link"></div>

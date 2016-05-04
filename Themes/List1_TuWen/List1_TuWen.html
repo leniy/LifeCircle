@@ -78,7 +78,7 @@ function moreData(){
 	var theDivMore = $("#div_more");
 	$("#div_more").html("正在加载");
 	$.ajax({
-		url : '/Portal/portal/template/getTemplate'+window.location.search+'pageNum='+pageNum,
+		url : '/Portal/portal/template/getTemplate'+window.location.search+'&pageNum='+pageNum,
 		type : 'POST',
 		dataType : 'json',
 		contentType : "application/json",

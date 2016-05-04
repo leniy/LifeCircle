@@ -333,7 +333,11 @@ ul{
 					<div class="user_msg">
 						<div class="user_pic"><img src="<%=commons[i].user_issuerimg%>"/>
 						</div>
+						<% if (commons[i].user_nickname) { %>
 						<div class="user_name"><%=commons[i].user_nickname%></div>
+						<% }else{ %>
+						<div class="user_name"><%=commons[i].user_id%></div>
+						<% }%>
 						<div class="user_name"><%=commons[i].common_date%></div>
 					</div>
 					<div class="user_estimate"><%=commons[i].common_content%></div>
