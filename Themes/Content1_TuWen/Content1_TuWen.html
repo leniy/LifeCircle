@@ -29,20 +29,28 @@
 		
 
 		var url = Media.currentSrc;
-		url =url.split('?')[1]
+		var args11 = getQueryStringArgs(url);
+		var url1 = url.split('?')[0];
+		url2 =url.split('?')[1];
+		var c = 2;
+		if(url1.indexOf('rtsp://')!=-1){ c=1; }
 		$.ajax({
-			url : '/Portal/AAAServiceStub?'+url,
+			url : '/Portal/AAAServiceStub?isCamera='+c+'&'+url2+'&requrl='+url1,
 			type: 'POST',
 			async : false,
 			success : function(data) {
 				var args = getQueryStringArgs(data);
-				alert("正在准备资源，请等待"+args.startTimeOffset+"秒");
 				type=args.platform;
-				address = data.toString();
+				if(c==1){
+					address = data.toString();
+				}else{
+					address = data.toString();
+				}
+				
 				Media.src = address;
 				Media.load();
 				if(type=='1'){
-					window.SumaWebView.showInfoFromJs($('#source_title').html(),data.toString());
+					window.SumaWebView.showInfoFromJs($('#source_title').html(),address);
 				}else{
 					Media.play();
 				}
