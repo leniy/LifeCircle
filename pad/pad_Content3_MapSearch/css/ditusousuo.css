@@ -1,7 +1,6 @@
-@CHARSET "UTF-8";
+﻿@CHARSET "UTF-8";
  html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
         fieldset, img { border:none; }
-        img{display: block;}
         address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; }
         ul, ol { list-style:none; }
         input { padding-top:0; padding-bottom:0; font-family: "SimSun","宋体";}
@@ -23,31 +22,48 @@
 	font-family:"Microsoft YaHei";
 }
 
-
-*{
-	margin:0px;
-	padding:0px;
-}
-.dv2{width:93px;height:93px;float:left;margin-top:14px;margin-left:5px; margin-bottom:10px;}
-.sp{
-	display:block; 
-	color:black;
-	font-family:Microsoft YaHe; 
-	font-size:14px; 
-	text-align:center; 	
-}
-.logo{
+/* top用来显示顶部前进后退导航条 */
+.top{
+	top:0px;
+	height:45px;
+	max-width:640px;
 	width:100%;
-	height:100%;
-	border:0px solid white;
-}
-
-body {
-	margin-top:45px;
-}
-
-#list{
-	margin:5px auto 0px;
+	line-height:45px;
 	text-align:center;
-	width:320px;
+	border-bottom:#FDAB01 solid 3px;
+	position:fixed;
+	background-color:#fff;
+	z-index:9999;
+}
+.top span{
+	display:block;
+	font-size:16px;
+	margin:0px auto;
+	width:64px;
+	height:45px;
+	line-height:45px;
+}
+.top a{
+	position:absolute;
+	width:55px;
+	height:45px;
+	left:10px;
+	top:0px;
+	display:block;
+	text-align:right;
+	font-size:18px;
+	background-image:url(../img/common_back.png);
+	background-repeat: no-repeat;
+	background-position: 0px 10px;
+	background-size:24%;
+}
+
+body, html {width: 100%;height: 100%;}
+#allmap{
+	width:100%;
+	height:500px;
+}
+#page_latitude, #page_longitude, #page_searchKey{
+	visibility: hidden;
+	display: none;
 }

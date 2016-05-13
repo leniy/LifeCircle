@@ -7,23 +7,24 @@
 <script src="../../common_res/arttemplate/template-native.js"></script>
 <script src="../../common_res/jquery/jquery.min.js"></script> 
 <script src="../../common_res/lifecircleapi/common.js"></script>
-<link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-<link href="css/bianminfuwu.css" rel="stylesheet" type="text/css" />
+<link href="css/wanggeshifenlei.css" rel="stylesheet" type="text/css" />
 </head>
 
-<!-- 列表模板4（包含：便民服务导航） -->
+<!-- 列表模板4（包含：网格式子分类列表） -->
 <body id="lifecirclebody">
 <script id="template" type="text/html">
 
-<div id="list">
+<ul class="clearfix categorygrid">
 <% for (i=0, l=categorys.length; i<l; i++) { %>
-	<div class="dv2">
-		<a href="<%=categorys[i].category_src%>"><img src="<%=categorys[i].category_img%>" class="logo" ></a>
-		<span class="sp"><%=categorys[i].category_title%></span>
-	</div>
+<a href="<%=categorys[i].category_src%>">
+	<li id="categorygrid<%=i%>">
+		<img src="<%=categorys[i].category_img%>">
+		<p><%=categorys[i].category_title%></p>
+	</li>
+</a>
 <% } %>
-</div>
+</ul>
 </script>
 </body>
 </html>

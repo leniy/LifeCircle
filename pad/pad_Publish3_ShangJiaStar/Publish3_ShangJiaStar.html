@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+
+<script src="js/jquery.raty.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/pingjiashangjia.css">
+</head>
+
+<!-- 发布模板3（包含：评价商家，可评星级） -->
+<body id="lifecirclebody">
+<div class="container-fluid">
+		<div class="floatleft">
+		<textarea id="feedbackText" placeholder="留下你的评价吧（100字以内）" autofocus></textarea>
+		</div>
+		<div class="floatright">
+		<div class="score-star" style=" margin:8px 0px;">
+			<div id="star1"></div>
+			<div id="result1"></div>
+		</div>
+		<hr>
+		<button type="button" id="gopost" class="btn">提交</button>
+		</div>
+</div>
+</script>
+<script type="text/javascript">
+rat('star1','result1',1);
+function rat(star,result,m){
+
+	star= '#' + star;
+	result= '#' + result;
+	$(result).hide();
+
+	$(star).raty({
+		hints: ['1','2', '3', '4', '5'],
+		path: "img",
+		number: 5,
+		starOff: 'star-off-big.png',
+		starOn: 'star-on-big.png',
+		size: 24,
+		start: 40,
+		target: result,
+		targetKeep : true,
+	});
+}
+	//提交评论内容
+	$("#gopost").click(function(){
+		var comment = $("#feedbackText").val();
+		if(comment==""){alert("请填写评论内容");return;}
+		var result1 = $("#result1").html();
+			result1 = Number(result1);
+			if(!result1){alert("请评价星级");return;}
+			$.ajax({
+				url : '/Portal/appendComment'+window.location.search,
+				type : 'POST',
+				data:{  
+					comment: comment,  
+					score: result1,
+				},  
+				dataType : 'json',
+				contentType : "application/json",
+				async : false,
+				success : function() {
+					alert("评论成功");
+					history.go(-1);
+				},
+				error : function(e) {
+					console.log(e);
+				}
+			});
+	});
+</script>
+</html>

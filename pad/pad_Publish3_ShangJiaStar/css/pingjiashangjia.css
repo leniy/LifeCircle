@@ -1,0 +1,80 @@
+@CHARSET "UTF-8";
+ html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+        fieldset, img { border:none; }
+        address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; }
+        ul, ol { list-style:none; }
+        input { padding-top:0; padding-bottom:0; font-family: "SimSun","宋体";}
+        input::-moz-focus-inner { border:none; padding:0; }
+        select, input { vertical-align:middle; }
+        select, input, textarea { font-size:12px; margin:0; }
+        input[type="text"], input[type="password"], textarea { outline-style:none; -webkit-appearance:none; }
+        textarea { resize:none; }
+        table { border-collapse:collapse; }
+        body { color:#333; font:12px/20px "SimSun","宋体","Arial Narrow",HELVETICA;/* overflow-y:scroll;*/ }
+        .clearfix:after { content:"."; display:block; height:0; visibility:hidden; clear:both; }
+        .clearfix { zoom:1; }
+        .clearit { clear:both; height:0; font-size:0; overflow:hidden; }
+        a { color:#666; text-decoration:none; }
+        a:visited { color:; text-decoration:none;}
+        a:hover{ color:; text-decoration:none; }
+		a:active{ color:; text-decoration:none; }
+*{
+	font-family:"Microsoft YaHei";
+}
+body{
+	background-color: #F3F4F6;
+}
+
+.container-fluid {
+	margin-top: 30px;
+	margin-right: 40px;
+	margin-left: 40px;
+}
+#feedbackText {
+	width: 798px;
+	max-width: 95%;
+	height:382px;
+	border: 1px solid #c4c4c4;
+	border-radius:8px;
+	float: left;
+	padding: 20px;
+	font-size: 30px;
+}
+.floatleft {
+	width: 50%;
+	float: left;
+}
+.floatright {
+	width: 30%;
+	float: left;
+	padding-left: 40px;
+}
+.floatright hr {
+	margin-bottom: 30px;
+	height: 0px;
+    border: 1px solid #c4c4c4;
+}
+
+.btn {
+	height: 66px;
+	display: inline-block;
+	padding: 0 44px;
+	font-size: 30px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 10px;
+	background-color: #FDAB01;
+	color: #FFF;
+}
