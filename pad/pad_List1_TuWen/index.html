@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="css/life.css" rel="stylesheet" />
+</head>
+
+<!-- 列表模板1（包含：省市等新闻图文列表、社区帮帮图文、社区风采图文） -->
+<body>
+<div id="lifecirclebody">
+<script id="template" type="text/html">
+<!-- 自动判断添加的发布按钮 -->
+		<% if (""!=page[0].page_publishurl && "undefined"!=typeof(page[0].page_publishurl) ) { %>
+		<a href="javascript:;" onclick="submitComment();" class=" btn btn-warning" style="border-radius:5px 0px 0px 5px; font-size:14px;bottom:25px;right:0px;padding:5px; position:fixed;">发布</a>
+		<% } %>
+</div>
+
+
+<!-- 列表页，如果文章包含视频，则添加视频标示符号 -->
+<div class="news-item">
+	<ul id="limore">
+	<% for (i=0, l=sources.length; i<l; i++) { %>
+	<li class="clearfix">
+		<a href="<%=sources[i].source_src%>">
+			<% if (""!=sources[i].source_img) { %>
+			<div class="news-img">
+				<img src="<%=sources[i].source_img%>" alt="" />
+				<% if (""!=sources[i].video && "undefined"!=typeof(sources[i].video) ) { %><p class="icon-play-sm"></p><% } %>
+			</div>
+			<div class="news-brief-bar clearfix">
+			<% } else { %>
+			<div class="news-brief-bar clearfix" style="width: 100%;">
+			<% } %>
+				<p class="news-title" id="<%=sources[i].source_id%>"><%=sources[i].source_title%></p>
+				<% if (""!=sources[i].video && "undefined"!=typeof(sources[i].video)) { %><span class="icon-vedio left"></span><% } %>
+				<p class=""><%=sources[i].source_summary%></p>
+			</div>
+		</a>
+	</li>
+	<% } %>
+	</ul>
+</div>
+</script>
+</div>
+<div id="div_more" style=" color:#fdab01; height:40px;line-height:40px; text-align:center;font-size:30px;" onClick="moreData();">加载更多</div>
+<!--分页模版-->
+<script id="paging" type="text/html">
+<% for (i=0, l=sources.length; i<l; i++) { %>
+	<li class="clearfix">
+		<a href="<%=sources[i].source_src%>">
+			<% if (""!=sources[i].source_img) { %>
+			<div class="news-img">
+				<img src="<%=sources[i].source_img%>" alt="" />
+				<% if (""!=sources[i].video && "undefined"!=typeof(sources[i].video) ) { %><p class="icon-play-sm"></p><% } %>
+			</div>
+			<div class="news-brief-bar  clearfix">
+			<% } else { %>
+			<div class="news-brief-bar  clearfix" style="width: 100%;">
+			<% } %>
+				<p class="news-title" id="<%=sources[i].source_id%>"><%=sources[i].source_title%></p>
+				<% if (""!=sources[i].video && "undefined"!=typeof(sources[i].video)) { %><span class="icon-vedio left"></span><% } %>
+				<p class="left"><%=sources[i].source_summary%></p>
+			</div>
+		</a>
+	</li>
+	<% } %>
+</script>
+<script>
+var pageNum = 2;
+function moreData(){
+	var theDivMore = $("#div_more");
+	$("#div_more").html("正在加载");
+	$.ajax({
+		url : '/Portal/portal/template/getTemplate'+window.location.search+'&pageNum='+pageNum,
+		type : 'POST',
+		dataType : 'json',
+		contentType : "application/json",
+		async : false,
+		success : function(data) {		
+			data =eval(data)[0];
+			if(data.sources.length==0){theDivMore.html("没有了");return;}
+			var html = template('paging', data);
+			html = replaceStr(html);
+			$("#limore").append(html);
+			pageNum++;
+			theDivMore.html("加载更多");
+		},
+		error : function(e) {
+			console.log(e);
+			theDivMore.html("没有了");
+		}
+	});
+}
+//发布帮帮
+function submitComment(){
+	window.location.href='/templatefile/baseTemplat/Publish1_TextandPhotos/Publish1_TextandPhotos.html'+window.location.search;
+}
+</script>
+</body>
+</html>

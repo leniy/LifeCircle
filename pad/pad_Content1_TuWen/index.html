@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="css/life.css" rel="stylesheet" />
+</head>
+<script>
+	var num = 1;
+	var type;
+	var address;
+	function test(){
+	
+		var Media = document.getElementById("videoid"); 
+		if(num>1){
+			if(type=='1'){
+					window.SumaWebView.showInfoFromJs($('#source_title').html(),address);
+			}else{
+				Media.play();
+			}
+			return;
+		}
+		
+
+		var url = Media.currentSrc;
+		var args11 = getQueryStringArgs(url);
+		var url1 = url.split('?')[0];
+		url2 =url.split('?')[1];
+		var c = 2;
+		if(url1.indexOf('rtsp://')!=-1){ c=1; }
+		$.ajax({
+			url : '/Portal/AAAServiceStub?isCamera='+c+'&'+url2+'&requrl='+url1,
+			type: 'POST',
+			async : false,
+			success : function(data) {
+				var args = getQueryStringArgs(data);
+				type=args.platform;
+				if(c==1){
+					address = data.toString();
+				}else{
+					address = data.toString();
+				}
+				
+				Media.src = address;
+				Media.load();
+				if(type=='1'){
+					window.SumaWebView.showInfoFromJs($('#source_title').html(),address);
+				}else{
+					Media.play();
+				}
+				num++;
+
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+
+	}
+
+	function getQueryStringArgs(q) {
+		var qs = q.split('?')[1]
+				|| (location.search.length > 0 ? location.search.substring(1)
+						: ''), args = {}, items = qs.length ? qs.split('&')
+				: [], item = null, name = null, value = null, i = 0, len = items.length;
+
+		for (i = 0; i < len; i++) {
+			item = items[i].split('=');
+			name = decodeURIComponent(item[0]);
+			value = decodeURIComponent(item[1]);
+			if (name.length) {
+				args[name] = value;
+			}
+		}
+		return args;
+	}
+	
+</script>
+
+<!-- 内容模板1（包含：含特色图片的图文、含特色视频的图文、单独图文、直播摄像头、点播视频） -->
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+<!-- 内容页，如果文章包含视频和图像，则顶部显示视频并用图像作为海报；如果只有摄像头点播等视频，则显示特色视频；如果有图像，则显示特色图像；否则只显示富文本内容页。 -->
+<div class="container news-con-bar">
+	<% if ( ""!=sources[0].source_video && ""!=sources[0].source_img && "undefined"!=typeof(sources[0].source_video) && "undefined"!=typeof(sources[0].source_img) ) { %>
+	<video id="videoid" onplay="test();" controls="controls" style="width: 100%; height: auto; background: #000;" poster="<%=sources[0].source_img%>"><source src="<%=sources[0].source_video%>" /></video>
+	<% } else if ( ""!=sources[0].source_video && "undefined"!=typeof(sources[0].source_video) ) { %>
+	<video id="videoid" onplay="test();" controls="controls" style="width: 100%; height: auto; background: #000;"><source src="<%=sources[0].source_video%>" /></video>
+	<% } %>
+	<div class="news-con-title"><p style="color:#445560;" id='source_title'><%=sources[0].source_title%></p></div>
+	<div class="news-con"><%=sources[0].source_content%></div>
+</div>
+
+</script>
+</body>
+</html>

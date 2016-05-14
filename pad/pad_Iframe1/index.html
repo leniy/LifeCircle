@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
 <meta charset="utf-8" />
@@ -7,24 +7,24 @@
 <script src="../../common_res/arttemplate/template-native.js"></script>
 <script src="../../common_res/jquery/jquery.min.js"></script> 
 <script src="../../common_res/lifecircleapi/common.js"></script>
-
-<link href="css/wanggeshifenlei.css" rel="stylesheet" type="text/css" />
+<link href="css/waibudiaoyong.css" rel="stylesheet" type="text/css" />
 </head>
 
-<!-- 列表模板4（包含：网格式子分类列表） -->
+<!-- 外部地址调用模板1（包含天气预报、健康养生、休闲娱乐） -->
 <body id="lifecirclebody">
 <script id="template" type="text/html">
-
-<ul class="clearfix categorygrid">
-<% for (i=0, l=categorys.length; i<l; i++) { %>
-<li id="categorygrid<%=i%>">
-	<a href="<%=categorys[i].category_src%>">
-		<img src="<%=categorys[i].category_img%>">
-		<p><%=categorys[i].category_title%></p>
-	</a>
-</li>
-<% } %>
-</ul>
+<iframe id="ifm" src="<%=page[0].page_extiframeurl%>"></iframe>
 </script>
 </body>
+
+<script>
+$(document).ready(function(){
+	if(window.innerHeight)
+		winHeight = window.innerHeight-10;
+	else if ((document.body) && (document.body.clientHeight)) 
+		winHeight = document.body.clientHeight-10;
+	$("#ifm").height(winHeight);
+	$("#ifm").css("width","100%");
+});
+</script>
 </html>

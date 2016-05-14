@@ -1,0 +1,50 @@
+a { color:#666; text-decoration:none; }
+a:visited { color:; text-decoration:none;}
+a:hover{ color:; text-decoration:none; }
+a:active{ color:; text-decoration:none; }
+*{
+	font-family:"Microsoft YaHei";
+	margin:0px;
+	padding:0px;
+}
+.head{
+	background-color:#FFFFFF;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCCCCC;
+	padding-bottom:0px;
+	float:left;
+	width:100%;
+	position:fixed;
+}
+.head table{
+	margin:0px auto;
+	list-style-type:none;
+	padding:0px;
+	width:100%;
+	height:35px;
+	line-height:35px;
+}
+.head table tr td {
+	text-align:center;
+}
+.head table tr td a{
+	text-align:center;
+	border-radius:5px;
+	padding:4px 8px;
+	text-decoration:none;
+	font-size:14px;
+}
+.current{
+	background-color:#FFAC31;
+	border-radius:5px;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+iframe{
+	width:100%;
+	height:200px;
+	border-width:0px;
+	overflow:hidden;
+	margin-top:41px;
+}
