@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/jquery/ajaxfileupload.js"></script> 
+<link rel="stylesheet" type="text/css" href="css/fabuwenzitupian.css">
+</head>
+
+<!-- 发布模板1（包含：手机图片与文字） -->
+<body id="lifecirclebody">
+
+<!-- 评论与上传文件 -->
+<div class="container">
+<form name="form1" id="form1" method="post" enctype="multipart/form-data">  
+<div class="floatleft">
+	<input class="feedbackTitle" name="title" id="title" type="text"  placeholder="标题" />
+	<textarea class="feedbackText" name="summary" id="summary"placeholder="帮帮内容"></textarea>
+</div>
+<div class="floatright">
+	<div class="upload-bar">
+		<h4>上传照片：</h4>
+		<div class="upload-img">
+				<input type="file" name="file" id="fileToUpload"  accept="image/*"/>
+		</div>
+	</div>
+	<hr>
+	<button id="upload" type='button' class="btn btn-warning" onClick="updata();">提交</button>
+</div>
+</form>
+</div>
+<script>
+function updata(){
+	var data = new FormData($('#form1'));
+	var titleVal = $("#title").val();
+	if(titleVal ==""){
+		alert("请填写标题");
+		return false;
+	}
+	var summaryVal = $("#summary").val();
+	if(summaryVal ==""){alert("请填写内容");return false;}
+	console.log(titleVal);
+	$.ajaxFileUpload
+        (
+            {
+                url : '/Portal/portal/4help/forHelpCreate'+window.location.search+"&title="+titleVal + "&summary=" +summaryVal ,
+                secureuri:false,
+                fileElementId:'fileToUpload',
+                dataType: 'json',
+                success: function (data, status)
+                {                
+                    alert("发布成功");
+					history.go(-1);
+                },
+                error: function (data, status, e)
+                {
+                    alert(e);
+                }
+            }
+        );       
+        return false;
+}
+</script>
+</body>
+</html>

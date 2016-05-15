@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<link href="css/helpandcommit.css" rel="stylesheet" />
+</head>
+<!-- 内容模板2（包含：社区帮帮等页面，含有图文点赞评论） -->
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+<div class="container news-con-bar">
+	<!-- 特色图片 -->
+	<% if ( ""!=sources[0].img ) { %>
+	<div class="news-con-img"><img src="<%=sources[0].source_img%>" alt=""/> </div>
+	<% } %>
+	<div class="news-con-info">
+	<!-- 用户头像、发布时间等 -->
+	<div class="shequ-user-bar">
+		<div class="user-logo">
+			<img src="<%=sources[0].source_issuerimg%>" alt=""/>
+		</div>
+		<div class="user-info">
+			<p class="user-name"><%=sources[0].source_issuer_nickName%></p>
+			<p class="user-time"><span><%=sources[0].source_time%></span></p>
+		</div>
+	</div>
+	<!-- 标题和内容 -->
+	<div class="news-con-title"><p><%=sources[0].source_title%></p></div>
+	<div class="news-con"><%=sources[0].source_summary%></div>
+	
+	<div class="comment-bar">
+		<div class="comment-nav">
+			<ul>
+				<li><a onClick="goPL();"><img src="image/icon/icon-message.png" alt=""/>评论</a></li>
+				<% if(sources[0].isLike==0) { %>
+				<li><a onClick="doLike();"><img src="image/icon/icon-zan.png" alt="" />点赞(<span class="likenmb"><%=sources[0].likeNumber%></span>)</a></li>
+				<% }else{ %>
+				<li><a><img src="image/icon/icon-zan.png" alt="" />已赞(<span class="likenmb"><%=sources[0].likeNumber%></span>)</a></li>
+				<% } %>
+				<li><a><img src="image/icon/icon-report.png" alt=""/>举报</a></li>
+			</ul>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="container news-commit-bar">
+		<% if (commentSources.length>0) { %>
+		<h4>最新评论</h4>
+		<div class="message-list">
+			<ul>
+				<% for (i=0, l=commentSources.length; i<l; i++) { %>
+					<li>
+						<div class="shequ-user-bar">
+							<div class="user-logo">
+								<img src="<%=commentSources[i].user_issuerimg%>" alt="" />
+							</div>
+							<div class="user-info">
+								<p class="user-name"><%=commentSources[i].user_nickname%></p>
+								<p class="common-date"><span><%=commentSources[i].common_date%></span></p>
+							</div>
+						</div>
+						<div class="message-con">
+							<p><%=commentSources[i].common_content%></p>
+						</div>
+					</li>
+				<% }%>
+			</ul>
+		</div>
+		<% } else { %>
+		<h4>还没有评论，快来抢一楼</h4>
+		<% } %>
+</div>
+</script>
+<script>
+	function goPL(){
+		window.location.href = "/templatefile/baseTemplat/Publish1_TextandPhotos_pl/Publish1_TextandPhotos_pl.html"+window.location.search;
+	}
+	function doLike(){
+	$.ajax({
+		url : '/Portal/portal/4help/like'+window.location.search,
+		type : 'POST',
+		dataType : 'json',
+		data: null,
+		contentType : "application/json",
+		async : false,
+		success : function(data){
+			if(data[0].status == 1){
+				alert(data[0].message)
+			}else if(data[0].status == 0){
+				$(".likenmb").html(data[0].likeNum);
+			}else{
+				alert("点赞失败");
+			}			
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+}		
+</script>
+</body>
+</html>
