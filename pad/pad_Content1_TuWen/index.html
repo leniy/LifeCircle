@@ -7,9 +7,7 @@
 <script src="../../common_res/arttemplate/template-native.js"></script>
 <script src="../../common_res/jquery/jquery.min.js"></script> 
 <script src="../../common_res/lifecircleapi/common.js"></script>
-<link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
-<link href="css/life.css" rel="stylesheet" />
+<link href="css/tuwenxiangqing.css" rel="stylesheet" />
 </head>
 <script>
 	var num = 1;
@@ -93,7 +91,7 @@
 	<% } else if ( ""!=sources[0].source_video && "undefined"!=typeof(sources[0].source_video) ) { %>
 	<video id="videoid" onplay="test();" controls="controls" style="width: 100%; height: auto; background: #000;"><source src="<%=sources[0].source_video%>" /></video>
 	<% } %>
-	<div class="news-con-title"><p style="color:#445560;" id='source_title'><%=sources[0].source_title%></p></div>
+	<div class="news-con-title"><p id='source_title'><%=sources[0].source_title%></p></div>
 	<div class="news-con"><%=sources[0].source_content%></div>
 </div>
 

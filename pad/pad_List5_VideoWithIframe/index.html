@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<link href="css/shipinliebiao.css" rel="stylesheet" type="text/css" />
+<script>
+function qwurl(qw){
+	document.getElementById("ifm").src=qw;
+}
+</script>
+</head>
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+<div class="left"><iframe id="ifm" src="<%=sources[0].source_src%>"></iframe></div>
+<div class="right">
+<% for (i=0, l=sources.length; i<l; i++) { %>
+<div class="pt">
+	<a href="javascript:void(0);" onclick="qwurl('<%=sources[i].source_src%>')">
+	<img class="pt_pic" src="<%=sources[i].source_img%>"></img>
+	<div class="title"><%=sources[i].source_title%></div>
+	</a>
+</div>
+<% } %>
+</div>
+</script>
+</body>
+</html>
