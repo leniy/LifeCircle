@@ -1,0 +1,153 @@
+@CHARSET "UTF-8";
+ html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+        fieldset, img { border:none; }
+        address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; }
+        ul, ol { list-style:none; }
+        input { padding-top:0; padding-bottom:0; font-family: "SimSun","宋体";}
+        input::-moz-focus-inner { border:none; padding:0; }
+        select, input { vertical-align:middle; }
+        select, input, textarea { font-size:12px; margin:0; }
+        input[type="text"], input[type="password"], textarea { outline-style:none; -webkit-appearance:none; }
+        textarea { resize:none; }
+        table { border-collapse:collapse; }
+        body { color:#333; font:12px/20px "SimSun","宋体","Arial Narrow",HELVETICA;/* overflow-y:scroll;*/ }
+        .clearfix:after { content:"."; display:block; height:0; visibility:hidden; clear:both; }
+        .clearfix { zoom:1; }
+        .clearit { clear:both; height:0; font-size:0; overflow:hidden; }
+        a { color:#666; text-decoration:none; }
+        a:visited { color:; text-decoration:none;}
+        a:hover{ color:; text-decoration:none; }
+		a:active{ color:; text-decoration:none; }
+*{
+	font-family:"Microsoft YaHei";
+	font-size: 16px;
+}
+
+/* normal-goods是商品列表 */
+.normal-goods .good-content {
+	height: 100%;
+	width: 100%;
+	display: table;
+	padding-left: 40px;
+	padding-top: 30px;
+}
+
+.normal-goods .good-content .img-wrapper {
+	float:left;
+	width: 40%;
+	display: block;
+	overflow:hidden
+
+
+
+
+
+
+
+
+}
+.normal-goods .good-content .img-wrapper img {
+	display:block;
+	width:100%;
+}
+.normal-goods .good-content .info-wrapper {
+	margin-left: 42%;
+	padding-top: 20px;
+}
+.normal-goods .good-content .info-wrapper .title-line {
+	line-height: 34px;
+	overflow:hidden
+
+
+
+
+
+
+
+
+
+
+
+
+;
+	margin-bottom: 30px;
+}
+.normal-goods .good-content .info-wrapper .title-line .title {
+}
+.normal-goods .good-content .info-wrapper .title-line .title .item-name {
+	display:inline-block;
+	max-width:100%;
+	font-size: 34px;
+	color: #445560;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+.normal-goods .good-content .info-wrapper .star-gray {
+	height: 35px;
+	width: 186px;
+	display: inline-block;
+	background: url("../img/fujin-0star.png") no-repeat;
+	background-size: auto 100%;
+	/* margin:5px 0px 0px 5px; */
+}
+.normal-goods .good-content .info-wrapper .star-real {
+	width: 0;
+	height: 100%;
+	background: url("../img/fujin-5star.png") no-repeat;
+	background-size: auto 100%;
+}
+.normal-goods .good-content .info-wrapper .score {
+	margin-left: 14px;
+	color: #888888;
+	font-size: 26px;
+}
+
+.normal-goods .good-content .info-wrapper .haoping {
+	margin-left: 10px;
+	vertical-align: 1px;
+	font-size: 14px;
+	color: #fe7e01;
+}
+
+
+
+
+.normal-goods .good-content .info-wrapper .desc {
+	height:32px;
+	margin-top: 30px;
+	font-size: 30px;
+	color: #445560;
+}
+.normal-goods .good-content .info-wrapper .desc strong {
+	color:red
+}
+
+.good {
+    width: 50%;
+    float: left;
+}
