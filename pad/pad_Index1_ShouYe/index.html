@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="../../common_res/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../common_res/swiper/swiper.min.js"></script>
+<link href="../../common_res/swiper/swiper.css" rel="stylesheet" />
+<link href="css/life.css" rel="stylesheet" />
+<style>
+.carousel-caption {
+	bottom: 0;
+    left: 0;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    color: #fff;
+    width: 100%;
+    background: rgba(51, 51, 51, 0.81);
+    text-align: left;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+}
+.swiper-pagination-bullet {
+	background: #FFF;
+	opacity: .5;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    background: #fdab01 ;
+}
+.swiper-pagination {
+    text-align: right;
+}
+</style>
+</head>
+
+<!-- 首页模板1（包含：顶部图片、轮训推荐、矩阵式分类按钮、推荐列表） -->
+<body id="lifecirclebody" style="position: relative;">
+<script>
+	if (window.innerWidth)
+		winWidth = window.innerWidth;
+	else if ((document.body) && (document.body.clientWidth))
+		winWidth = document.body.clientWidth;
+	winWidth = winWidth +"px";
+	$("#lifecirclebody").css("width",winWidth);
+</script>
+<script id="template" type="text/html">
+
+<!-- 顶部横幅图片 -->
+<!--<% if ( "undefined"!=typeof(page[0].page_advert_img) && ""!=page[0].page_advert_img ) { %>
+/*<div class="province"><img src="<%=page[0].page_advert_img%>" alt="" /></div>
+<% } %>*/ -->
+
+<!-- 滑动轮训图片 -->
+<% if ( recommends_slide.length > 0 ) { %>
+<div class="swiper-container">
+	<div class="swiper-wrapper">
+	<% for (i=0, l=recommends_slide.length; i<l; i++) { %>
+		<% if ( "" == recommends_slide[i].recommend_img || "undefined" == typeof(recommends_slide[i].recommend_img) ) continue; %>
+		<div class="swiper-slide">
+			<% if (1==recommends_slide[i].recommend_type) { %>
+			<a target="_parent" class="common_play" href="<%=recommends_slide[i].recommend_src%>">
+				<img src="image/icon/common_play.png" alt="" />
+			</a>
+			<% } %>
+			<a style="width:100%" target="_parent" href="<%=recommends_slide[i].recommend_src%>">
+				<img src="<%=recommends_slide[i].recommend_img%>" alt="" style="width: 100%;" />
+				<div class="carousel-caption"><%=recommends_slide[i].recommend_title%></div>
+			</a>
+		</div>
+	<% } %>
+	</div>
+</div>
+<% } %>
+
+<!-- 矩阵式分类导航 -->
+<div class="category">
+	<ul class="clearfix">
+		<% for (i=0, l=categorys.length; i<l; i++) { %>
+		<li id="<%=categorys[i].category_id%>">
+			<a target="_parent" href="<%=categorys[i].category_src%>">
+				<img src="<%=categorys[i].category_img%>" alt="" />
+			</a>
+		</li>
+		<% } %>
+	</ul>
+</div>
+
+<!-- 首页推荐文章 -->
+<% if( recommends_list.length > 0 ) { %>
+<div class="common-title-bar clearfix">
+	<span class="left common-title">热门推荐</span>
+	<div class="more">
+		<a target="_parent" href="<%=recommend_list_src%>">
+		<img src="image/icon/common_right_arrow.png" />
+		</a>
+	</div>
+	<div style="background: #fff; position: absolute; width: 35px; height: 40px; top: 0; right: 0;"></div>
+</div>
+<% } %>
+<div class="news-item">
+	<ul>
+	<% if( recommends_list.length < 2 ) { l = recommends_list.length } else { l = 2 } %><!-- 最多显示两条，为嘛标签内部不能用min函数？？！！！ -->
+	<% for (i=0; i<l; i++) { %>
+		<li class="clearfix">
+			<a target="_parent" href="<%=recommends_list[i].recommend_src%>">
+				<% if( "" != recommends_list[i].recommend_img ) { %>
+				<div class="news-img left">
+					<img src="<%=recommends_list[i].recommend_img%>" alt="" />
+				</div>
+				<div class="news-brief-bar left">
+				<% } else { %>
+				<div class="news-brief-bar left" style="width: 100%;">
+				<% } %>
+					<p class="news-title" id="<%=recommends_list[i].recommend_id%>"><%=recommends_list[i].recommend_title%></p>
+					<p><%=recommends_list[i].recommend_summary%></p>
+				</div>
+			</a>
+		</li>
+	<% } %>
+	</ul>
+</div>
+
+</script>
+</body>
+
+<script>
+$(document).ready(function(){
+	//var swiper = new Swiper('.swiper-container', {
+	//	pagination: '.swiper-pagination',
+	//	loop: true,
+	//	paginationClickable: true
+	//});
+	var aa = window.screen.availWidth;
+    var swiper = new Swiper('.swiper-container', {
+       // pagination: '.swiper-pagination',
+        slidesPerView: 1.6,
+        paginationClickable: true,
+        spaceBetween: aa*0.01,
+		slidesOffsetBefore : aa*0.19,
+		centeredSlides : false,
+		loop : true
+	});
+});
+</script>
+</html>

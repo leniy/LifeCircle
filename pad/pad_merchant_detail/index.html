@@ -3,24 +3,47 @@
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <script src="../../common_res/arttemplate/template-native.js"></script>
 <script src="../../common_res/jquery/jquery.min.js"></script> 
 <script src="../../common_res/lifecircleapi/common.js"></script>
 <link href="css/Business_details.css" rel="stylesheet" type="text/css" />
 </head>
-<!-- 二级页面包含分类） -->
 <body>
-<div id="lifecirclebody" style="width:100%;float:left;">
-<!-- 顶部返回导航条 -->
+<div id="lifecirclebody">
 <script id="template" type="text/html">
 <div class="pager">
 	<div class="business_pic">
 		<img src="<%=merchant.merchant_img%>"/>
 	</div>
-	<% if (sources.length == 0){ %>
-	<% }else{%>
-	<div class="business_video">
+	<div class="right">
+		<ul>
+			<li><%=merchant.merchant_name%></li>
+			<li>
+				<div class="pj"><div style="width:<%=merchant.merchant_score%>;" class="pi_star"><img src="image/5star.png"/></div></div>
+				<div class="pj"><%=merchant.merchant_comment_number%>个评价</div>
+			</li>
+			<li>
+				<a href="tel:<%=merchant_phone%>"><div class="phonemsg">电话：<%=merchant.merchant_phone%></div><div class="tel"></div></a>
+			</li>
+			<li>
+				<a href="javascript:;" onclick="showMap('<%=merchant.merchant_name%>')" >
+				<div class="addressmsg">地址：<%=merchant.merchant_address%></div>
+				<div class="dizhi"><div id="merchant_location" style="display:none"><%=merchant.merchant_location%></div></div>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="wrapper">
+	<div class="nav">
+		<ul>
+			<li id="video111" nav="video" class="select">现场监控</li>
+			<li id="product111" nav="product">产品介绍</li>
+			<li id="estimate111" nav="estimate">评价商家</li>
+		</ul>
+	</div>
+	<div class="nav_content video">
 		<ul>
 			<% for (i=0, l=sources.length; i<l; i++) { %>
 			<li>
@@ -32,39 +55,10 @@
 			<% } %>
 		</ul>
 	</div>
-	<% } %>
 </div>
-<div class="wrapper">
-	<div class="nav">
-		<ul>
-			<li class="select" nav="msg">商家信息</li>
-			<li id="product111" nav="product">产品介绍</li>
-			<li id="estimate111" nav="estimate">评价商家</li>
-		</ul>
-	</div>
-	<div class="nav_content msg">
-		<ul>
-			<li style=" font-size:15px;"><%=merchant.merchant_name%></li>
-			<li>
-				<div class="pj">
-					<div style="width:<%=merchant.merchant_score%>;" class="pi_star"><img src="image/5star.png"/></div>
-				</div>
-				<div class="pj" style="background-image:none;"><%=merchant.merchant_comment_number%>个评价</div>
-			</li>
-			<li>电话：<%=merchant.merchant_phone%> <div class="tel"><a href="tel:<%=merchant_phone%>"></a></div></li>
-			<li style="line-height:25px; padding-top:8px; float:left; width:100%;">
-				<div class="addressmsg">地址：<%=merchant.merchant_address%></div>
-				<div class="dizhi">
-					<div id="merchant_location" style="display:none"><%=merchant.merchant_location%></div>
-					<a href="javascript:;" onclick="showMap('<%=merchant.merchant_name%>')" ></a>
-				</div>
-			</li>
-		</ul>
-	</div>
-	</script>
+</script>
 </div>
-
-	<div class="nav_content product" id="product222">
+<div class="nav_content product" id="product222">
 	<script id="asdfadsfa" type="text/html">
 		<ul>
 			<% for (i=0, l=products.length; i<l; i++) { %>
@@ -76,31 +70,29 @@
 			<% } %>
 		</ul>	
 	</script>
-	</div>
-	<div class="nav_content estimate" id="comment222" style="width:100%;float:left;">
-		<script id="template_estimate" type="text/html">
-			<ul style="padding-bottom:40px;">
-				<% for (i=0, l=commons.length; i<l; i++) { %>
-				<li>
-					<div class="user_msg">
-						<div class="user_pic"><img src="<%=commons[i].user_issuerimg%>"/>
-						</div>
-						<% if (commons[i].user_nickname) { %>
-						<div class="user_name"><%=commons[i].user_nickname%></div>
-						<% }else{ %>
-						<div class="user_name"><%=commons[i].user_id%></div>
-						<% }%>
-						<div class="user_name"><%=commons[i].common_date%></div>
-					</div>
-					<div class="user_estimate"><%=commons[i].common_content%></div>
-				</li>
-				<% } %>
-			</ul>
-			<div class="gostar"><a href="javascript:;" onClick="submitComment();">留下您的评论吧</a></div>
-		</script>
-	</div>
 </div>
-
+<div class="nav_content estimate" id="comment222">
+	<script id="template_estimate" type="text/html">
+		<div class="gostar"><p>最新评论</p><a href="javascript:;" onClick="submitComment();"><img src="./image/community_icon_comment.png">我要评论</a></div>
+		<ul style="padding-bottom:40px;">
+			<% for (i=0, l=commons.length; i<l; i++) { %>
+			<li>
+				<div class="user_msg">
+					<div class="user_pic"><img src="<%=commons[i].user_issuerimg%>"/>
+					</div>
+					<% if (commons[i].user_nickname) { %>
+					<div class="user_name"><%=commons[i].user_nickname%></div>
+					<% }else{ %>
+					<div class="user_name"><%=commons[i].user_id%></div>
+					<% }%>
+					<div class="user_name"><%=commons[i].common_date%></div>
+				</div>
+				<div class="user_estimate"><%=commons[i].common_content%></div>
+			</li>
+			<% } %>
+		</ul>
+	</script>
+</div>
 </body>
 <script>
 var a=1;
@@ -158,16 +150,14 @@ $(document).ready(function(){
 		});
 	});
 });
-
 function submitComment(){
-	window.location.href='/templatefile/baseTemplat/Publish3_ShangJiaStar/Publish3_ShangJiaStar.html'+window.location.search;
+	window.location.href='/templatefile/baseTemplat/pad_Publish3_ShangJiaStar/index.html'+window.location.search;
 }
 
 function showMap(name){
 	name=encodeURI(name);
 	var merchantLocation = document.getElementById("merchant_location").innerHTML;
-	window.location.href='/templatefile/baseTemplat/Content3_MapSearch/Content3_MapSearch.html'+window.location.search+"&merchantName="+name+"&merchant_location="+merchantLocation;
+	window.location.href='/templatefile/baseTemplat/pad_Content3_MapSearch/index.html'+window.location.search+"&merchantName="+name+"&merchant_location="+merchantLocation;
 }
-	
 </script>
 </html>

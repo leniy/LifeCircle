@@ -29,20 +29,21 @@
 }
 .news-con-bar img {
 	height: auto;
-	min-width: 30%;
-	min-height: 30px;
-	max-width: 80%;
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	max-width: 50%;
 }
 .news-con-title {
 	margin: 30px;
 	text-align: center;
-	font-size: 34px;
+	font-size: 20px;
 	color: #445560;
 }
 .news-con-bar .news-con {
 	margin: 30px;
 	color: #445560;
-	font-size: 30px;
+	font-size: 15px;
 	line-height: 1.8em;
 }
 .news-con-bar .news-con p {
