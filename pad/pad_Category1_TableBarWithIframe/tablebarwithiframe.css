@@ -34,6 +34,7 @@ a:active{ color:; text-decoration:none; }
 	padding:4px 8px;
 	text-decoration:none;
 	font-size:14px;
+	display: block;
 }
 .current{
 	background-color:#FFAC31;

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<link href="../../common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="css/bianminfuwu.css" rel="stylesheet" type="text/css" />
+</head>
+
+<!-- 列表模板4（包含：便民服务导航） -->
+<body id="lifecirclebody">
+<script id="template" type="text/html">
+
+<div id="list">
+<% for (i=0, l=categorys.length; i<l; i++) { %>
+	<div class="dv2">
+		<a href="<%=categorys[i].category_src%>"><img src="<%=categorys[i].category_img%>" class="logo" ></a>
+		<span class="sp"><%=categorys[i].category_title%></span>
+	</div>
+<% } %>
+</div>
+</script>
+</body>
+</html>
