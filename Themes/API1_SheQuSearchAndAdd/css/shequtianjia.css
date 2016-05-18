@@ -1,0 +1,104 @@
+@CHARSET "UTF-8";
+ html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+        fieldset, img { border:none; }
+        img{display: block;}
+        address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; }
+        ul, ol { list-style:none; }
+        input { padding-top:0; padding-bottom:0; font-family: "SimSun","宋体";}
+        input::-moz-focus-inner { border:none; padding:0; }
+        select, input { vertical-align:middle; }
+        select, input, textarea { font-size:12px; margin:0; }
+        input[type="text"], input[type="password"], textarea { outline-style:none; -webkit-appearance:none; }
+        textarea { resize:none; }
+        table { border-collapse:collapse; }
+        body { color:#333; font:12px/20px "SimSun","宋体","Arial Narrow",HELVETICA;/* overflow-y:scroll;*/ }
+        .clearfix:after { content:"."; display:block; height:0; visibility:hidden; clear:both; }
+        .clearfix { zoom:1; }
+        .clearit { clear:both; height:0; font-size:0; overflow:hidden; }
+        a { color:#666; text-decoration:none; }
+        a:visited { color:; text-decoration:none;}
+        a:hover{ color:; text-decoration:none; }
+		a:active{ color:; text-decoration:none; }
+*{
+	font-family:"Microsoft YaHei";
+}
+
+*{
+	margin:0px;
+	padding:0px;
+	border:0px;
+	font-family:"Microsoft YaHei";
+}
+body {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+/*社区搜索*/
+#searchtext {
+	border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 8px;
+    height: 30px;
+    line-height: 30px;
+    width: 270px;
+}
+.xiaoqulists {
+	width: 100%;
+    color: #445560;
+    font-size: 17px;
+}
+.xiaoqulists li {
+    line-height: 30px;
+    height: 30px;
+    margin-top: 10px;
+}
+/*验证问题*/
+#answertext {
+	border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 8px;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+	font-size: 15px;
+}
+#cancelbtn, #checkanswer, #shangyibu {
+	border-radius: 5px;
+    margin-top: 8px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(255, 255, 255, 0);
+    font-size: 17px;
+}
+#checkanswer, #shangyibu {
+	background-color: #68A700;
+    width: 100%;
+    font-size: 20px;
+    height: 40px;
+    line-height: 30px;
+    border: solid 1px #68A700;
+}
+#shangyibu {
+	border: 1px solid #ccc;
+	background-color: white;
+}
+.promptlayer {
+	line-height: 30px;
+	font-size: 17px;
+	color: #445560;
+}
+.answerresult {
+	color: red;
+    font-size: 10px;
+}
+.answerkey {
+    font-size: 15px;
+}
