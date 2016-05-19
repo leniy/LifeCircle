@@ -9,15 +9,20 @@
 <link href="css/shequtianjia.css" rel="stylesheet" />
 </head>
 <body>
-<div id="searchlayer" class="searchlayer">
-<input name="searchtext" id="searchtext" type="text" placeholder="请输入校区名字" autofocus onkeydown='if(event.keyCode==13){searchfunc();this.blur();};'>
-<input name="cancelbtn" id="cancelbtn" type="submit" value="取消" onclick="document.getElementById('searchtext').value = '';">
-<ul class="xiaoqulists"></ul>
+<div class="searchlayer">
+	<div class="searchbar">
+		<input name="searchtext" id="searchtext" type="text" placeholder="请输入小区名字" autofocus />
+		<div class="se-inner">
+			<div id="index-cross" class="cross"></div>
+			<input name="searchbtn" id="searchbtn" type="submit" value="搜索" style="display: none;" />
+			<input name="cancelbtn" id="cancelbtn" type="submit" value="取消" />
+		</div>
+	</div>
+	<ul class="xiaoqulists"></ul>
 </div>
-<div id="promptlayer" class="promptlayer" style="display: none;">
-<p class="answerkey"></p>
-<input name="answertext" id="answertext" type="text" placeholder="请输入小区管理员设置的答案">
-<p class="answerresult" style="display: none;">对不起，答案不正确，请重新输入</p>
+<div class="promptlayer" style="display: none;">
+<ul class="answers"></ul>
+<p class="answerresult" style="display: none;">申请失败，请重新选择小区</p>
 <input name="checkanswer" id="checkanswer" type="submit" value="确认添加">
 <input name="shangyibu" id="shangyibu" type="submit" value="上一步">
 </div>

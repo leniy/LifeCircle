@@ -21,9 +21,6 @@
 		a:active{ color:; text-decoration:none; }
 *{
 	font-family:"Microsoft YaHei";
-}
-
-*{
 	margin:0px;
 	padding:0px;
 	border:0px;
@@ -40,13 +37,32 @@ body {
     visibility: hidden;
 }
 /*社区搜索*/
-#searchtext {
+.searchbar {
+	display: -moz-box;
+	display: -webkit-box;
+	display: box;
+	width: 100%;
+	margin-top: 8px;
+}
+.searchbar #searchtext {
 	border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 8px;
-    height: 30px;
-    line-height: 30px;
-    width: 270px;
+	border-radius: 5px;
+	height: 42px;
+	line-height: 42px;
+	width: 270px;
+	font-size: 15px;
+}
+.se-inner {
+    position: relative;
+}
+#cancelbtn, #searchbtn {
+	border-radius: 5px;
+	height: 42px;
+	line-height: 42px;
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: rgba(255, 255, 255, 0);
+	font-size: 17px;
 }
 .xiaoqulists {
 	width: 100%;
@@ -58,8 +74,20 @@ body {
     height: 30px;
     margin-top: 10px;
 }
+div#index-cross {
+    position: absolute;
+    top: 0;
+    left: -35px;
+    width: 35px;
+    height: 42px;
+    display: none;
+    background: url(../img/clear.png) no-repeat center;
+    -webkit-background-size: 16px;
+    background-size: 16px;
+    z-index: 2;
+}
 /*验证问题*/
-#answertext {
+.answertext {
 	border: 1px solid #ccc;
     border-radius: 5px;
     margin-top: 8px;
@@ -68,7 +96,7 @@ body {
     width: 100%;
 	font-size: 15px;
 }
-#cancelbtn, #checkanswer, #shangyibu {
+#checkanswer, #shangyibu {
 	border-radius: 5px;
     margin-top: 8px;
     height: 30px;
@@ -77,8 +105,6 @@ body {
     padding-right: 10px;
     background-color: rgba(255, 255, 255, 0);
     font-size: 17px;
-}
-#checkanswer, #shangyibu {
 	background-color: #68A700;
     width: 100%;
     font-size: 20px;

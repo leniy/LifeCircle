@@ -13,7 +13,8 @@
 </head>
 
 <!-- 列表模板2（包含：社区视频监控列表） -->
-<body id="lifecirclebody">
+<body>
+<div id="lifecirclebody">
 <script id="template" type="text/html">
 <% if (sources.length > 0 ) { %>
 <div class="news-con-bar" style="margin-top: 0;">
@@ -23,15 +24,16 @@
 		<div class="big-monitor">
 			<img class="monitor-grabgraf" src="<%=sources[0].source_img%>" alt="" />
 			<div class="icon-enlarge"><img src="image/icon/common_screen.png"/></div>
+			<p class="monitor-info"><%=sources[0].source_title%></p>
 		</div>
 		</a>
 	</div>
 	<!-- 接下来是视频列表 -->
 	<div class="sm-monitor-list">
 		<div class="row" style="margin-right: -5px;margin-left: -5px;">
-			<ul class="clearfix">
+			<ul class="clearfix" id="limore">
 			<% for (i=1, l=sources.length; i<l; i++) { /* 循环从1开始，0是顶部推荐元素 */ %>
-				<li class="col-xs-6">
+				<li class="col-xs-6" style="padding:0px 5px;">
 					<a href="<%=sources[i].source_src%>">
 						<div class="sm-monitor">
 							<img class="monitor-grabgraf" src="<%=sources[i].source_img%>" alt="" />
@@ -45,7 +47,47 @@
 	</div>
 </div>
 <% } %>
-
+</script>
+</div>
+<div id="div_more" style=" color:#fdab01; height:40px;line-height:40px; text-align:center;" onClick="moreData();">加载更多</div>
+<script id="paging" type="text/html">
+	<% for (i=0, l=sources.length; i<l; i++) { /* 循环从1开始，0是顶部推荐元素 */ %>
+		<li class="col-xs-6" style="padding:0px 5px;">
+			<a href="<%=sources[i].source_src%>">
+				<div class="sm-monitor">
+					<img class="monitor-grabgraf" src="<%=sources[i].source_img%>" alt="" />
+					<p class="monitor-info"><%=sources[i].source_title%></p>
+				</div>
+			</a>
+		</li>
+	<% } %>
+</script>
+<script>
+var pageNum = 2;
+function moreData(){
+	var theDivMore = $("#div_more");
+	$("#div_more").html("正在加载");
+	$.ajax({
+		url : '/Portal/portal/template/getTemplate'+window.location.search+'&pageNum='+pageNum,
+		type : 'POST',
+		dataType : 'json',
+		contentType : "application/json",
+		async : false,
+		success : function(data) {		
+			data =eval(data)[0];
+			if(data.sources.length==0){theDivMore.html("没有了");return;}
+			var html = template('paging', data);
+			html = replaceStr(html);
+			$("#limore").append(html);
+			pageNum++;
+			theDivMore.html("加载更多");
+		},
+		error : function(e) {
+			console.log(e);
+			theDivMore.html("没有了");
+		}
+	});
+}
 </script>
 </body>
 </html>

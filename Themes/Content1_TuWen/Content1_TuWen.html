@@ -30,6 +30,15 @@
 
 		var url = Media.currentSrc;
 		var args11 = getQueryStringArgs(url);
+		/*
+		if(args11.useWifi=='false'){
+			var r=confirm("您现在使用流量播放，是否要播放?")
+			if (r==true){
+			} else {
+			return false;
+			}
+		}
+		*/
 		var url1 = url.split('?')[0];
 		url2 =url.split('?')[1];
 		var c = 2;
@@ -40,13 +49,15 @@
 			async : false,
 			success : function(data) {
 				var args = getQueryStringArgs(data);
+				/*
+				if(c==2){ alert("正在准备资源，请等待"+args.startTimeOffset+"秒"); }
+				*/
 				type=args.platform;
 				if(c==1){
 					address = data.toString();
 				}else{
 					address = data.toString();
 				}
-				
 				Media.src = address;
 				Media.load();
 				if(type=='1'){
@@ -63,7 +74,6 @@
 		});
 
 	}
-
 	function getQueryStringArgs(q) {
 		var qs = q.split('?')[1]
 				|| (location.search.length > 0 ? location.search.substring(1)
