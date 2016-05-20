@@ -14,14 +14,20 @@
 </head>
 <body id="lifecirclebody">
 <script id="template" type="text/html">
-<form class="form-search form-inline" action="xxxxxxxxxxxxxx.do" style="padding-top: 10px;background:#fff;position:fixed;padding-left:10px;padding-bottom:5px;width:100%;box-sizing:border-box;box-shadow:0px 2px 3px #ccc;z-index:10;">
+<form class="form-search form-inline" action="xxxxxxxxxxxxxx.do" style="padding-top: 10px;background:#fff;position:fixed;padding-left:10px;padding-bottom:5px;width:100%;box-sizing:border-box;z-index:10;">
 	<input class="input-medium search-query" id="searchId" type="text" value="搜索地点 商户等" onFocus="if (value =='搜索地点 商户等'){value =''}" onBlur="if (value ==''){value='搜索地点 商户等'}" style="position:relative;line-height:30px;border-radius:4px;font-size:14px; color:#999999;width:82%;height: 30px;border:1px #CCCCCC solid;font-family:'Microsoft YaHei'; text-indent:5px; ">
 	<button type="button" class="" id="submitButton" style=" position: relative; width: 16%; float: right;height: 32px;line-height: 32px;font-size: 16px;border:0px;background-color:#fff;color:#445560;">搜索</button>
 </form>
 <div class="container-fluid" style="padding-top:45px;"><div class="row-fluid"><div class="span12">
 <div class="index-cat">
-	<% if (categorys.length<=8) { %>
+	<% if (categorys.length<=7) { %>
 		<ul>
+			<li>
+				<a target="_parent" href="javascript:;" onclick="openMerchant();">
+					<img src="img/sjzx.png"/>
+					<div class="titles">商家中心</div>
+				</a>
+			</li>
 		<% for (i=0, l=categorys.length; i<l; i++) { %>
 			<li>
 				<a target="_parent" href="<%=categorys[i].category_src%>">
@@ -33,7 +39,13 @@
 		</ul>
 	<%}else{%>
 		<ul>
-		<% for (i=0, l=8; i<l; i++) { %>
+			<li>
+				<a target="_parent" href="">
+					<img src="img/sjzx.png"/>
+					<div class="titles">商家中心</div>
+				</a>
+			</li>
+		<% for (i=0, l=7; i<l; i++) { %>
 			<li>
 				<a target="_parent" href="<%=categorys[i].category_src%>">
 					<img src="<%=categorys[i].category_img%>"/>
@@ -41,7 +53,7 @@
 				</a>
 			</li>
 		<%}%>
-		<% for (i=8, l=categorys.length; i<l; i++) { %>
+		<% for (i=7, l=categorys.length; i<l; i++) { %>
 			<li class="moreseven">
 				<a  target="_parent" href="<%=categorys[i].category_src%>">
 					<img src="<%=categorys[i].category_img%>"/>
@@ -73,7 +85,7 @@
 					</div>
 				</a>
 			</section>
-			<hr />
+			<hr style=" margin:0px 0px 10px 0px"/>
 		<% } %>
 	</div>
 </section>
@@ -103,6 +115,9 @@
 			top.location.href='/templatefile/baseTemplat/List10_Goods/goodslist.html'+window.location.search+"&mapkeywords="+keywords;
 		});
 	});
+	function openMerchant(){
+		window.location.href="/templatefile/baseTemplat/API2_MearchantManagement/index.html?mearchantId=182";
+	}
 </script>
 </body>
 </html>

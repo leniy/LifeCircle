@@ -1,0 +1,50 @@
+*{
+	box-sizing:border-box;
+	font-family: "microsoft YaHei";
+	margin:0px;
+	padding:0px;
+	border:0px;
+	color:#ccc;
+}
+body{
+	margin:8px;
+	padding-top:15px;
+}
+ul{
+	list-style:none;
+}
+.add_goodspic{
+	line-height:20px;
+	color:#445560;
+	font-size:14px;
+}
+.title{
+	padding:5px 0px 0px 0px;
+	border-bottom: #DEDDDD solid 1px;
+	margin-bottom:15px;
+}
+input[type="text"]{
+	width:100%;
+	border-radius:5px;
+	border:0px;
+	line-height:30px;
+	border:#CCCCCC solid 1px;
+	text-indent:1em;
+	margin-bottom:20px;
+}
+#submit{
+	width:25%;
+	background-color:#FDAB01;
+	border-radius:5px;
+	border:0px;
+	color:#FFFFFF;
+	line-height:30px;
+	margin-bottom:8px;
+}
+#goodsprice{
+	width:40%;
+}
+#goodsprice span{
+	margin-left:20px;
+	font-size:14px;
+}

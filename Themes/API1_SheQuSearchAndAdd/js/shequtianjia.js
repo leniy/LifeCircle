@@ -47,7 +47,7 @@ $("#checkanswer").on('click', function(){
 		answers.push(this.value);
 	});
 	$.ajax({
-			url : '/Portal/searchCommunity' + window.location.search,
+			url : '/Portal/submitQuestion' + window.location.search,
 			type : 'POST',
 			dataType : 'json',
 			data : JSON.stringify({
@@ -87,7 +87,7 @@ function searchfunc(teststr){
 		error : function(e) {
 			alert("搜索失败");
 		}
-		});
+	});
 
 	//小区列表获取后，绑定列表点击事件
 	$(".xiaoqulists li").on('click', function(){

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script>
+<link href="css/index.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="add_goods" onclick="editproduct('new')"><p>添加商品</p></div>
+<div class="container" id="goodslist">
+	<script id="template" type="text/html">
+	<ul>
+		<% for (i=0, l=products.length; i<l; i++) { %>
+		<li>
+			<div class="pic"><img src="<%=products[i].product_img%>" /></div>
+			<div class="content">
+				<div class="text"><%=products[i].product_name%></div>
+				<div class="text color"><p><%=products[i].product_price%></p></div>
+			</div>
+			<div class="btn">
+				<button value="编辑" onclick="editproduct('<%=products[i].product_id%>')">编辑</button>
+				<button value="删除" onclick="deleteproduct('<%=products[i].product_id%>')">删除</button>
+			</div>
+		</li>
+		<% } %>
+	</ul>
+	</script>
+</div>
+</body>
+<script>
+$(document).ready(function(){
+	$.ajax({
+		url : '/Portal/getProduct'+window.location.search,
+		type : 'POST',
+		dataType : 'json',
+		contentType : "application/json",
+		async : false,
+		success : function(data) {
+			data =eval(data)[0];
+				var html = template('template', data);
+				$("#goodslist").html(html);
+		},
+		error : function(e) {
+			console.log(e);
+		}
+	});
+});
+function deleteproduct(productid){
+	if( confirm("确定要删除吗？此操作不可撤销") ){
+		$.ajax({
+			url : '/Portal/deleteProduct?productId=' + productid,
+			type : 'POST',
+			dataType : 'json',
+			contentType : "application/json",
+			async : false,
+			success : function(data) {
+				alert("删除成功");
+				window.location.reload();
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+	} else {
+		console.log("用户取消删除");
+	};
+}
+function editproduct(productid){
+	window.location.href='/templatefile/baseTemplat/API3_GoodsAddEdit/index.html'+window.location.search + '&productid=' + productid;
+}
+</script>
+</html>

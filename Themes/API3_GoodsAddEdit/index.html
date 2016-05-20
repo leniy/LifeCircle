@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script>
+<script src="../../common_res/jquery/ajaxfileupload.js"></script>
+<link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+<div class="add_goodspic">上传照片:</div>
+<img id="goodspic" src="" /><input type="file" name="file" id="fileToUpload"  accept="image/*"/>
+<div class="title">
+	<input id="goodsname" type="text" placeholder="请输入商品名称"  />
+	<input id="goodssummary" type="text" placeholder="请输入商品介绍"  />
+	<input id="goodsprice" type="text" placeholder="请输入价格" /><span>如：10元/个、斤、份</span>
+</div>
+<button id="submit" value="提交">提交</button>
+</body>
+<script>
+function getQueryStringArgs(q) {
+	var qs = q.split('?')[1]
+			|| (location.search.length > 0 ? location.search.substring(1)
+					: ''), args = {}, items = qs.length ? qs.split('&')
+			: [], item = null, name = null, value = null, i = 0, len = items.length;
+	for (i = 0; i < len; i++) {
+		item = items[i].split('=');
+		name = decodeURIComponent(item[0]);
+		value = decodeURIComponent(item[1]);
+		if (name.length) {
+			args[name] = value;
+		}
+	}
+	return args;
+}
+$(document).ready(function(){
+	var r = getQueryStringArgs(window.location.search);
+	if ( "new" == r.productid ){
+		console.log("新建产品");
+		return;
+	}
+	$.ajax({
+			url : '/Portal/getProductDetail' + window.location.search,
+			type : 'POST',
+			dataType : 'json',
+			contentType : "application/json",
+			async : false,
+			success : function(data) {
+				$("#goodspic").attr('src',data.product_img);
+				$("#goodsname").val(data.product_name);
+				$("#goodssummary").val(data.product_summary);
+				$("#goodsprice").val(data.product_price);
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+
+});
+$("#submit").on('click',function(){
+	var goodsname = $("#goodsname").val();
+	if( "" == goodsname ){alert("请填写标题");return false;}
+	var goodssummary = $("#goodssummary").val();
+	if( "" == goodssummary ){alert("请填写简介");return false;}
+	var goodsprice = $("#goodsprice").val();
+	if( "" == goodsprice ){alert("请填写价格");return false;}
+	var param = encodeURI("&product_name=" + goodsname + "&product_summary=" + goodssummary + "&product_price=" + goodsprice);
+	param = encodeURI(param);
+	
+	$.ajaxFileUpload
+		(
+			{
+				url : '/Portal/updateProduct' + window.location.search + param,
+				secureuri:false,
+				fileElementId:'fileToUpload',
+				dataType: 'json',
+				success: function (data, status)
+				{
+					alert("发布成功");
+					history.go(-1);
+				},
+				error: function (data, status, e)
+				{
+					alert(e);
+				}
+			}
+		);	   
+		return false;
+});
+</script>
+</html>
