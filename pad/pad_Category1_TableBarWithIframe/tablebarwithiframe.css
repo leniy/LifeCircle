@@ -7,6 +7,9 @@ a:active{ color:; text-decoration:none; }
 	margin:0px;
 	padding:0px;
 }
+body {
+	background-color: #F3F4F6;
+}
 .head{
 	background-color:#FFFFFF;
 	border-bottom-width: 1px;

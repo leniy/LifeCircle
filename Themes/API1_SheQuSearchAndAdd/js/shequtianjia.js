@@ -58,6 +58,10 @@ $("#checkanswer").on('click', function(){
 			contentType : "application/json",
 			async : false,
 			success : function(data) {
+				if(data.status!=0){
+					alert(data.message);
+					return;
+				}
 				alert("申请成功，请等待管理员审核");
 			},
 			error : function(e) {
@@ -69,7 +73,7 @@ function searchfunc(teststr){
 	var searchfuncresult;
 	//搜索事件
 	$.ajax({
-		url : '/Portal/searchCommunity',
+		url : '/Portal/searchCommunity'+window.location.search,
 		type : 'POST',
 		dataType : 'json',
 		data : JSON.stringify({

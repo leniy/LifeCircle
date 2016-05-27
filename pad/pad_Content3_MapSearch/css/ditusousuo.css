@@ -21,6 +21,9 @@
 *{
 	font-family:"Microsoft YaHei";
 }
+body {
+	background-color: #F3F4F6;
+}
 
 /* top用来显示顶部前进后退导航条 */
 .top{

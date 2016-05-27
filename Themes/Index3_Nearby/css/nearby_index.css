@@ -1,0 +1,229 @@
+@CHARSET "UTF-8";
+ html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0;}
+        fieldset, img { border:none; }
+        address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; }
+        ul, ol { list-style:none; }
+        input { padding-top:0; padding-bottom:0; font-family: "SimSun","宋体";}
+        input::-moz-focus-inner { border:none; padding:0; }
+        select, input { vertical-align:middle; }
+        select, input, textarea { font-size:12px; margin:0; }
+        input[type="text"], input[type="password"], textarea { outline-style:none; -webkit-appearance:none; }
+        textarea { resize:none; }
+        table { border-collapse:collapse; }
+        body { color:#333; font:12px/20px "SimSun","宋体","Arial Narrow",HELVETICA;/* overflow-y:scroll;*/ }
+        .clearfix:after { content:"."; display:block; height:0; visibility:hidden; clear:both; }
+        .clearfix { zoom:1; }
+        .clearit { clear:both; height:0; font-size:0; overflow:hidden; }
+        a { color:#445560; text-decoration:none; }
+        a:visited { color:; text-decoration:none;}
+        a:hover{ color:; text-decoration:none; }
+		a:active{ color:; text-decoration:none; }
+*{
+	font-family:"Microsoft YaHei";
+	 margin:0; padding:0;
+}
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 47px;
+}
+
+hr {
+	margin: 0px 0px 10px 0px;
+	border: 0;
+	border-top: 1px solid #eee;
+	height: 0;
+}
+
+/* index-cat用来设计圆形按钮导航栏 */
+.index-cat{
+	width:auto;
+	margin-top:15px;
+	width:100%;
+	float:left;
+}
+.index-cat ul{
+	width:100%;
+	margin:0px auto;
+	float:left;
+	color:#445560;
+}
+.index-cat li{
+	width:25%;
+	height:100%;
+	float:left;
+}
+.index-cat .tabs{
+	width:100%;
+	clear:both;
+	padding-bottom:0px;
+	float:left;
+}
+.index-cat .titles{
+	margin-top:5px;
+	width:100%;
+	text-align:center;
+	height:30px;
+	line-height:30px;
+	float:left;
+	font-size:14px;
+	color:#445560px;
+}
+.index-cat td{
+	width:25%;
+}
+.index-cat tr{
+	height:50%;
+}
+.index-cat img{
+	width:68%;
+	float:left;
+	margin-left:16%;
+}
+
+/* normal-goods是商品列表 */
+.normal-goods .good-content {
+	height: 100%;
+    width: 100%;
+    display: table;
+}
+.normal-goods .good-content .img-wrapper {
+	float:left;
+	position:relative;
+	width:30%;
+	overflow:hidden
+}
+.normal-goods .good-content .img-wrapper img {
+	display:block;
+	width:100%;
+}
+.normal-goods .good-content .info-wrapper {
+	position:relative;
+	margin-left:33%;
+}
+.normal-goods .good-content .info-wrapper .title-line {
+	margin:0px 0px 8px 2px;
+	line-height:16px;
+	height:16px;
+	overflow:hidden
+}
+.normal-goods .good-content .info-wrapper .title-line .title {
+	float:left;
+	max-width:100%;
+	line-height:16px;
+	height:16px;
+	font-size:0
+}
+.normal-goods .good-content .info-wrapper .title-line .title .item-name {
+	display:inline-block;
+	max-width:100%;
+	font-size:15px;
+	color:#445560;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis
+}
+.normal-goods .good-content .info-wrapper .star-gray {
+	height: 16px;
+	width: 87px;
+	display: inline-block;
+	background: url("../img/fujin-0star.png") no-repeat;
+	background-size: auto 100%;
+}
+.normal-goods .good-content .info-wrapper .star-real {
+	width: 0;
+	height: 100%;
+	background: url("../img/fujin-5star.png") no-repeat;
+	background-size: auto 100%;
+}
+.normal-goods .good-content .info-wrapper .score {
+	margin: 5px;
+}
+
+.normal-goods .good-content .info-wrapper .haoping {
+	margin-left: 10px;
+	vertical-align: 1px;
+	font-size: 14px;
+	color: #fe7e01;
+}
+.normal-goods .good-content .info-wrapper .desc {
+	line-height:16px;
+	height:32px;
+	margin-top:5px;
+	overflow:hidden;
+	display:-webkit-box;
+	-webkit-line-clamp:2;
+	-webkit-box-orient:vertical;
+	font-size:14px;
+	color:#888
+}
+.normal-goods .good-content .info-wrapper .desc strong {
+	color:red
+}
+.moreseven{
+	display:none;
+}
+#moredown{
+	width:100%;
+	height:25px;
+	background-image: url(../img/moredown.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	float:left;
+}
+#moreup{
+	width:100%;
+	height:25px;
+	background-image: url(../img/moreup.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	display:none;
+	float:left;
+}
+
+/* 顶部搜索 */
+.form-search.form-inline {
+    padding-top: 10px;
+    background: #fff;
+    position: fixed;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 10;
+}
+input#searchId {
+    position: relative;
+    line-height: 30px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #999999;
+    width: 82%;
+    height: 30px;
+    border: 1px #CCCCCC solid;
+    font-family: 'Microsoft YaHei';
+    text-indent: 5px;
+}
+button#submitButton {
+    position: relative;
+    width: 16%;
+    float: right;
+    height: 32px;
+    line-height: 32px;
+    font-size: 16px;
+    border: 0px;
+    background-color: #fff;
+    color: #445560;
+}
+
+.weinintuijian {
+	line-height:30px;
+	font-size:16px;
+	color:#445560;
+	width:100%;
+	float:left;
+	margin:10px 0px
+}

@@ -20,7 +20,7 @@
 		a:active{ color:; text-decoration:none; }
 *{
 	font-family:"Microsoft YaHei";
-	font-size: 16px;
+	font-size: 8px;
 }
 
 /* normal-goods是商品列表 */
@@ -28,92 +28,47 @@
 	height: 100%;
 	width: 100%;
 	display: table;
-	padding-left: 40px;
-	padding-top: 30px;
+	padding-left: 20px;
+	padding-top: 15px;
 }
 
 .normal-goods .good-content .img-wrapper {
 	float:left;
 	width: 40%;
 	display: block;
-	overflow:hidden
-
-
-
-
-
-
-
-
+	overflow:hidden;
 }
 .normal-goods .good-content .img-wrapper img {
 	display:block;
 	width:100%;
+	height: 140px;
 }
 .normal-goods .good-content .info-wrapper {
 	margin-left: 42%;
-	padding-top: 20px;
+	padding-top: 10px;
 }
 .normal-goods .good-content .info-wrapper .title-line {
-	line-height: 34px;
-	overflow:hidden
-
-
-
-
-
-
-
-
-
-
-
-
-;
-	margin-bottom: 30px;
+	line-height: 17px;
+	overflow:hidden;
+	margin-bottom: 15px;
 }
 .normal-goods .good-content .info-wrapper .title-line .title {
 }
 .normal-goods .good-content .info-wrapper .title-line .title .item-name {
 	display:inline-block;
 	max-width:100%;
-	font-size: 34px;
+	font-size: 17px;
 	color: #445560;
 	white-space:nowrap;
 	overflow:hidden;
-	text-overflow:ellipsis
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	text-overflow:ellipsis;
 }
 .normal-goods .good-content .info-wrapper .star-gray {
-	height: 35px;
-	width: 186px;
+	height: 17px;
+	width: 93px;
 	display: inline-block;
 	background: url("../img/fujin-0star.png") no-repeat;
 	background-size: auto 100%;
-	/* margin:5px 0px 0px 5px; */
 }
 .normal-goods .good-content .info-wrapper .star-real {
 	width: 0;
@@ -122,9 +77,9 @@
 	background-size: auto 100%;
 }
 .normal-goods .good-content .info-wrapper .score {
-	margin-left: 14px;
+	margin-left: 7px;
 	color: #888888;
-	font-size: 26px;
+	font-size: 13px;
 }
 
 .normal-goods .good-content .info-wrapper .haoping {
@@ -134,13 +89,10 @@
 	color: #fe7e01;
 }
 
-
-
-
 .normal-goods .good-content .info-wrapper .desc {
-	height:32px;
-	margin-top: 30px;
-	font-size: 30px;
+	height: 16px;
+	margin-top: 15px;
+	font-size: 15px;
 	color: #445560;
 }
 .normal-goods .good-content .info-wrapper .desc strong {

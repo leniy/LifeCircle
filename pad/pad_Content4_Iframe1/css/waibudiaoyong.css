@@ -28,6 +28,9 @@
 body{
 margin:0px auto;
 }
+body {
+	background-color: #F3F4F6;
+}
 #ifm{
 	width:100%;
 	min-height:700px;

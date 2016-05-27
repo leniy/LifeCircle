@@ -22,6 +22,9 @@
 *{
 	font-family:"Microsoft YaHei";
 }
+body {
+	background-color: #F3F4F6;
+}
 
 .left {
 	width: 66%;

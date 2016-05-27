@@ -5,8 +5,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 <link rel="stylesheet" href="dist/css/swiper.min.css">
+
 <title>生活圈</title>
 <style>
+a {
+	color: #666;
+	text-decoration: none;
+}
+
+a:hover, a:focus, a:active {
+	color: #666;
+	text-decoration: none;
+}
+select:active{
+	border:0px;
+}
 body {
 	background: #FFFFFF;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -14,86 +27,125 @@ body {
 	color: #FFFFFF;
 	margin: 0;
 	padding: 0;
+	border: 0;
 }
+
 .swiper-container {
 	width: 100%;
-	height: auto;
-	min-height: 28px;
-	max-height: 60px;
-	margin: 3px auto;
+	margin: 0px auto 3px;
+	position: absolute;z-index:1;
 }
+
 .swiper-slide {
 	text-align: center;
 	font-size: initial;
-	width: 10%;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
+	height: 27px;
+	width: 16%;
 }
+
+
+
 .current {
+	
+}
+
+.current a {
+	color: #FFFFFF;
+	text-decoration: none;
 	background-color: #FFAC31;
 	border-radius: 5px;
 	color: #FFFFFF;
-	text-decoration: none;
 }
+
+
+
 .swiper-slide a {
-	margin-top: 5px;
+	width: 100%;
+	height: 27px;
 	display: block;
-	width: 65px;
+	font-size: 14px;
+	line-height: 28px;
 	text-align: center;
-	border-radius: 5px;
 	text-decoration: none;
-	color: #666;
+	font-family: "microsoft YaHei";
 }
+
 iframe {
 	border-width: 0px;
 	width: 100%;
+	margin-top: 40px;
 }
+
 #region0, #region1, #region2 {
-	width: 17.6%!important;
+	width: 17.6% !important;
 	height: auto;
 	min-height: 28px;
 	max-height: 60px;
 }
+
 #region3 {
-	width: 23.6%!important;
+	width: 23.6% !important;
 	height: auto;
 	min-height: 28px;
 	max-height: 50px;
 }
+
 #region4, #region5 {
-	width: 11.8%!important;
+	width: 11.8% !important;
 	height: auto;
 	min-height: 28px;
 	max-height: 50px;
 }
+
+
+
+select {
+       border: 0 !important;             /*Removes border*/
+      -webkit-appearance: none;            /*Removes default chrome and safari style*/
+      -moz-appearance: none;             /* Removes Default Firefox style*/
+      background-position: 82px 7px;           /*Position of the background-image*/
+      text-indent: 0.01px;          /* Removes default arrow from firefox*/
+      text-overflow: "";               /*Removes default arrow from firefox*/,
+         
+}
+.aaaselect {
+       border: 0 !important;             /*Removes border*/
+      -webkit-appearance: none;            /*Removes default chrome and safari style*/
+      -moz-appearance: none;             /* Removes Default Firefox style*/
+      background-position: 82px 7px;           /*Position of the background-image*/
+      text-indent: 0.01px;          /* Removes default arrow from firefox*/
+      text-overflow: "";               /*Removes default arrow from firefox*/,
+}
+
+
 </style>
-<script type="text/javascript" src="./js/jquery.js"></script>
+
+
+
 <script src="js/jquery-1.7.2.min.js"></script>
 <script src="js/template-native.js"></script>
 <script src="dist/js/swiper.min.js"></script>
 <script>
-var user = '';
+	var user = '';
 	var caCard = '';
 	var gps = '';
-	var deviceid='';
+	var deviceid = '';
 	var token = '';
 	var province = '';
 	var city = '';
-	var county='';
-	var latitude='';
-	var longitude='';
-	var appType ='';
+	var county = '';
+	var latitude = '';
+	var longitude = '';
+	var appType = '';
 	var test = '';
+	var currentCity = '';
+	var useWifi = '';
+	var v1 = '';
+	var v2 = '';
+	var v3='';
+	var v4='';
+	var currentRegionId = '';
+	var currentCounty = '';
 	function getQueryStringArgs(q) {
 		var qs = q.split('?')[1]
 				|| (location.search.length > 0 ? location.search.substring(1)
@@ -110,52 +162,54 @@ var user = '';
 		}
 		return args;
 	}
-
 	var r = getQueryStringArgs(window.location.search);
 	user = r.user;
-	caCard = r.caNumber;
+	//caCard = r.caNumber;
+	caCard = r.caCard;
 	gps = r.gps;
-	deviceid=r.deviceid;
+	deviceid = r.deviceid;
 	token = r.token;
 	province = r.province;
 	city = r.city;
-	county=r.county;
-	latitude=r.latitude;
-	longitude=r.longitude;
-	appType =r.appType;
+	county = r.county;
+	latitude = r.latitude;
+	longitude = r.longitude;
+	appType = r.appType;
 	test = r.test;
+	currentCity = r.currentCity;
+	useWifi = r.useWifi;
+	v2 = r.currentCity;
+	v3 = r.currentCounty;
+	currentCounty = r.currentCounty;
+	currentRegionId = r.currentRegionId;
 	$(document).ready(function() {
 		$.ajax({
 			url : 'portal/template/getRegion',
-			type: 'POST',
-            data: {
-            	user:user,
-            	caCard:caCard,
-            	gps:gps,
-            	deviceid:deviceid,
-            	token:token,
-            	province:province,
-            	city:city,
-            	county:county,
-            	latitude:latitude,
-            	longitude:longitude,
-            	appType:appType,
-            	test:test
-            },
+			type : 'POST',
+			data : {
+				user : user,
+				caCard : caCard,
+				gps : gps,
+				deviceid : deviceid,
+				token : token,
+				province : province,
+				city : city,
+				county : county,
+				latitude : latitude,
+				longitude : longitude,
+				appType : appType,
+				test : test,
+				currentCity:currentCity,
+				useWifi:useWifi,
+				currentRegionId:currentRegionId,
+				currentCounty:currentCounty
+			},
 			async : false,
 			success : function(data) {
-				data =eval(data)[0];
+				data = eval(data)[0];
 				var html = template('template', data);
 				document.getElementById('main').innerHTML = html;
-				$('#iframe_content').attr("src",data.page_url);
-				var swiper = new Swiper('.swiper-container', {
-			        pagination: '.swiper-pagination',
-			        slidesPerView: 5,
-			        centeredSlides: false,
-			        paginationClickable: true,
-			        spaceBetween: 10
-			    });
-				
+				$('#iframe_content').attr("src", data.page_url);
 			},
 			error : function(e) {
 				console.log(e);
@@ -169,27 +223,413 @@ var user = '';
 			$(this).addClass('current');
 		});
 	});
+    
 	function iFrameHeight() {
 		var ifm = document.getElementById("iframe_content");
 		ifm.height = (document.documentElement.clientHeight) - 51;
 	}
+
+	$(document).ready(function() {
+		$('#vv').click(function() {
+			if ($("#adv").css('display') == 'none') {
+				$("#adv").show();
+				$('#vv').attr('src', '/first/image/common_up.png')
+			} else if ($("#adv").css('display') == 'inline') {
+				$("#adv").hide();
+				$('#vv').attr('src', '/first/image/common_down.png')
+			}
+		});
+	});
+	
+	function clickOther(src,id){
+		var hdw = $('.swiper-wrapper div');
+		//window.location.href=src+"&currentCity="+id;
+		var currentUrl = window.location.href.split("&currentRegionId");
+		if(currentUrl.length>1){
+			currentUrl = currentUrl[0];
+		}
+		var cityValue = $("#hiddenCity");
+		if (typeof(cityValue) == "undefined" || cityValue.html()==null) {
+			v2='';
+		}else{
+			v2 = cityValue.val();
+		}
+		
+		var countyValue = $("#hiddenCounty");
+		if (typeof(countyValue) == "undefined" || countyValue.html()==null) {
+			v3='';
+		}else{
+			v3 = countyValue.val();
+		}
+		
+		
+		history.pushState({}, "page 2", currentUrl+"&currentRegionId="+id+"&currentCity="+v2+"&currentCounty="+v3);
+		$("#iframe_content").attr("src",src);
+	}
+	
+	//更多失去焦点事件，点击页面后DIV消失
+
+	function clickCity(obj,src,id){
+		var allcitys = $("#allcitys");
+		var css = allcitys.css("left");
+		if(css!='auto'){
+			$("#scon").css("height","100%");
+			
+			allcitys.css("left","auto");
+		}else{
+			$("#scon").css("height","");
+			allcitys.css("left","-999em");
+		}
+		
+
+		var currentUrl = window.location.href.split("&currentRegionId");
+		if(currentUrl.length>1){
+			currentUrl = currentUrl[0];
+		}
+		var cityValue = $("#hiddenCity");
+		if (typeof(cityValue) == "undefined" || cityValue.html()==null) {
+			v2='';
+		}else{
+			$("#hiddenCity").val(id);
+			v2 = cityValue.val();
+		}
+		
+		var countyValue = $("#hiddenCounty");
+		if (typeof(countyValue) == "undefined" || countyValue.html()==null) {
+			v3='';
+		}else{
+			v3 = countyValue.val();
+		}
+		
+		history.pushState({}, "page 2", currentUrl+"&currentRegionId="+v2+"&currentCity="+v2+"&currentCounty="+v3);
+		$("#iframe_content").attr("src",src);
+	}
+	
+	function clickCityLi(obj,src,id,name){
+		var $obj = $("#city");
+		var allcitys = $("#allcitys");
+		allcitys.css("left","-999em");
+		var currentUrl = window.location.href.split("&currentRegionId");
+		if(currentUrl.length>1){
+			currentUrl = currentUrl[0];
+		}
+		$obj.attr('onclick',"clickCity(this,'"+src+"','"+id+"')"); 
+		$obj.text(name);
+		
+		var cityValue = $("#hiddenCity");
+		if (typeof(cityValue) == "undefined" || cityValue.html()==null) {
+			v2='';
+		}else{
+			$("#hiddenCity").val(id);
+			v2 = cityValue.val();
+		}
+		
+		var countyValue = $("#hiddenCounty");
+		if (typeof(countyValue) == "undefined" || countyValue.html()==null) {
+			v3='';
+		}else{
+			v3 = countyValue.val();
+		}
+		history.pushState({}, "page 2", currentUrl+"&currentRegionId="+v2+"&currentCity="+v2+"&currentCounty="+v3);
+		$("#iframe_content").attr("src",src);
+		
+		var param = src.split("?");
+		
+		$.ajax({
+			url : 'portal/template/getCountyByCityId?cityId='+id+"&"+param,
+			type : 'POST',
+			async : false,
+			success : function(data) {
+				data= eval('(' + data + ')');
+				var countys = data.countys;
+				var $obj =$('#county');
+				if(countys.length>0){
+					$obj.attr('onclick',"clickCounty(this,'"+countys[0].src+"','"+countys[0].id+"')"); 
+					$obj.text(countys[0].name);
+					var countyHtml = '';
+					for(var cc=0;cc<countys.length;cc++){
+						countyHtml+="<li><a href=\"javascript:;\" onclick=\"clickCountyLi(this,'"+countys[cc].src+"','"+countys[cc].id+"','"+countys[cc].name+"')\">"+countys[cc].name+"</a></li> ";
+						
+					}
+					$("#allcountys").html(countyHtml);
+					
+				}else{
+					$obj.attr('onclick',"clickCity(this,'','')"); 
+					$obj.text("未上线");
+				}
+				
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+				
+	}
+	
+	function clickCounty(obj,src,id){
+		var allcountys = $("#allcountys");
+		var css = allcountys.css("left");
+		if(css!='auto'){
+			$("#scon").css("height","100%");
+			allcountys.css("left","auto");
+		}else{
+			$("#scon").css("height","");
+			allcountys.css("left","-999em");
+		}
+		
+
+		var currentUrl = window.location.href.split("&currentRegionId");
+		if(currentUrl.length>1){
+			currentUrl = currentUrl[0];
+		}
+		var cityValue = $("#hiddenCity");
+		if (typeof(cityValue) == "undefined" || cityValue.html()==null) {
+			v2='';
+		}else{
+			v2 = cityValue.val();
+		}
+		
+		var countyValue = $("#hiddenCounty");
+		if (typeof(countyValue) == "undefined" || countyValue.html()==null) {
+			v3='';
+		}else{
+			$("#hiddenCounty").val(id);
+			v3 = countyValue.val();
+		}
+		
+		history.pushState({}, "page 2", currentUrl+"&currentRegionId="+v3+"&currentCity="+v2+"&currentCounty="+v3);
+		$("#iframe_content").attr("src",src);
+	}
+	
+	
+	function clickCountyLi(obj,src,id,name){
+		var $obj = $("#county");
+		var allcitys = $("#allcountys");
+		allcitys.css("left","-999em");
+		var currentUrl = window.location.href.split("&currentRegionId");
+		if(currentUrl.length>1){
+			currentUrl = currentUrl[0];
+		}
+		$obj.attr('onclick',"clickCounty(this,'"+src+"','"+id+"')"); 
+		$obj.text(name);
+		
+		var cityValue = $("#hiddenCity");
+		if (typeof(cityValue) == "undefined" || cityValue.html()==null) {
+			v2='';
+		}else{
+			v2 = cityValue.val();
+		}
+		
+		var countyValue = $("#hiddenCounty");
+		if (typeof(countyValue) == "undefined" || countyValue.html()==null) {
+			v3='';
+		}else{
+			countyValue.val(id);
+			v3 = countyValue.val();
+		}
+		history.pushState({}, "page 2", currentUrl+"&currentRegionId="+v3+"&currentCity="+v2+"&currentCounty="+v3);
+		$("#iframe_content").attr("src",src);
+	}
+	
+	
+	function clickCommunity(obj,src,id){
+		var allcommunitys = $("#allcommunitys");
+		var css = allcommunitys.css("left");
+		if(css!='auto'){
+			$("#scon").css("height","100%");
+			allcommunitys.css("left","auto");
+		}else{
+			$("#scon").css("height","");
+			allcommunitys.css("left","-999em");
+		}
+		
+
+		if(obj.innerHTML=='添加小区'){
+			window.location.href=src;
+			return;
+		}
+		
+		var currentUrl = window.location.href.split("&currentRegionId");
+		if(currentUrl.length>1){
+			currentUrl = currentUrl[0];
+		}
+		var cityValue = $("#hiddenCity");
+		if (typeof(cityValue) == "undefined" || cityValue.html()==null) {
+			v2='';
+		}else{
+			v2 = cityValue.val();
+		}
+		
+		var countyValue = $("#hiddenCounty");
+		if (typeof(countyValue) == "undefined" || countyValue.html()==null) {
+			v3='';
+		}else{
+			v3 = countyValue.val();
+		}
+		
+		history.pushState({}, "page 2", currentUrl+"&currentRegionId="+v3+"&currentCity="+v2+"&currentCounty="+v3);
+		$("#iframe_content").attr("src",src);
+		
+	}
+	
+	
+	function clickCommunityLi(obj,src,id,name){
+		var $obj = $("#community");
+		var allcommunitys = $("#allcommunitys");
+		allcommunitys.css("left","-999em");
+		var currentUrl = window.location.href.split("&currentRegionId");
+		if(currentUrl.length>1){
+			currentUrl = currentUrl[0];
+		}
+		if(obj.innerHTML=='添加小区'){
+			window.location.href=src;
+			return;
+		}
+		$obj.attr('onclick',"clickCommunity(this,'"+src+"','"+id+"')"); 
+		$obj.text(name);
+		
+		var cityValue = $("#hiddenCity");
+		if (typeof(cityValue) == "undefined" || cityValue.html()==null) {
+			v2='';
+		}else{
+			v2 = cityValue.val();
+		}
+		
+		var countyValue = $("#hiddenCounty");
+		if (typeof(countyValue) == "undefined" || countyValue.html()==null) {
+			v3='';
+		}else{
+			v3 = countyValue.val();
+		}
+		history.pushState({}, "page 2", currentUrl+"&currentRegionId="+v3+"&currentCity="+v2+"&currentCounty="+v3);
+		$("#iframe_content").attr("src",src);
+	}
+	
+	document.onclick = function(e) {
+		var allcitys = $("#allcitys");
+		var countys = $("#allcountys");
+		var communitys = $("#allcommunitys");
+		e = window.event || e; // 兼容IE7
+		//alert(e);
+		//alert(e);
+		var obj = $(e.srcElement || e.target);
+		 // 点击区域位于当前节点
+		if (obj.attr('id') == 'city') {
+			countys.css("left","-999em");
+			communitys.css("left","-999em");
+		}else if(obj.attr('id') == 'county'){
+			allcitys.css("left","-999em");
+			communitys.css("left","-999em");
+		}else if(obj.attr('id') == 'community'){
+			allcitys.css("left","-999em");
+			countys.css("left","-999em");
+		}else{
+			allcitys.css("left","-999em");
+			countys.css("left","-999em");
+			communitys.css("left","-999em");
+			$("#scon").css("height","");
+		}
+	};
+	
+	
+	
 </script>
+
+<style type="text/css"> 
+/* CSS下拉菜单CSS代码 */ 
+*{margin:0;padding:0;border:0} 
+body{ font-family: arial, 宋体, serif; font-size:12px} 
+ 
+ 
+#nav{line-height: 24px;  list-style-type: none; background:transparent} 
+ 
+#nav a{display: block; width: 100%; text-align:center} 
+ 
+#nav a:link {text-decoration:none} 
+/*#nav a:visited {color:#666;text-decoration:none}*/ 
+#nav a:active {color:#FFF;text-decoration:none;font-weight:bold} 
+#nav li{float: left; width: 100%; background:transparent} 
+#nav li a:active{ background:#999} 
+#nav li ul{line-height: 27px;  list-style-type: none;text-align:center;left: -999em; width: 100%; position: absolute;} 
+#nav li ul li{float: left; width: 100%;background:#FFFFFF} 
+#nav li ul a{color:#666;display: block; width: 100%;text-align:center;padding-left:0px; background:transparent;overflow:hidden} 
+/*#nav li ul a:link {color:#666; text-decoration:none} */
+/*#nav li ul a:visited {color:#666;text-decoration:none} */
+#nav li ul a:active {color:#F3F3F3;text-decoration:none;font-weight:normal;background:#FFA500} 
+ 
+/**
+#nav li:hover ul{left: auto} 
+#nav li.sfhover ul{left: auto} 
+*/
+#content{clear: left} 
+</style> 
+ 
 </head>
 <body>
-<div  id="main">
-<script id="template" type="text/html">
-		<div class="swiper-container">
+	<div style="text-align: center">
+		<img id="adv" style="display: none" alt="" width="100%"
+			src="http://pic.rifestone.com:8082/ad.png" /><br /> <img id="vv"
+			src="/first/image/common_down.png" style="width: 17px;">
+	</div>
+						
+	<div id="main">
+		<script id="template" type="text/html">
+		<div id="scon" class="swiper-container">
 			<div class="swiper-wrapper">
 			<% for (i=0, l=regions.length; i<l; i++) { %>
-				<div  class="swiper-slide <%=regions[i].current_class%>">
-						<a target='iframe_content' href='<%=regions[i].src%>'><%=regions[i].name%></a>
+				<div  id="<%=regions[i].regionType%>" class="swiper-slide <% if (regions[i].regionType==nowRegionType) { %>current <%}%>">
+					<% if (regions[i].regionType==2) { %>
+                        <ul id="nav"> 
+                           <li>
+								<input type="hidden" value="<%=regions[i].id%>" id="hiddenCity" />
+								<a id='city' href="javascript:" onclick="clickCity(this,'<%=currentCityMap.src%>','<%=currentCityMap.id%>')">
+									<%=currentCityMap.name%>
+								</a> 
+                               
+								<ul id='allcitys'>
+								<% for (c=0, d=citys.length; c<d; c++) { %>
+									 <li><a href="javascript:;" onclick="clickCityLi(this,'<%==citys[c].src%>','<%=citys[c].id%>','<%=citys[c].name%>')"><%=citys[c].name%></a></li> 
+								<% }%>
+                              	</ul> 
+                           </li> 
+                        </ul>                   			
+					<% } else if (regions[i].regionType==3){%>
+						<ul id="nav"> 
+                           <li>
+								<input type="hidden" value="<%=regions[i].id%>" id="hiddenCounty" />
+								<a id='county' href="javascript:" onclick="clickCounty(this,'<%=currentCountyMap.src%>','<%=currentCountyMap.id%>')">
+									<%=currentCountyMap.name%>
+								</a> 
+                               <ul id='allcountys'>
+								<% for (c=0, d=countys.length; c<d; c++) { %>
+									 <li><a href="javascript:;" onclick="clickCountyLi(this,'<%==countys[c].src%>','<%=countys[c].id%>','<%=countys[c].name%>')"><%=countys[c].name%></a></li> 
+								<% }%>
+                              </ul> 
+                           </li> 
+                        </ul>          
+					<%}else if(regions[i].regionType==4){%>
+						<ul id="nav"> 
+                           <li>
+								<input type="hidden" value="<%=regions[i].id%>" id="hiddenCounty" />
+								<a id='community' href="javascript:" onclick="clickCommunity(this,'<%=currentCommunityMap.src%>','<%=currentCommunityMap.id%>')">
+									<%=currentCommunityMap.name%>
+								</a> 
+                               <ul id='allcommunitys'>
+								<% for (c=0, d=communitys.length; c<d; c++) { %>
+									 <li><a href="javascript:;" onclick="clickCommunityLi(this,'<%==communitys[c].src%>','<%=communitys[c].id%>','<%=communitys[c].name%>')"><%=communitys[c].name%></a></li> 
+								<% }%>
+                              </ul> 
+                           </li> 
+                       </ul>
+					<%}else{%>
+							<a href="javascript:;" onclick="clickOther('<%=regions[i].src%>','<%=regions[i].id%>','<%=regions[i].regionType%>')" ><%=regions[i].name%></a>
+					<%}%>				
 				</div>
 			<% } %>
-				
 			</div>
 	   </div>
-	</script>
-</div>
-<iframe onload="iFrameHeight()" id="iframe_content" name="iframe_content" src="" height="928"></iframe>
+	</div>
+	<iframe onload="iFrameHeight()" id="iframe_content"
+		name="iframe_content" src="" height="928"></iframe>
 </body>
 </html>

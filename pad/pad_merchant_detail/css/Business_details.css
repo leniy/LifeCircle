@@ -15,6 +15,9 @@ a:active{ color:; text-decoration:none; }
 	padding:0px;
 	box-sizing:border-box;
 }
+body {
+	background-color: #F3F4F6;
+}
 ul{
 	list-style-type:none;
 }

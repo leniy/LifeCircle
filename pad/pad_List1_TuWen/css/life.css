@@ -13,6 +13,9 @@
 ul li,ol li {
     list-style-type: none;
 }
+body {
+	background-color: #F3F4F6;
+}
 .left{ float: left;}
 .right{ float: right;}
 .nav_bar li.dropdown{
