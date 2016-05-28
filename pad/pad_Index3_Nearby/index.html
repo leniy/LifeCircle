@@ -13,7 +13,15 @@
 <body id="lifecirclebody">
 <script id="template" type="text/html">
 <div class="form-search form-inline">
-	<input class="input-medium search-query" id="searchId" type="text" value="搜索地点 商户等" onFocus="if (value =='搜索地点 商户等'){value =''}" onBlur="if (value ==''){value='搜索地点 商户等'}">
+	<input class="input-medium search-query" id="searchId" type="text" placeholder="搜索地点 商户等" />
+	<select class="searchdistance">
+		<option value="5000" selected="selected">请选择搜索多大范围内的商家</option>
+		<option value="500">500米</option>
+		<option value="1000">1千米</option>
+		<option value="2000">2千米</option>
+		<option value="5000">5千米</option>
+		<option value="10000">10千米</option>
+	</select>
 	<button type="button" id="submitButton">搜索</button>
 </div>
 <div class="container-fluid">

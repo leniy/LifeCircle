@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script>
+<link href="css/shequtianjia.css" rel="stylesheet" />
+</head>
+<body>
+<div class="searchlayer">
+	<div class="searchbar">
+		<input name="searchtext" id="searchtext" type="text" placeholder="请输入小区名字" autofocus />
+		<div class="se-inner">
+			<div id="index-cross" class="cross"></div>
+			<input name="searchbtn" id="searchbtn" type="submit" value="搜索" style="display: none;" />
+			<input name="cancelbtn" id="cancelbtn" type="submit" value="取消" />
+		</div>
+	</div>
+	<ul class="xiaoqulists"></ul>
+</div>
+<div class="promptlayer" style="display: none;">
+<ul class="answers"></ul>
+<div class="right">
+<p class="answerresult" style="display: none;">申请失败，请重新选择小区</p>
+<input name="checkanswer" id="checkanswer" type="submit" value="确认添加">
+<input name="shangyibu" id="shangyibu" type="submit" value="上一步">
+</div>
+</div>
+</body>
+<script src="js/shequtianjia.js"></script>
+</html>

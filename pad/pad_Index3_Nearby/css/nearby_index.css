@@ -217,6 +217,17 @@ input#searchId {
     font-family: 'Microsoft YaHei';
     text-indent: 5px;
 }
+select.searchdistance {
+    line-height: 30px;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #888888;
+    height: 35px;
+    border: 1px #C4C4C4 solid;
+    font-family: 'Microsoft YaHei';
+    text-indent: 5px;
+    padding-right: 10px;
+}
 button#submitButton {
     width: 40px;
     height: 37px;

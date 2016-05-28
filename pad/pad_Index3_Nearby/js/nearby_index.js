@@ -8,7 +8,7 @@ function openMerchant(){
 		success : function(data) {
 			merchanturl = data.url;
 			if ("" != merchanturl) {
-				window.location.href = merchanturl;
+				window.parent.location.href = merchanturl;
 			} else {
 				alert("欢迎商户入驻，具体事项电询96123");
 			}
@@ -31,7 +31,13 @@ $(document).ready(function(){
 	});
 	$("#submitButton").click(function(){
 		var keywords = $("#searchId").val();
+		var distance = $(".searchdistance").val();
+		if ( "" == keywords ){
+			alert("搜索内容为空");
+			return;
+		}
 		keywords = encodeURI(keywords);
-		top.location.href='/templatefile/baseTemplat/pad_List10_Goods/index.html'+window.location.search+"&mapkeywords="+keywords;
+		distance = encodeURI(distance);
+		top.location.href='/templatefile/baseTemplat/pad_List10_Goods/index.html'+window.location.search+"&mapkeywords="+keywords+"&mapdistance="+distance;
 	});
 });

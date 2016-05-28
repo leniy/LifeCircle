@@ -1,0 +1,71 @@
+*{
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	font-family: "microsoft YaHei";
+	margin:0px;
+	padding:0px;
+	border:0px;
+	color:#ccc;
+}
+
+img#goodspic {
+    max-width: 100%;
+    min-width: 30%;
+    height: auto;
+    width: auto;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+body{
+	margin: 30px;
+}
+ul{
+	list-style:none;
+}
+.right{
+	width: 45%;
+	float: left;
+	padding-left: 10px;
+}
+.add_goodspic{
+	line-height: 30px;
+	color:#445560;
+	font-size: 25px;
+	margin-bottom: 10px;
+}
+input#fileToUpload {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.title{
+	width: 55%;
+	float: left;
+	padding-right: 20px;
+}
+input[type="text"]{
+	width: 100%;
+	border-radius:5px;
+	line-height: 50px;
+	border:#CCCCCC solid 1px;
+	text-indent:1em;
+	margin-bottom: 20px;
+	font-size: 20px;
+	margin-top: 20px;
+}
+#submit{
+	width: 80px;
+	background-color:#FDAB01;
+	border-radius:5px;
+	border:0px;
+	color: #FFFFFF;
+	line-height: 40px;
+	font-size: 20px;
+}
+#goodsprice{
+	width: 50%;
+}
+#goodsprice span{
+	margin-left:20px;
+	font-size:14px;
+}
