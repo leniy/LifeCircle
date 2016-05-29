@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<style>
+*{
+	margin:0px;
+	padding:0px;
+	border:0px;
+	box-sizing:border-box;
+	font-family:"microsoft YaHei";
+}
+ul{
+	list-style-type:none;
+}
+.head{
+	height:65px;
+	position:absolute; 
+	left:80px; 
+	top:130px;
+	width:1120px; 
+	color:#b5afdb;
+}
+.head li{
+	height:50px;
+	line-height:50px;
+	width:16.5%;
+	float:left; 
+	text-align:center;
+	font-size:26px;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+}
+.ck{
+	background-color:#FDAB01;
+	border-radius:6px;
+	color:#FFFFFF;
+}
+.ckd{
+	color:#FFAA06;
+}
+#content{
+	position:absolute; 
+	left:80px; 
+	top:200px;
+	width:1120px; 
+	height:408px;
+	overflow:hidden;
+}
+#pic_new{
+	margin-top:10px;
+	width:500px;
+	height:386px;
+	float:left;
+	/*box-shadow:0 0px 10px #FEFFFE;*/
+	border:transparent 3px solid;
+	overflow:hidden;
+	position:relative;
+}
+#pic_new img{
+	width:100%;
+	height:100%;
+}
+.nav{
+	float:left;
+	list-style-type:none;
+	width:610px;
+	margin-left:8px;
+	height:410px;
+}
+.nav li{
+	width:188px;
+	height:188px;
+	float:left;
+	overflow:hidden;
+	margin:10px 5px 0px 5px;
+	border:transparent 3px solid;
+	box-shadow:0px 0px 10px transparent;
+}
+.nav li img{
+	width:100%;
+	height:100%;
+}
+.new_title{
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	height:50px;
+	line-height:50px;
+	background-color:rgba(33, 28, 28,0.9);
+	width:100%;
+	color:#FFFFFF;
+	text-align:center;
+	font-size:24px;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	padding:0px 5px;
+}
+.foot{
+	width:457px;
+	height:43px;
+	position:absolute;
+	top:630px;
+	left:80px; 
+}
+</style>
+<script>
+document.onirkeypress = grabEvent;
+document.onkeydown = grabEvent;
+function grabEvent(event){
+	var keyval = event.which;
+	switch(keyval){
+		case 38://up
+			changUP(-1);
+			event.stopPropagation();
+			break;
+		case 40://down
+			changUP(1);
+			event.stopPropagation();
+			break;
+		case 37://left
+			changLR(-1);
+			event.stopPropagation();
+			break;
+		case 39://right
+			changLR(1);
+			event.stopPropagation();
+			break;
+		case 13://ok
+			doSelect();
+			event.stopPropagation();
+			break;
+		case 27://esc
+			window.location.href= iSTB.browser.gotoSTB('menu');
+			event.stopPropagation();
+			break;
+		case 8://back
+			window.location.href= iSTB.browser.gotoSTB('menu');
+			event.stopPropagation();
+			break;
+	}	
+	event.stopPropagation();
+}
+
+var area = 1;			//�����˵� 0��δѡ�� 1��ѡ��
+var areaPos = 1;	//һ���˵����
+var picNewPos = 1;		//ͼƬ���� 0��δѡ�� 1��ѡ��
+var navArea = 0;			//���� 0��δѡ�� 1��ѡ��
+var navPos = 0;		//������� 0��δѡ�� 1��ѡ��
+var areaPosNum = 1;
+
+function init(){
+	getPos();
+}
+function getPos(){
+	areaPosNum = $('.head ul').children('li').length;
+	var Sarea = sessionStorage.getItem("Sarea");
+	var SnavArea = sessionStorage.getItem("SnavArea");
+	var SpicNewPos = sessionStorage.getItem("SpicNewPos");
+	var SnavPos = sessionStorage.getItem("SnavPos");
+	var SareaPos = sessionStorage.getItem("SareaPos");
+	if(Sarea != "" && Sarea != "undefined" && typeof(Sarea) != "undefined" && !isNaN(Sarea) && Sarea != null){
+		area = parseInt(Sarea);
+	}
+	if(SareaPos != "" && SareaPos != "undefined" && typeof(SareaPos) != "undefined" && !isNaN(SareaPos) && SareaPos != null){
+		areaPos = parseInt(SareaPos);
+	}
+	if(SnavArea != "" && SnavArea != "undefined" && typeof(SnavArea) != "undefined" && !isNaN(SnavArea) && SnavArea != null){
+		navArea = parseInt(SnavArea);
+		navPos = sessionStorage.getItem("SnavPos");
+		navPos = parseInt(navPos);
+	}
+	if(SpicNewPos != "" && picNewPos != "undefined" && typeof(picNewPos) != "undefined" && !isNaN(picNewPos) && picNewPos != null){
+		picNewPos = parseInt(SpicNewPos);
+	}
+	var theUrl = $(".head > ul > li:nth-child("+areaPos+")").attr("goUrl");		
+	getUrl(theUrl);
+	if(area==1){
+		$(".head > ul > li:nth-child("+areaPos+")").addClass("ck");
+		return false;
+	}
+	if(picNewPos==1){
+		$("#pic_new").css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});
+		$(".head > ul > li:nth-child("+areaPos+")").addClass("ckd");
+		return false;
+	}
+	if(navArea==1){
+		$(".nav > li:nth-child("+navPos+")").css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		$(".head > ul > li:nth-child("+areaPos+")").addClass("ckd");
+		return false;
+	}
+}
+function changUP(num){
+	navPosNum = $('.nav').children('li').length;
+	if(num>0&&area==1&&navArea==0){
+		area=0;
+		var thepos = $(".head > ul > li:nth-child("+areaPos+")");
+		thepos.removeClass("ck");
+		thepos.addClass("ckd");	
+		picNewPos = 1;	
+		$("#pic_new").css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});
+	}
+	if(num<0&&picNewPos==1){
+		area=1;
+		var thepos = $(".head > ul > li:nth-child("+areaPos+")");
+		thepos.removeClass("ckd");
+		thepos.addClass("ck ");	
+		picNewPos = 0;	
+		$("#pic_new").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});
+	}
+	if(num<0&&picNewPos==0&&navArea==1){
+		if((navPos)-3<1){
+			$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+			var thepos = $(".head > ul > li:nth-child("+areaPos+")");
+			thepos.removeClass("ckd");
+			thepos.addClass("ck ");	
+			navArea = 0;
+			navPos = 0;
+			area = 1;
+			return false;
+		}else{
+			navPos-=3;
+			$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+			var thepos = $(".nav > li:nth-child("+navPos+")");
+			thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		};
+	}
+	if(num>0&&navArea==1){
+		if((navPos)+3>navPosNum){return false;};
+		navPos+=3;
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		var thepos = $(".nav > li:nth-child("+navPos+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+	}
+	
+};
+function changLR(num){
+	navPosNum = $('.nav').children('li').length;
+	if(num>0&&area==1&&areaPos<areaPosNum){
+		$(".head > ul > li").removeClass("ck");
+		areaPos++;
+		var thepos = $(".head > ul > li:nth-child("+areaPos+")");
+		thepos.addClass("ck");	
+		var theUrl = $(".head > ul > li:nth-child("+areaPos+")").attr("goUrl");		
+		getUrl(theUrl);
+		return false;
+	}
+	if(num>0&&picNewPos==1){
+		picNewPos=0;
+		navArea = 1;
+		$("#pic_new").css({"border":"transparent 3px solid","box-shadow":"0px 0px 0px #FFF"});
+		navPos++;
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		var thepos = $(".nav > li:nth-child("+navPos+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		return false;
+	}
+	if(num>0&&navArea==1){
+		if(navPos==navPosNum){return false;}
+		picNewPos=0;
+		$("#pic_new").css({"border":"transparent 3px solid","box-shadow":"0px 0px 0px #FFF"});
+		navArea = 1;
+		navPos+=1;
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		var thepos = $(".nav > li:nth-child("+navPos+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+	}
+	if(num<0&&area==1&&areaPos>1){
+		$(".head > ul > li").removeClass("ck");
+		areaPos--;
+		var thepos = $(".head > ul > li:nth-child("+areaPos+")");
+		thepos.addClass("ck");	
+		var theUrl = $(".head > ul > li:nth-child("+areaPos+")").attr("goUrl");		
+		getUrl(theUrl);
+		return false;
+	}
+	if(num<0&&navArea==1){
+		if(navPos==4||(navPos-1)<1){
+			picNewPos=1;
+			navArea = 0;
+			navPos = 0;
+			$("#pic_new").css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});
+			$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		}else{
+		navPos--;
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		var thepos = $(".nav > li:nth-child("+navPos+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FFF"});	
+		}
+	}
+};
+function doSelect(){
+	if(picNewPos==1&&navArea==0){
+		var theUrl = $("#pic_new").attr("goUrl");
+		window.location.href = theUrl;	
+	}else if(picNewPos==0&&navArea==1){
+		var theUrl =  $(".nav > li:nth-child("+navPos+")").attr("goUrl");
+		window.location.href = theUrl;	
+	}else{return false}
+	sessionStorage.setItem("SpicNewPos", picNewPos); 
+	sessionStorage.setItem("SnavArea", navArea); 
+	sessionStorage.setItem("Sarea", area); 
+	sessionStorage.setItem("SnavPos", navPos); 
+	sessionStorage.setItem("SareaPos", areaPos); 
+}
+
+$(document).ready(function() {
+		caId = iSTB.settings.get("sys:ca0:cardnumber");
+		//聊城
+		//caId = 8531103765980209;
+		//东关
+		//caId = 8536002405000011;
+		//caId='99370600001539336';
+		//alert(caId);
+		$.ajax({
+			//url : 'http://portal1.rifestone.com:7072/Portal/portal/template/getRegion1?appType=8&caCard='+caId,
+			url : 'http://10.255.134.4:7072/Portal/portal/template/getRegion1?appType=8&caCard='+caId,
+			type: 'POST',
+            data: null,
+			async : false,
+			success : function(data) {
+				data =eval(data)[0];
+				var html = template('qytemplate', data);
+				document.getElementById('qyregions').innerHTML = html;
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+	});
+function getUrl(_url){
+			$.ajax({
+				//url : 'http://portal1.rifestone.com:7072/Portal/portal/template/getTemplate?'+_url,
+				url : 'http://10.255.134.4:7072/Portal/portal/template/getTemplate?'+_url,
+				type: 'POST',
+				data: null,
+				async : false,
+				success : function(data) {
+					data =eval(data)[0];
+					var html = template('contenttemplate', data);
+					document.getElementById('content').innerHTML = html;
+				},
+				error : function(e) {
+					console.log(e);
+				}
+			});
+		}
+</script>
+</head>
+<body bgcolor="transparent"  background="image/community_bg2.jpg" leftmargin="0" topmargin="0" onLoad="init();" onUnload="">
+	<div class="head">
+		<ul id="qyregions">
+		<script id="qytemplate" type="text/html">
+		<% for (i=0, l=regions.length; i<l; i++) { %>
+			<li goUrl="<%=regions[i].src%>"><%=regions[i].name%></li>
+		<%}%>
+		</script>
+		</ul>
+	</div>
+    <div id="content" style="">
+		<script id="contenttemplate" type="text/html">
+		<div id="pic_new" goUrl="<%=recommend_list_src%>">
+			<img src="<%=recommends_slide[0].recommend_img%>"/>
+			<div class="new_title"><%=recommends_slide[0].recommend_title%></div>
+		</div>
+		<ul class="nav">
+			<% for (i=0, l=6; i<l; i++){%>
+				<li goUrl="<%=categorys[i].category_src%>"><img src="<%=categorys[i].category_img%>"/></li>
+			<%}%>
+		</ul>
+		</script>
+    </div>
+	<div class="foot">
+		<img src="image/community_hint.png"/>
+	</div>
+</body>
+</html>

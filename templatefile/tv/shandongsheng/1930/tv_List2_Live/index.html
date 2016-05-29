@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>TV-社区监控</title>
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<style>
+*{
+	margin:0px;
+	padding:0px;
+	border:0px;
+	box-sizing:border-box;
+	font-family:"microsoft YaHei";
+}
+ul{
+	list-style-type:none;
+}
+.top{
+	height:32px;
+	line-height:32px;
+	position:absolute;
+	left:30px;
+	top:30px;
+	width:1120px;
+	color:#A3AFC7;
+	background-image:url(image/icon_back.png);
+	background-repeat: no-repeat;
+	font-size:26px;
+	text-indent:30px;
+}
+
+#content{
+	position:absolute; 
+	left:113px; 
+	top:150px;
+	width:1100px; 
+	height:410px;
+}
+#pic_new{
+	margin-top:10px;
+	width:528px;
+	height:398px;
+	float:left;
+	/*box-shadow:0 0px 10px #FEFFFE;*/
+	border:transparent 3px solid;
+	overflow:hidden;
+	position:relative;
+}
+.nav{
+	float:left;
+	list-style-type:none;
+	width:535px;
+	margin:5px 0px 0px 8px;
+	height:410px;
+}
+.nav li{
+	width:250px;
+	height:188px;
+	float:left;
+	overflow:hidden;
+	margin:10px 8px 5px 8px;
+	border:transparent 3px solid;
+	box-shadow:0px 0px 10px transparent;
+	position:relative;
+}
+.nav li img{
+	width:100%;
+}
+.new_title{
+	position:absolute;
+	left:0px;
+	bottom:0px;
+	height:45px;
+	line-height:45px;
+	background-color:rgba(33, 28, 28,0.7);
+	width:100%;
+	color:#FFFFFF;
+	text-align:center;
+	font-size:22px;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	padding:0px 5px;
+}
+.foot{
+	width:457px;
+	height:43px;
+	position:absolute;
+	top:630px;
+	left:80px; 
+}
+</style>
+<script>
+document.onirkeypress = grabEvent;
+document.onkeydown = grabEvent;
+function grabEvent(event){
+	var keyval = event.which;
+	switch(keyval){
+		case 38://up
+			changUP(-1);
+			event.stopPropagation();
+			break;
+		case 40://down
+			changUP(1);
+			event.stopPropagation();
+			break;
+		case 37://left
+			changLR(-1);
+			event.stopPropagation();
+			break;
+		case 39://right
+			changLR(1);
+			event.stopPropagation();
+			break;
+		case 13://ok
+			doSelect();
+			event.stopPropagation();
+			break;
+		case 27://esc
+			event.stopPropagation();
+			break;
+		case 8://back
+			return EVENT.STOP;
+			break;
+	}	
+	event.stopPropagation();
+}
+var navNum = 1;	
+var videaNum = 4;	//分类序号 0：未选择 1：选中
+
+function init(){
+	getPos();
+}
+function getPos(){
+	var thepos = $(".nav > li:nth-child("+navNum+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+	var theUrl = thepos.attr("goUrl");
+		openVideo(theUrl);
+}
+function changUP(num){	
+	if(num>0&&(navNum+2<=videaNum)){
+		navNum+=2;
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		var thepos = $(".nav > li:nth-child("+navNum+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		return false;
+	}
+	if(num<0&&(navNum-2>=0)){
+		navNum-=2;
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		var thepos = $(".nav > li:nth-child("+navNum+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		return false;
+	}
+};
+function changLR(num){
+	if(num>0&&navNum<videaNum){
+		navNum++;
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		var thepos = $(".nav > li:nth-child("+navNum+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		return false;
+	}
+	if(num<0&&navNum>1){
+		navNum--;
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		var thepos = $(".nav > li:nth-child("+navNum+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		return false;
+	}
+	
+};
+function doSelect(){
+	var theUrl = $(".nav > li:nth-child("+navNum+")").attr("goUrl");
+	openVideo(theUrl);
+}
+function openVideo(_url){
+		iSTB.player.stop();
+		iSTB.player.set_video_window(113, 160, 528, 398);
+		
+		var url1 = _url.split('?')[0];
+		var url2 =_url.split('?')[1];
+		url2 = url2.replace("useWifi=false","useWifi=true");   
+		var c = 1;
+		
+		$.ajax({
+			url : '/Portal/AAAServiceStub?isCamera='+c+'&'+url2+'&requrl='+url1,
+			type: 'POST',
+			async : false,
+			success : function(data) {
+				address = data.toString();
+				
+				iSTB.player.play(address);
+
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		});
+		
+		
+		
+}
+
+</script>
+</head>
+<body id="lifecirclebody" background="image/community_bg3.png" leftmargin="0" topmargin="0" onLoad="init();" onUnload="iSTB.player.stop();;
+">
+<script id="template" type="text/html">
+    <!--标题-->
+	<div class="top">返回</div>
+    <div id="content" style="">
+		<div id="pic_new">
+		</div>
+		<ul class="nav">
+		<% for (i=0, l=sources.length; i<l&&i<4; i++) {%>
+			<li goUrl="<%=sources[i].source_video%>"><img src="<%=sources[i].source_img%>"/><div class="new_title"><%=sources[i].source_title%></div></li>
+		<% } %>
+		</ul>
+    </div>
+	<div class="foot">
+		<img src="image/community_hint.png"/>
+	</div>
+</script>
+</body>
+</html>

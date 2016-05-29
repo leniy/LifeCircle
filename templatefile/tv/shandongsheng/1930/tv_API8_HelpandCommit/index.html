@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>TV-首页</title>
+<script src="../../common_res/arttemplate/template-native.js"></script>
+<script src="../../common_res/jquery/jquery.min.js"></script> 
+<script src="../../common_res/lifecircleapi/common.js"></script>
+<style>
+*{
+	margin:0px;
+	padding:0px;
+	border:0px;
+	box-sizing:border-box;
+	font-family:"microsoft YaHei";
+	color:#A3AFC7;
+}
+ul{
+	list-style-type:none;
+}
+.top{
+	height:32px;
+	line-height:32px;
+	position:absolute;
+	left:30px;
+	top:30px;
+	width:1120px;
+	color:#A3AFC7;
+	background-image:url(image/icon_back.png);
+	background-repeat: no-repeat;
+	font-size:26px;
+	text-indent:30px;
+}
+#content{
+	position:absolute; 
+	left:60px; 
+	top:120px;
+	width:1120px; 
+	height:480px;
+	position:relative;
+	overflow:hidden;
+}
+#contentbody{
+	position:absolute;
+	left:0px;
+	top:0px;
+	width:100%;
+}
+.bbmsg{
+	padding:0px 0px 10px 0px;
+	min-height:350px;
+}
+.bbmsg img{
+	width:100%;
+}
+.msg_pic{
+	width:440px;
+	height:330px;
+	float:left;
+	overflow:hidden;
+	margin-right:12px;
+}
+.msg_user{
+	font-size:18px;
+	height:60px;
+	word-break:break-all; 
+}
+.msg_user_pic{
+	width:60px;
+	height:60px;
+	float:left;
+	overflow:hidden;
+	border-radius:50%;
+	margin-right:10px;
+}
+.msg_user_name{
+	height:30px;
+	line-height:30px;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+}
+.pl{
+	margin:18px 0px 0px 0px;
+}
+.plhead{
+	height:30px;
+	line-height:30px;
+	font-size:18px;
+}
+.bb_titel{
+	color:#D7D7D7;
+	font-size:22px;
+	margin-top:15px;
+	word-break:break-all;
+}
+.bb_content{
+	color:#D7D7D7;
+	font-size:22px;
+	margin-top:15px;
+	line-height:35px;
+	word-break:break-all; 
+}
+.pl_content{
+	color:#D7D7D7;
+	font-size:18px;
+	margin-top:15px;
+	line-height:30px;
+	word-break:break-all;
+	margin-bottom:20px;
+}
+#roll{
+	position:absolute; 
+	top:120px;
+	left:1190px; 
+	height:480px;
+	width:8px;
+	background-color:#365E93;
+	border-radius:4px;
+	overflow:hidden;
+}
+#rolled{
+	position:absolute; 
+	top:0px;
+	left:0px; 
+	height:100%;
+	width:8px;
+	background-color:#869FBD;
+	border-radius:4px;
+}
+
+.foot{
+	width:457px;
+	height:43px;
+	position:absolute;
+	top:630px;
+	left:80px; 
+}
+</style>
+<script>
+document.onirkeypress = grabEvent;
+document.onkeydown = grabEvent;
+function grabEvent(event){
+	var keyval = event.which;
+	switch(keyval){
+		case 38://up
+			changUP(-1);
+			event.stopPropagation();
+			break;
+		case 40://down
+			changUP(1);
+			event.stopPropagation();
+			break;
+		case 27://esc
+			event.stopPropagation();
+			break;
+		case 8://back
+			window.location.href = history.go(-1);	
+			return EVENT.STOP;
+			break;
+	}	
+	event.stopPropagation();
+}
+
+var perHeight = 240;	
+var totalPage = 1;	
+
+
+
+$(document).ready(function(){
+	init();
+});
+function init(){
+	currHeight = $("#contentbody").outerHeight();
+	if(currHeight <= perHeight*2 ){
+			totalPage = 1;
+		}else{
+			totalPage = Math.ceil(currHeight / perHeight);    
+		}
+	getPos();
+}
+function getPos(){
+	Scroll = 1/totalPage;
+	Scroll = Scroll*perHeight*2;
+	//Scroll = (Scroll.toFixed(4))*100+"%";
+	$("#rolled").height(Scroll);	
+}
+function changUP(num){
+	if(num>0){
+		var contentbodyTop = $("#contentbody").css("top");
+		contentbodyTop = parseInt(contentbodyTop);
+		if((contentbodyTop+currHeight)<perHeight*2){return false;}
+		contentbodyTop = contentbodyTop-perHeight;
+		$("#contentbody").css("top",contentbodyTop);
+		setScroll(1);
+	}else{
+		var contentbodyTop = $("#contentbody").css("top");
+		contentbodyTop = parseInt(contentbodyTop);
+		if(contentbodyTop>=0){return false;}
+		contentbodyTop = contentbodyTop+perHeight;
+		$("#contentbody").css("top",contentbodyTop);
+		setScroll(-1);
+	}
+}
+function setScroll(num){
+	if(num>0){
+		var contentbodyTop = $("#rolled").css("top");
+		contentbodyTop = parseInt(contentbodyTop);
+		contentbodyTop = contentbodyTop+Scroll;
+		$("#rolled").css("top",contentbodyTop);
+	}else{
+		var contentbodyTop = $("#rolled").css("top");
+		contentbodyTop = parseInt(contentbodyTop);
+		contentbodyTop = contentbodyTop-Scroll;
+		$("#rolled").css("top",contentbodyTop);
+	}
+}
+
+</script>
+</head>
+<body id="lifecirclebody" background="image/community_bg.jpg" leftmargin="0" topmargin="0">
+    <!--标题-->
+	<script id="template" type="text/html">
+	<div class="top">返回</div>
+    <div id="content" style="">
+		<div id="contentbody">
+			<div class="bbmsg">
+			<% if ( ""!=sources[0].img ) { %>
+				<div class="msg_pic"><img src="<%=sources[0].source_img%>"/></div>
+			<% } %>
+				<div class="msg_user">
+					<div class="msg_user_pic">
+						<img src="<%=sources[0].source_issuerimg%>"/>
+					</div>
+					<div class="msg_user_name"><%=sources[0].source_issuer_nickName%></div>
+					<div class="msg_user_name"><%=sources[0].source_time%></div>
+				</div>
+				<div class="bb_titel"><%=sources[0].source_title%></div>
+				<div class="bb_content"><%=sources[0].source_summary%></div>
+			</div>
+			<div class="plhead">最新评论</div>
+			<div class="pl">
+				<% for (i=0, l=commentSources.length; i<l; i++) { %>
+				<div class="msg_user">
+					<div class="msg_user_pic">
+						<img src="<%=commentSources[i].user_issuerimg%>"/>
+					</div>
+					<div class="msg_user_name"><%=commentSources[i].user_nickname%></div>
+					<div class="msg_user_name"><%=commentSources[i].common_date%></div>
+				</div>
+				<div class="pl_content"><%=commentSources[i].common_content%></div>
+				<% }%>
+			</div>
+		</div>
+    </div>
+	<div id="roll"><div id="rolled"></div></div>
+	<div class="foot">
+		<img src="image/community_hint.png"/>
+	</div>
+</script>
+</body>
+</html>
