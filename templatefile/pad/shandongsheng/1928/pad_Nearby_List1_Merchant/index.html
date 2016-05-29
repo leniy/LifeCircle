@@ -4,13 +4,25 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-<script src="../../common_res/arttemplate/template-native.js"></script>
-<script src="../../common_res/jquery/jquery.min.js"></script> 
-<script src="../../common_res/lifecircleapi/common.js"></script>
+<script src="/templatefile/common_res/arttemplate/template-native.js"></script>
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/lifecircleapi/common.js"></script>
 <link rel="stylesheet" type="text/css" href="css/shangpinliebiao.css">
 </head>
 <body id="lifecirclebody">
 <script id="template" type="text/html">
+<div class="form-search form-inline">
+	<input class="input-medium search-query" id="searchId" type="text" placeholder="搜索地点 商户等" />
+	<select class="searchdistance">
+		<option value="5000" selected="selected">请选择搜索多大范围内的商家</option>
+		<option value="500">500米</option>
+		<option value="1000">1千米</option>
+		<option value="2000">2千米</option>
+		<option value="5000">5千米</option>
+		<option value="10000">10千米</option>
+	</select>
+	<button type="button" id="submitButton">搜索</button>
+</div>
 <div class="container-fluid" style=" margin-top:10px; padding-top:10px;">
 	<div class="row-fluid">
 		<div class="span12">
@@ -44,4 +56,32 @@
 </div>
 </script>
 </body>
+<script>
+$(document).ready(function(){
+	$("#submitButton").click(function(){
+		var keywords = $("#searchId").val();
+		var distance = $(".searchdistance").val();
+		if ( "" == keywords ){
+			alert("搜索内容为空");
+			return;
+		}
+		keywords = encodeURI(keywords);
+		distance = encodeURI(distance);
+		var a = window.location.search;
+		if( /mapkeywords/.test(a) ) {
+			/*如果GET中有搜索名词，则正则替换，否则添加*/
+			a = a.replace(/mapkeywords=.*?\&/, "mapkeywords="+keywords+"&"); 
+		} else {
+			a = a + "&mapkeywords=" + keywords;
+		}
+		if( /mapdistance/.test(a) ) {
+			/*如果GET中有距离，则正则替换，否则添加*/
+			a = a.replace(/mapdistance=\d+/, "mapdistance="+distance); 
+		} else {
+			a = a + "&mapdistance=" + distance;
+		}
+		top.location.href='../pad_Nearby_List1_Merchant/index.html' + a;
+	});
+});
+</script>
 </html>

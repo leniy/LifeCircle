@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-<script src="../../common_res/arttemplate/template-native.js"></script>
-<script src="../../common_res/jquery/jquery.min.js"></script> 
-<script src="../../common_res/lifecircleapi/common.js"></script>
+<script src="/templatefile/common_res/arttemplate/template-native.js"></script>
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/lifecircleapi/common.js"></script>
 <script src="js/nearby_index.js"></script>
 <link rel="stylesheet" type="text/css" href="css/nearby_index.css">
 </head>
@@ -14,7 +14,7 @@
 <script id="template" type="text/html">
 <div class="form-search form-inline">
 	<input class="input-medium search-query" id="searchId" type="text" placeholder="搜索地点 商户等" />
-	<select class="searchdistance">
+	<select class="searchdistance" style="display: none;">
 		<option value="5000" selected="selected">请选择搜索多大范围内的商家</option>
 		<option value="500">500米</option>
 		<option value="1000">1千米</option>

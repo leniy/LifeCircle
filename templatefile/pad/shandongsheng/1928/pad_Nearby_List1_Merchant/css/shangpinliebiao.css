@@ -103,3 +103,51 @@
     width: 50%;
     float: left;
 }
+
+
+
+/* 顶部搜索 */
+.form-search.form-inline {
+    margin: 20px;
+}
+
+form.form-search.form-inline {
+    padding-top: 10px;
+    background: #f3f4f5;
+    position: fixed;
+    padding-bottom: 5px;
+    width: 50%;  
+    box-sizing: border-box;
+    z-index: 10;
+}
+input#searchId {
+    line-height: 30px;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #888888;
+    width: 345px;
+    height: 35px;
+    border: 1px #C4C4C4 solid;
+    font-family: 'Microsoft YaHei';
+    text-indent: 5px;
+}
+select.searchdistance {
+    line-height: 30px;
+    border-radius: 4px;
+    font-size: 15px;
+    color: #888888;
+    height: 35px;
+    border: 1px #C4C4C4 solid;
+    font-family: 'Microsoft YaHei';
+    text-indent: 5px;
+    padding-right: 10px;
+}
+button#submitButton {
+    width: 60px;
+    height: 37px;
+    line-height: 32px;
+    font-size: 15px;
+    border: 0px;
+    background-color: #f3f4f6;
+    color: #445560;
+}

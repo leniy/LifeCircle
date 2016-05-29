@@ -1,0 +1,85 @@
+*{
+	margin:0px;
+	padding:0px;
+	border:0px;
+	font-family:"Microsoft YaHei";
+}
+body{/* max-width:640px; */
+margin:0px auto;}
+.bar{
+	margin: 23px 0px 0px;
+	float:left;
+	width: 100%;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.bar ul{
+	width:100%;
+	list-style-type:none;
+}
+.bar ul li{
+	width: 25%;
+	margin-bottom: 32px;
+	float:left;
+	height: 17.5vh;
+	padding-left: 7px;
+	padding-right: 7px;
+}
+.bar img{
+	width:100%;
+	height: 100%;
+}
+.content {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.content .xqjks {
+    width: 30%;
+    float: left;
+    margin-left: 2.5%;
+}
+.content .first{
+	width: 62.5%;
+}
+.ktjk{
+	margin-left: 21px;
+}
+.ktjk img{
+	width:100%;
+	height: 45vh;
+}
+.content .first img{
+	height: 45vh;
+}
+.xqjk{
+    padding-bottom: 25px;
+}
+.xqjk img{
+	width:100%;
+	height: 18.7vh;
+}
+.ktjk-title{
+	height:30px;
+	width:100%;
+	line-height:30px;
+	font-size:14px;
+	text-indent:20px;
+}
+.xqjk-title{
+	height:25px;
+	width:100%;
+	line-height:25px;
+	font-size:14px;
+	text-indent:15px;
+}
+.title{
+	background: rgba(52, 52, 52, 0.6);
+	background-repeat:repeat;
+	color:#FFFFFF;
+	height: 4.5vh;
+	font-size: 20px;
+	line-height: 4.5vh;
+	/* left:0px; */
+	/* bottom:0px; */
+	/* position:absolute; */
+}

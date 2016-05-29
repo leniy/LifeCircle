@@ -38,6 +38,6 @@ $(document).ready(function(){
 		}
 		keywords = encodeURI(keywords);
 		distance = encodeURI(distance);
-		top.location.href='/templatefile/baseTemplat/pad_List10_Goods/index.html'+window.location.search+"&mapkeywords="+keywords+"&mapdistance="+distance;
+		top.location.href='../pad_Nearby_List1_Merchant/index.html'+window.location.search+"&mapkeywords="+keywords+"&mapdistance="+distance;
 	});
 });

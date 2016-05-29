@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<script src="../../common_res/arttemplate/template-native.js"></script>
-<script src="../../common_res/jquery/jquery.min.js"></script> 
-<script src="../../common_res/lifecircleapi/common.js"></script>
+<script src="/templatefile/common_res/arttemplate/template-native.js"></script>
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/lifecircleapi/common.js"></script>
 <link href="css/Business_details.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -151,13 +151,13 @@ $(document).ready(function(){
 	});
 });
 function submitComment(){
-	window.location.href='/templatefile/baseTemplat/pad_Publish3_ShangJiaStar/index.html'+window.location.search;
+	window.location.href='../pad_API7_ShangJiaStar/index.html'+window.location.search;
 }
 
 function showMap(name){
 	name=encodeURI(name);
 	var merchantLocation = document.getElementById("merchant_location").innerHTML;
-	window.location.href='/templatefile/baseTemplat/pad_Content3_MapSearch/index.html'+window.location.search+"&merchantName="+name+"&merchant_location="+merchantLocation;
+	window.location.href='../pad_API9_MapSearch/index.html'+window.location.search+"&merchantName="+name+"&merchant_location="+merchantLocation;
 }
 </script>
 </html>

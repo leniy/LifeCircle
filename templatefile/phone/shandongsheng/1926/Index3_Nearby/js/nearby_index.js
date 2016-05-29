@@ -32,6 +32,6 @@ $(document).ready(function(){
 	$("#submitButton").click(function(){
 		var keywords = $("#searchId").val();
 		keywords = encodeURI(keywords);
-		top.location.href='/templatefile/baseTemplat/List10_Goods/goodslist.html'+window.location.search+"&mapkeywords="+keywords;
+		top.location.href='../Nearby_List1_Merchant/index.html'+window.location.search+"&mapkeywords="+keywords;
 	});
 });

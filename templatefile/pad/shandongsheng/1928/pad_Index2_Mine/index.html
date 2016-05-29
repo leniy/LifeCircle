@@ -25,20 +25,9 @@
 	</ul>
 </div>
 
-<% if ( sources.length > 0 ) { %>
-<!-- 第一行大图 -->
 <div class="content">
-	<div class="ktjk">
-	<a target="_parent" href="<%=sources[0].source_src%>"><img src="<%=sources[0].source_img%>"/></a>
-	<div class="ktjk-title title"><%=sources[0].source_title%></div>
-	</div>
-</div>
-<% } %>
-
-<!-- 接下来是每行两个的小图 -->
-<div class="content">
-<% for (i=1, l=sources.length; i<l; i++) { /* 循环从1开始，0是客厅监控 */ %>
-	<div class="xqjks">
+<% for (i=0, l=sources.length; i<l; i++) { %>
+	<div class="xqjks<%if(0==i){%> first<%}%>">
 		<div class="xqjk">
 		<a target="_parent" href="<%=sources[i].source_src%>"><img src="<%=sources[i].source_img%>"/></a>
 		<div class="xqjk-title title"><%=sources[i].source_title%></div>
@@ -46,6 +35,7 @@
 	</div>
 <% } %>
 </div>
+
 </script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-<script src="../../common_res/arttemplate/template-native.js"></script>
-<script src="../../common_res/jquery/jquery.min.js"></script> 
-<script src="../../common_res/lifecircleapi/common.js"></script>
+<script src="/templatefile/common_res/arttemplate/template-native.js"></script>
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/lifecircleapi/common.js"></script>
 <link href="Business_details.css" rel="stylesheet" type="text/css" />
 </head>
 <!-- 二级页面包含分类） -->
@@ -160,13 +160,13 @@ $(document).ready(function(){
 });
 
 function submitComment(){
-	window.location.href='/templatefile/baseTemplat/Publish3_ShangJiaStar/Publish3_ShangJiaStar.html'+window.location.search;
+	window.location.href='../API7_ShangJiaStar/index.html'+window.location.search;
 }
 
 function showMap(name){
 	name=encodeURI(name);
 	var merchantLocation = document.getElementById("merchant_location").innerHTML;
-	window.location.href='/templatefile/baseTemplat/Content3_MapSearch/Content3_MapSearch.html'+window.location.search+"&merchantName="+name+"&merchant_location="+merchantLocation;
+	window.location.href='../API9_MapSearch/index.html'+window.location.search+"&merchantName="+name+"&merchant_location="+merchantLocation;
 }
 	
 </script>
