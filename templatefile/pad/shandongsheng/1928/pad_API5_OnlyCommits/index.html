@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
 <script src="/templatefile/common_res/arttemplate/template-native.js"></script>
-<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script>
+<script src="/templatefile/common_res/layer/layer.js"></script>
 <link href="/templatefile/common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 <link href="css/life.css" rel="stylesheet" />
 </head>
@@ -22,7 +23,7 @@
 function updata(){
 	var sy = $("#summary").val();
 	if(sy==""){
-		alert("请填写评论内容");
+		lfalert("请填写评论内容");
 		return false; 
 	}
 	$.ajax({
@@ -33,7 +34,7 @@ function updata(){
 		contentType : "application/json",
 		async : false,
 		success : function(){
-			alert("评论成功");
+			lfalert("评论成功");
 			history.go(-1);
 		},
 		error : function(e) {

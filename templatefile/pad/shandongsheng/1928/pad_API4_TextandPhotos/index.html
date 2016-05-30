@@ -4,7 +4,8 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
-<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script>
+<script src="/templatefile/common_res/layer/layer.js"></script>
 <script src="/templatefile/common_res/jquery/ajaxfileupload.js"></script> 
 <link rel="stylesheet" type="text/css" href="css/fabuwenzitupian.css">
 </head>
@@ -36,11 +37,11 @@ function updata(){
 	var data = new FormData($('#form1'));
 	var titleVal = $("#title").val();
 	if(titleVal ==""){
-		alert("请填写标题");
+		lfalert("请填写标题");
 		return false;
 	}
 	var summaryVal = $("#summary").val();
-	if(summaryVal ==""){alert("请填写内容");return false;}
+	if(summaryVal ==""){lfalert("请填写内容");return false;}
 	console.log(titleVal);
 	$.ajaxFileUpload
         (
@@ -51,12 +52,12 @@ function updata(){
                 dataType: 'json',
                 success: function (data, status)
                 {                
-                    alert("发布成功");
+                    lfalert("发布成功");
 					history.go(-1);
                 },
                 error: function (data, status, e)
                 {
-                    alert(e);
+                    lfalert(e);
                 }
             }
         );       

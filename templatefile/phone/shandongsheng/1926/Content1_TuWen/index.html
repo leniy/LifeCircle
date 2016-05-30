@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
 <script src="/templatefile/common_res/arttemplate/template-native.js"></script>
-<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script>
+<script src="/templatefile/common_res/layer/layer.js"></script>
 <script src="/templatefile/common_res/lifecircleapi/common.js"></script>
 <link href="/templatefile/common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -50,7 +51,7 @@
 			success : function(data) {
 				var args = getQueryStringArgs(data);
 				/*
-				if(c==2){ alert("正在准备资源，请等待"+args.startTimeOffset+"秒"); }
+				if(c==2){ lfalert("正在准备资源，请等待"+args.startTimeOffset+"秒"); }
 				*/
 				type=args.platform;
 				if(c==1){

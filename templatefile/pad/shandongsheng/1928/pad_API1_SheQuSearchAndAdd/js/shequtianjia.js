@@ -59,10 +59,10 @@ $("#checkanswer").on('click', function(){
 			async : false,
 			success : function(data) {
 				if(data.status!=0){
-					alert(data.message);
+					lfalert(data.message);
 					return;
 				}
-				alert("申请成功，请等待管理员审核");
+				lfalert("申请成功，请等待管理员审核");
 			},
 			error : function(e) {
 				$(".answerresult").show();
@@ -71,7 +71,7 @@ $("#checkanswer").on('click', function(){
 });
 function searchfunc(teststr){
 	if("" == teststr){
-		alert("搜索内容为空");
+		lfalert("搜索内容为空");
 		return;
 	}
 	var searchfuncresult;
@@ -88,7 +88,7 @@ function searchfunc(teststr){
 		success : function(data) {
 			searchfuncresult = data;
 			if ( 0 == searchfuncresult.length ){
-				alert("无匹配的小区，请重新搜索");
+				lfalert("无匹配的小区，请重新搜索");
 			}
 			$('.xiaoqulists li').remove();
 			$.each(data, function(index,value){
@@ -96,7 +96,7 @@ function searchfunc(teststr){
 			});
 		},
 		error : function(e) {
-			alert("搜索失败");
+			lfalert("搜索失败");
 		}
 	});
 

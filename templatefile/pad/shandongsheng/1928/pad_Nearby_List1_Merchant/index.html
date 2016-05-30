@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 <script src="/templatefile/common_res/arttemplate/template-native.js"></script>
-<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script>
+<script src="/templatefile/common_res/layer/layer.js"></script>
 <script src="/templatefile/common_res/lifecircleapi/common.js"></script>
 <link rel="stylesheet" type="text/css" href="css/shangpinliebiao.css">
 </head>
@@ -62,7 +63,7 @@ $(document).ready(function(){
 		var keywords = $("#searchId").val();
 		var distance = $(".searchdistance").val();
 		if ( "" == keywords ){
-			alert("搜索内容为空");
+			lfalert("搜索内容为空");
 			return;
 		}
 		keywords = encodeURI(keywords);

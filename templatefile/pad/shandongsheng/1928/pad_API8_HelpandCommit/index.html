@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
 <script src="/templatefile/common_res/arttemplate/template-native.js"></script>
-<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script>
+<script src="/templatefile/common_res/layer/layer.js"></script>
 <script src="/templatefile/common_res/lifecircleapi/common.js"></script>
 <link href="css/helpandcommit.css" rel="stylesheet" />
 </head>
@@ -89,11 +90,11 @@
 		async : false,
 		success : function(data){
 			if(data[0].status == 1){
-				alert(data[0].message)
+				lfalert(data[0].message)
 			}else if(data[0].status == 0){
 				$(".likenmb").html(data[0].likeNum);
 			}else{
-				alert("点赞失败");
+				lfalert("点赞失败");
 			}			
 		},
 		error : function(e) {

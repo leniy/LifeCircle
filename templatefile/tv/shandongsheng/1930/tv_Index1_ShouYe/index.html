@@ -312,12 +312,6 @@ function doSelect(){
 
 $(document).ready(function() {
 		caId = iSTB.settings.get("sys:ca0:cardnumber");
-		//聊城
-		//caId = 8531103765980209;
-		//东关
-		//caId = 8536002405000011;
-		//caId='99370600001539336';
-		//alert(caId);
 		$.ajax({
 			//url : 'http://portal1.rifestone.com:7072/Portal/portal/template/getRegion1?appType=8&caCard='+caId,
 			url : 'http://10.255.134.4:7072/Portal/portal/template/getRegion1?appType=8&caCard='+caId,

@@ -6,6 +6,7 @@
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 <script src="/templatefile/common_res/arttemplate/template-native.js"></script>
 <script src="/templatefile/common_res/jquery/jquery.min.js"></script>
+<script src="/templatefile/common_res/layer/layer.js"></script>
 <link href="css/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -57,7 +58,7 @@ function deleteproduct(productid){
 			contentType : "application/json",
 			async : false,
 			success : function(data) {
-				alert("删除成功");
+				lfalert("删除成功");
 				window.location.reload();
 			},
 			error : function(e) {

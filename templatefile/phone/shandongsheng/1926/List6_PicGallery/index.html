@@ -61,9 +61,7 @@
             var touch = event.targetTouches[0];
             // 把元素放在手指所在的位置
             pressX = touch.pageX;
-           // pressY = touch.pageY;
 			theleft = obj.style.left;
-			//alert(theleft);
         }
     }, false);
 $(document).ready(function(){
@@ -95,7 +93,6 @@ function imgClick(){
 		img = $(this).attr('src');
 		$(".bars").removeClass('hover');
 		$(this).parent().addClass('hover');
-		//	alert(img);
 		img= "url"+"("+img+")";
 		$("#pic").css("background-image",img);
 		

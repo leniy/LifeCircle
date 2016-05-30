@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 <script src="/templatefile/common_res/arttemplate/template-native.js"></script>
-<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script>
+<script src="/templatefile/common_res/layer/layer.js"></script>
 <link href="/templatefile/common_res/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
 <script src="js/jquery.raty.js" type="text/javascript"></script>
@@ -46,10 +47,10 @@ function rat(star,result,m){
 	//提交评论内容
 	$("#gopost").click(function(){
 		var comment = $("#feedbackText").val();
-		if(comment==""){alert("请填写评论内容");return;}
+		if(comment==""){lfalert("请填写评论内容");return;}
 		var result1 = $("#result1").html();
 			result1 = Number(result1);
-			if(!result1){alert("请评价星级");return;}
+			if(!result1){lfalert("请评价星级");return;}
 			$.ajax({
 				url : '/Portal/appendComment'+window.location.search,
 				type : 'POST',
@@ -61,7 +62,7 @@ function rat(star,result,m){
 				contentType : "application/json",
 				async : false,
 				success : function() {
-					alert("评论成功");
+					lfalert("评论成功");
 					history.go(-1);
 				},
 				error : function(e) {
