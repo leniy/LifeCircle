@@ -85,9 +85,8 @@ body {
 .common_play{position: absolute; left: 50%; margin-left: -30px; top: 50%; margin-top: -30px; display: block; width: 60px; height: 60px; overflow: hidden;}
 .common_play img{ width: 100%;height: 100%;} 
   .swiper-container {
-        width: 66%;
+        width: 100%;
         height:350px;
-        float: left;
     }
     .swiper-slide {
         text-align: center;
@@ -107,19 +106,6 @@ body {
         -webkit-align-items: center;
         align-items: center;
     }
-.rightswiper {
-    width: 33%;
-    height: 350px;
-    float: right;
-}
-
-.rightswiper .swiper-slide {
-    height: 170px;
-    overflow: hidden;
-}
-.rightswiper>div:first-child {
-    margin-bottom: 10px;
-}
     .category{ margin-top: 20px;}
     .category ul  li {
         position: relative;

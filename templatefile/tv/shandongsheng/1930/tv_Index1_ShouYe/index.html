@@ -17,21 +17,42 @@
 ul{
 	list-style-type:none;
 }
+.time{
+	height:30px;
+	position:absolute; 
+	right:125px; 
+	top:35px;
+	width:320px; 
+	color:#DCCCBA;
+	font-size: 24px;
+}
+.time span{
+	padding: 0px 15px;
+
+}
+.time #thetime{
+	border-right: 1px solid #CAA370;
+	height: 100%;
+}
 .head{
-	height:65px;
+	height:60px;
 	position:absolute; 
 	left:80px; 
 	top:130px;
-	width:1120px; 
-	color:#b5afdb;
+	width:1095px; 
+	color:#fff;
+	background: url("image/nav_bg.png");
+	background-repeat: repeat; 
+	border-radius:6px;
 }
+
 .head li{
-	height:50px;
-	line-height:50px;
-	width:16.5%;
+	height:60px;
+	line-height:60px;
+	width:20%;
 	float:left; 
 	text-align:center;
-	font-size:26px;
+	font-size:24px;
 	white-space:nowrap; 
 	overflow:hidden; 
 	text-overflow:ellipsis;
@@ -57,7 +78,6 @@ ul{
 	width:500px;
 	height:386px;
 	float:left;
-	/*box-shadow:0 0px 10px #FEFFFE;*/
 	border:transparent 3px solid;
 	overflow:hidden;
 	position:relative;
@@ -310,7 +330,7 @@ function doSelect(){
 	sessionStorage.setItem("SareaPos", areaPos); 
 }
 
-$(document).ready(function() {
+$(document).ready(function(){
 		caId = iSTB.settings.get("sys:ca0:cardnumber");
 		$.ajax({
 			//url : 'http://portal1.rifestone.com:7072/Portal/portal/template/getRegion1?appType=8&caCard='+caId,
@@ -327,6 +347,34 @@ $(document).ready(function() {
 				console.log(e);
 			}
 		});
+		initTime();
+		function initTime(){
+			var d = new Date();
+			var theMonth = d.getMonth()+1;
+				theMonth = check(theMonth);
+			var theDay = d.getDate();
+				theDay = check(theDay);
+			var theDay=theMonth+"/"+theDay;
+			$("#thetime").html(theDay);
+
+			var weeks=["日","一","二","三","四","五","六"];
+				week = weeks[d.getDay()];
+				week="星期"+week;
+
+			var th = d.getHours();
+			th = check(th);
+			var tm = d.getMinutes();
+			tm = check(tm);
+			theTime = th+":"+tm+" "+week;
+			$("#thedate").html(theTime);
+			function check(i){
+				if(i<10){
+					i = "0"+i;
+				}
+				return i;
+			}
+			setTimeout(function(){initTime();},60000);
+		}
 	});
 function getUrl(_url){
 			$.ajax({
@@ -347,7 +395,8 @@ function getUrl(_url){
 		}
 </script>
 </head>
-<body bgcolor="transparent"  background="image/community_bg2.jpg" leftmargin="0" topmargin="0" onLoad="init();" onUnload="">
+<body bgcolor="transparent"  background="image/community_bg3.jpg" leftmargin="0" topmargin="0" onLoad="init();" onUnload="">
+	 <div class="time"><span id="thetime"></span><span id="thedate"></span></div>
 	<div class="head">
 		<ul id="qyregions">
 		<script id="qytemplate" type="text/html">
@@ -370,8 +419,5 @@ function getUrl(_url){
 		</ul>
 		</script>
     </div>
-	<div class="foot">
-		<img src="image/community_hint.png"/>
-	</div>
 </body>
 </html>

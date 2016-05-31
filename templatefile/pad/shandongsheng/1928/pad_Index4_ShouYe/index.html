@@ -53,11 +53,16 @@
 </script>
 <script id="template" type="text/html">
 
+<!-- 顶部横幅图片 -->
+<!--<% if ( "undefined"!=typeof(page[0].page_advert_img) && ""!=page[0].page_advert_img ) { %>
+/*<div class="province"><img src="<%=page[0].page_advert_img%>" alt="" /></div>
+<% } %>*/ -->
+
 <!-- 滑动轮训图片 -->
-<% if ( recommends_slide.length > 2 ) { %>
+<% if ( recommends_slide.length > 0 ) { %>
 <div class="swiper-container">
 	<div class="swiper-wrapper">
-	<% for (i=2, l=recommends_slide.length; i<l; i++) { %>
+	<% for (i=0, l=recommends_slide.length; i<l; i++) { %>
 		<% if ( "" == recommends_slide[i].recommend_img || "undefined" == typeof(recommends_slide[i].recommend_img) ) continue; %>
 		<div class="swiper-slide">
 			<% if (1==recommends_slide[i].recommend_type) { %>
@@ -72,29 +77,8 @@
 		</div>
 	<% } %>
 	</div>
-	<div class="swiper-pagination"></div>
 </div>
 <% } %>
-<% if ( recommends_slide.length > 1 ) { %>
-<div class="rightswiper">
-	<% for (i=0, l=2; i<l; i++) { %>
-		<% if ( "" == recommends_slide[i].recommend_img || "undefined" == typeof(recommends_slide[i].recommend_img) ) continue; %>
-		<div class="swiper-slide">
-			<% if (1==recommends_slide[i].recommend_type) { %>
-			<a target="_parent" class="common_play" href="<%=recommends_slide[i].recommend_src%>">
-				<img src="image/icon/common_play.png" alt="" />
-			</a>
-			<% } %>
-			<a style="width:100%" target="_parent" href="<%=recommends_slide[i].recommend_src%>">
-				<img src="<%=recommends_slide[i].recommend_img%>" alt="" style="width: 100%;" />
-				<div class="carousel-caption"><%=recommends_slide[i].recommend_title%></div>
-			</a>
-		</div>
-	<% } %>
-</div>
-<% } %>
-
-
 
 <!-- 矩阵式分类导航 -->
 <div class="category">
@@ -146,17 +130,17 @@
 
 </script>
 </body>
+
 <script>
 $(document).ready(function(){
-	 var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        spaceBetween: 30,
-        centeredSlides: true,
+	var aa = window.screen.availWidth;
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 2,
+        spaceBetween: aa*0.01,
+		loop : true,
         autoplay: 3000,
         autoplayDisableOnInteraction: false,
-		loop : true
-    });
+	});
 });
 </script>
 </html>
