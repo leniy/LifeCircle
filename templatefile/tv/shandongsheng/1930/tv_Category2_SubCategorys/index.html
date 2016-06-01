@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+<script type="text/javascript" src="/templatefile/common_res/arttemplate/template-native.js"></script>
+<script type="text/javascript" src="/templatefile/common_res/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/templatefile/common_res/lifecircleapi/common.js"></script>
+<style>
+*{
+	margin:0px;
+	padding:0px;
+	border:0px;
+	box-sizing:border-box;
+	font-family:"microsoft YaHei";
+}
+ul{
+	list-style-type:none;
+}
+#content{
+	position:absolute; 
+	left:130px; 
+	top:155px;
+	width:1010px; 
+	height:410px;
+}
+.nav{
+	list-style-type:none;
+	margin-left:8px;
+	height:410px;
+}
+.nav li{
+	width:188px;
+	height:188px;
+	float:left;
+	overflow:hidden;
+	margin:10px 5px 0px 5px;
+	border:transparent 3px solid;
+	box-shadow:0px 0px 10px transparent;
+}
+.foot{
+	width:457px;
+	height:43px;
+	position:absolute;
+	top:630px;
+	left:80px; 
+}
+</style>
+<script>
+document.onirkeypress = grabEvent;
+document.onkeydown = grabEvent;
+function grabEvent(event){
+	var keyval = event.which;
+	switch(keyval){
+		case 38://up
+			changUP(-1);
+			event.stopPropagation();
+			break;
+		case 40://down
+			changUP(1);
+			event.stopPropagation();
+			break;
+		case 37://left
+			changLR(-1);
+			event.stopPropagation();
+			break;
+		case 39://right
+			changLR(1);
+			event.stopPropagation();
+			break;
+		case 13://ok
+			doSelect();
+			event.stopPropagation();
+			break;
+		case 27://esc
+			event.stopPropagation();
+			break;
+		case 8://back
+			return EVENT.STOP;
+			break;
+	}	
+	event.stopPropagation();
+}
+var navPos = 1;		//
+var colNum = 5;	
+
+function init(){
+	getPos();
+}
+function getPos(){
+	var SnavPos = sessionStorage.getItem("SnavPos");
+	if(SnavPos != "" && SnavPos != "undefined" && typeof(SnavPos) != "undefined" && !isNaN(SnavPos) && SnavPos != null){
+		navPos = parseInt(SnavPos);
+	}
+	$(".nav > li:nth-child("+navPos+")").css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+
+}
+function changUP(num){
+	if(num>0&&navPos<6){
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		navPos+=5;
+		var thepos = $(".nav > li:nth-child("+navPos+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		return false;
+	}
+	if(num<0&&navPos>5){
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		navPos-=5;
+		var thepos = $(".nav > li:nth-child("+navPos+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		return false;
+	}
+};
+function changLR(num){
+	if(num>0&&navPos<colNum*2){
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		navPos++;
+		var thepos = $(".nav > li:nth-child("+navPos+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FEFFFE"});	
+		return false;
+	}
+	if(num<0&&navPos>1){
+		navPos--;
+		$(".nav > li").css({"border":"transparent 3px solid","box-shadow":"0px 0px 5px transparent"});	
+		var thepos = $(".nav > li:nth-child("+navPos+")");
+		thepos.css({"border":"#FEFFFE 3px solid","box-shadow":"0px 0px 5px #FFF"});	
+		return false;
+	}
+};
+function doSelect(){
+	var theUrl =  $(".nav > li:nth-child("+navPos+")").attr("goUrl");
+	sessionStorage.setItem("SnavPos", navPos); 
+	window.location.href = theUrl;		
+}
+</script>
+</head>
+<body id="lifecirclebody"  background="image/community_bg.jpg" leftmargin="0" topmargin="0" onLoad="init();" onUnload="">
+<script id="template" type="text/html">
+    <div id="content" style="">
+		<ul class="nav">
+			<% for (i=0, l=categorys.length; i<l; i++) { %>
+			<li goUrl="<%=categorys[i].category_src%>"><img src="<%=categorys[i].category_img%>"/></li>
+			<% } %>
+		</ul>
+    </div>
+	<div class="foot">
+		<img src="image/community_hint.png"/>
+	</div>
+</script>
+</body>
+</html>

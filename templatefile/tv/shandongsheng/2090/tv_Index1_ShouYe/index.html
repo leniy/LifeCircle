@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
 <script src="/templatefile/common_res/arttemplate/template-native.js"></script>
-<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script>
 <style>
 *{
 	margin:0px;
@@ -20,11 +20,11 @@ ul{
 .time{
 	height:30px;
 	position:absolute; 
-	right:125px; 
-	top:35px;
+	right:140px; 
+	top:32px;
 	width:320px; 
 	color:#DCCCBA;
-	font-size: 24px;
+	font-size: 26px;
 }
 .time span{
 	padding: 0px 15px;
@@ -78,6 +78,7 @@ ul{
 	width:500px;
 	height:386px;
 	float:left;
+	/*box-shadow:0 0px 10px #FEFFFE;*/
 	border:transparent 3px solid;
 	overflow:hidden;
 	position:relative;
@@ -332,6 +333,8 @@ function doSelect(){
 
 $(document).ready(function(){
 		caId = iSTB.settings.get("sys:ca0:cardnumber");
+		//caId='8531103765980209';
+		//alert(caId);
 		$.ajax({
 			url : '/Portal/portal/template/getRegion1?appType=8&caCard='+caId,
 			type: 'POST',
@@ -349,23 +352,21 @@ $(document).ready(function(){
 		initTime();
 		function initTime(){
 			var d = new Date();
-			var theMonth = d.getMonth()+1;
-				theMonth = check(theMonth);
-			var theDay = d.getDate();
-				theDay = check(theDay);
-			var theDay=theMonth+"/"+theDay;
-			$("#thetime").html(theDay);
-
 			var weeks=["日","一","二","三","四","五","六"];
 				week = weeks[d.getDay()];
 				week="星期"+week;
-
 			var th = d.getHours();
 			th = check(th);
 			var tm = d.getMinutes();
 			tm = check(tm);
-			theTime = th+":"+tm+" "+week;
-			$("#thedate").html(theTime);
+			theTime = th+":"+tm;			
+			var theMonth = d.getMonth()+1;
+				theMonth = check(theMonth);
+			var theDay = d.getDate();
+				theDay = check(theDay);
+			var theDay=theMonth+"/"+theDay+" "+week;;
+			$("#thetime").html(theTime);
+			$("#thedate").html(theDay);
 			function check(i){
 				if(i<10){
 					i = "0"+i;
@@ -398,7 +399,7 @@ function getUrl(_url){
 	<div class="head">
 		<ul id="qyregions">
 		<script id="qytemplate" type="text/html">
-		<% for (i=0, l=regions.length; i<l; i++) { %>
+		<% for (i=0, l=regions.length; i<l&&i<6; i++) { %>
 			<li goUrl="<%=regions[i].src%>"><%=regions[i].name%></li>
 		<%}%>
 		</script>
@@ -411,7 +412,7 @@ function getUrl(_url){
 			<div class="new_title"><%=recommends_slide[0].recommend_title%></div>
 		</div>
 		<ul class="nav">
-			<% for (i=0, l=6; i<l; i++){%>
+			<% for (i=0, l=categorys.length; i<l&&i<6; i++){%>
 				<li goUrl="<%=categorys[i].category_src%>"><img src="<%=categorys[i].category_img%>"/></li>
 			<%}%>
 		</ul>
