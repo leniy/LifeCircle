@@ -141,7 +141,7 @@ body {
         margin-top: 5px;       
     }
     .common-title-bar{position: relative;height: 40px;border-left: 2px solid #fdab01;line-height: 40px;margin-top: 10px;background: url(../image/icon/hr.png) repeat-x;}
-    .common-title{ padding:0 10px;font-size: 16px;color: #445560;background: #fff;} 
+    .common-title{ padding:0 10px;font-size: 16px;color: #445560;background: #F3F4F6;} 
     .common-title-bar .more{position: absolute;top: 0;right: 10px;z-index: 9;display: block;width: 20px;height: 20px;}
     .common-title-bar .more img{ width: 100%;}
     .news-item ul li{
@@ -165,9 +165,9 @@ body {
      }
 .news-item .news-brief-bar{ width: 72%;padding-left: 2%;height:104px; overflow: hidden;box-sizing:border-box;}
    
-.news-item .news-brief-bar p:last-child{color: #888; font-size: 18px;height:73px; overflow: hidden; line-height:26px;}
-.news-item .news-brief-bar .news-title{ 
-	font-size: 22px;
+.news-item .news-brief-bar p:last-child{color: #888; font-size: 15px;height:73px; overflow: hidden; line-height:26px;}
+.news-item .news-brief-bar .news-title{
+	font-size: 17px;
 	width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;

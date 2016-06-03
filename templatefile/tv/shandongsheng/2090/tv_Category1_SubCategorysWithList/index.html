@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>二级分类_资讯</title>
+<script src="/templatefile/common_res/arttemplate/template-native.js"></script>
+<script src="/templatefile/common_res/jquery/jquery.min.js"></script> 
+<script src="/templatefile/common_res/lifecircleapi/common.js"></script>
+<style>
+*{
+	margin:0px;
+	padding:0px;
+	border:0px;
+	box-sizing:border-box;
+	font-family:"microsoft YaHei";
+}
+ul{
+	list-style-type:none;
+}
+.top{
+	height:32px;
+	line-height:32px;
+	position:absolute;
+	left:30px;
+	top:30px;
+	width:1120px;
+	color:#A3AFC7;
+	background-image:url(image/icon_back.png);
+	background-repeat: no-repeat;
+	font-size:26px;
+	text-indent:30px;
+}
+#head{
+	left:60px; 
+	top:100px;
+	width:1120px; 
+	height:50px;
+	position:relative;
+	overflow:hidden;
+	color:#A3AFC7;
+}
+#head ul li{
+	float:left;
+	line-height:50px;
+	font-size:24px;
+	border-radius:8px;
+	padding:0px 12px;
+	margin-right:25px;
+}
+.liactive{
+	background-color:#FEAC00;
+	color:#FFF;
+}
+#content{
+	position:absolute; 
+	left:60px; 
+	top:120px;
+	width:1120px; 
+	height:450px;
+	position:relative;
+	overflow:hidden;
+}
+#contentbody{
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+#contentbody li{
+	height:140px;
+	margin-bottom:10px;
+}
+.fff{
+	color:#fff;
+}
+.ff{
+	color:#A3AFC7;
+}
+.bbmsg{
+	padding:0px 0px 10px 0px;
+}
+.news_pic{
+	width:187px;
+	height:140px;
+	float:left;
+	overflow:hidden;
+	margin-right:13px;
+}
+.news_pic img{
+	width:100%;
+	height:100%;
+}
+.news_titel{
+	font-size:28px;
+	height:50px;
+	line-height:50px;
+	white-space:nowrap; 
+	overflow:hidden; 
+	text-overflow:ellipsis;
+	width:920px;
+}
+.news_content{
+	width:920px;
+	height:80px;
+	line-height:40px;
+	font-size:22px;
+	overflow:hidden;
+	text-indent:2em;
+}
+#roll{
+	position:absolute; 
+	top:150px;
+	left:1190px; 
+	height:450px;
+	width:8px;
+	background-color:#365E93;
+	border-radius:4px;
+	overflow:hidden;
+}
+#rolled{
+	position:absolute; 
+	top:0px;
+	left:0px; 
+	height:100%;
+	width:8px;
+	background-color:#869FBD;
+	border-radius:4px;
+}
+
+.foot{
+	width:457px;
+	height:43px;
+	position:absolute;
+	top:630px;
+	left:80px; 
+}
+</style>
+<script>
+document.onirkeypress = grabEvent;
+document.onkeydown = grabEvent;
+function grabEvent(event){
+	var keyval = event.which;
+	switch(keyval){
+		case 37://left
+			changLR(-1);
+			event.stopPropagation();
+			break;
+		case 39://right
+			changLR(1);
+			event.stopPropagation();
+			break;
+		case 38://up
+			changUP(-1);
+			event.stopPropagation();
+			break;
+		case 40://down
+			changUP(1);
+			event.stopPropagation();
+			break;
+		case 27://esc
+			event.stopPropagation();
+			break;
+		case 8://back
+			return EVENT.STOP;
+			break;
+		case 13://ok
+			doSelect();
+			event.stopPropagation();
+			break;
+
+	}	
+	event.stopPropagation();
+}
+var tabNum = 3;
+var tabNumPos = 1;
+var perHeight = 450;	
+var totalPage = 1;	
+var liheight = 150
+var liNum = 5;	
+var liNumPos = 1;	
+var ScrollNum = 0;
+
+$(document).ready(function(){
+	init();
+	var theUrl = $("#lifecirclebody > li:nth-child("+tabNumPos+")").attr("goUrl");	
+	getUrl(theUrl.split("?")[1]);
+	getPos();
+});
+function init(){
+	//if((lists/3)<=1){$("#roll").hide();}else{liNum = (3/lists)*perHeight; $("#rolled").height(liNum);}
+	if(sessionStorage.liNumPos){
+		liNumPos = parseInt(sessionStorage.liNumPos);
+	} else {
+		liNumPos = 1;
+	}
+	getPos();
+}
+function getPos(){
+	tabNum = parseInt($("#head>ul>li").length);
+	var thehead = $("#head>ul>li:nth-child("+tabNumPos+")");
+		thehead.addClass("liactive");
+	var heads = $("#contentbody>ul>li");
+	heads.removeClass("fff").addClass("ff");
+	$("#contentbody>ul>li:nth-child("+liNumPos+")").removeClass("ff").addClass("fff");
+	setScroll(1);
+}
+function changUP(num){
+	var heads = $("#contentbody>ul>li");
+	if(num>0&&liNumPos<lists){
+		heads.removeClass("fff").addClass("ff");
+		liNumPos++;
+		if(liNumPos>2&&liNumPos<lists){
+			$("#contentbody").css("transform","translateY(-"+ (liNumPos-2) * liheight +"px)");
+			setScroll(1);
+		}	
+	}
+	if(num<0&&liNumPos>1){
+		heads.removeClass("fff").addClass("ff");
+		liNumPos--;
+		$("#contentbody").css("transform","translateY(-"+ (liNumPos-2) * liheight +"px)");
+			setScroll(1);
+	}
+	var theli = $("#contentbody>ul>li:nth-child("+liNumPos+")");
+		theli.removeClass("ff").addClass("fff");
+}
+function changLR(num){
+	var heads = $("#head>ul>li");
+	if(num>0 && tabNumPos<tabNum){
+		tabNumPos++;
+		heads.removeClass("liactive");
+		var thehead = $("#head>ul>li:nth-child("+tabNumPos+")");
+		thehead.addClass("liactive");
+		var theUrl = $("#lifecirclebody > li:nth-child("+tabNumPos+")").attr("goUrl");	
+		getUrl(theUrl.split("?")[1]);
+		return;
+	}
+	if(num<0 && tabNumPos>1){
+		tabNumPos--;
+		heads.removeClass("liactive");
+		var thehead = $("#head>ul>li:nth-child("+tabNumPos+")");
+		thehead.addClass("liactive");
+		var theUrl = $("#lifecirclebody > li:nth-child("+tabNumPos+")").attr("goUrl");	
+		getUrl(theUrl.split("?")[1]);
+		return;
+	}
+	liNumPos = 1;
+}
+function setScroll(num){
+	lists = parseInt($("#contentbody>ul>li").length);
+	 $("#rolled").css("top",(liNumPos-2)/lists*perHeight+"px");
+}
+function getUrl(_url){
+			$.ajax({
+				url : '/Portal/portal/template/getTemplate?'+_url,
+				type: 'POST',
+				data: null,
+				async : false,
+				success : function(data) {
+					data =eval(data)[0];
+					var html = template('paging', data);
+					document.getElementById('mmm').innerHTML = html;
+				},
+				error : function(e) {
+					console.log(e);
+				}
+			});
+			lists = parseInt($("#contentbody>ul>li").length);
+			if((lists/3)<=1){$("#roll").hide();}else{liNum = (3/lists)*perHeight; $("#rolled").height(liNum);}
+			$("#contentbody>ul>li:nth-child("+liNumPos+")").removeClass("ff").addClass("fff");
+		}
+function doSelect(){ 
+	sessionStorage.liNumPos = liNumPos;
+	data_url = $("#contentbody >ul > li:nth-child("+liNumPos+")").attr("goUrl");
+	location.href = data_url;
+}
+</script>
+</head>
+<body bgcolor="transparent"  background="image/community_bg.jpg" leftmargin="0" topmargin="0">
+    <!--标题-->
+	<div class="top">返回</div>
+	<div id="head">
+		<ul id="lifecirclebody">
+			<script id="template" type="text/html">
+				<% for (i=0, l=categorys.length; i<l; i++) { %>
+				<li goUrl="<%=categorys[i].category_src%>"><%=categorys[i].category_name %></li>
+				<%}%>
+			</script>
+		</ul>
+	</div>
+    <div id="content" style="">
+		<div id="contentbody">
+			<ul id="mmm">
+			</ul>
+    	</div>
+	  </div>
+	<div id="roll"><div id="rolled"></div></div>
+	<div class="foot">
+		<img src="image/community_hint.png"/>
+	</div>
+	<script id="paging" type="text/html">
+			<% for (i=0, l=sources.length; i<l; i++) { %>
+				<li class="ff" goUrl="<%=sources[i].source_src%>">
+					<% if(sources[i].source_img==""){%>
+						<div class="news_pic"><img src="image/bg.png"/></div>
+					<%}else{%>
+						<div class="news_pic"><img src="<%= sources[i].source_img%>"/></div>
+					<%}%>
+					<div class="news_titel"><%=sources[i].source_title%></div>
+					<div class="news_content"><%=sources[i].source_summary%></div>
+				</li>
+			<% } %>
+	</script>
+</body>
+</html>
